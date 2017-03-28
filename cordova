@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+        <!-- Note! Below we load jQuery and jQuery Mobile for Google CDN Library.
+             In General (and for your Assignment N2!) you must use locad jQuery and jQuery Mobile libraries locally!!!. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+
+        <title>Assignment2</title>
+    </head>
+    <body>
+        <div data-role="page" id="storage">
+              <div data-role="header">
+                  This is Ankit Shah's Assignment 2<br /> 
+                  
+              </div>
+              
+
+            <div data-role="content">
+                <section class="ui-grid-a">
+                    <section class="ui-block-a">  
+                        <em>Name</em><br />
+                        <input type="text" name="sname" id="sname" placeholder="Student Name"><br />
+                        
+                    </section>  <!-- block-a -->
+                    
+                    <section class="ui-block-b">
+                        <em>Email</em>
+                        <input type="text" name="email" placeholder="Your Email"><br />
+                        <div>
+                            <div data-role="rangeslider">
+                                <label for="range1a"><em>Age:</em></label><br />
+                                <input type="range" name="range1a" id="range1a" min="0" max="100" value="20">
+                            </div>
+                        </div>
+                    </section>
+                </section>    <!-- grid-a -->
+                
+                <section class="ui-grid-solo">
+                    <button id="register" class="ui-btn ui-icon-action ui-btn-icon-left">Register</button>
+                    <button id="retrieve" class="ui-btn ui-icon-back ui-btn-icon-left">Retrieve</button>
+                    <button id="clear" class="ui-btn ui-icon-recycle ui-btn-icon-left">Clear</button>
+                </section>
+
+            </div>          <!-- data-role=content -->
+
+            <div data-role="popup" id="pop" data-position-to="window" data-transition="turn"></div>
+
+        </div>            <!-- data-role=page -->
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+          
+          var jqmReady=$.Deferred();
+          var pgReady=$.Deferred();
+
+            $(document).on("pagecreate",  jqmReady.resolve);
+            //document.addEventListener("deviceready",pgReady.resolve,false);
+           // window.addEventListener("load",pgReady.resolve,false);
+
+           $.when(jqmReady,pgReady).then (function(){
+            
+                $sname = $("#sname");
+                $input = $("#localstorage").find("input");
+                $email = $input.filter("[name='email']");
+                $range1a = $("#range1a");
+                $range1b = $("#range1b");
+
+                var db, openRequest;
+
+                var dbSupported = ("indexedDB" in window) ? true : false;
+
+                if (dbSupported) {
+                    var openRequest = window.indexedDB.open("AssignmentDB2", 1);
+
+                    openRequest.onupgradeneeded = function (event) {
+                        console.log("DB upgrading");
+                        //db = event.target.result;
+                        db = openRequest.result;
+                        if (!db.objectStoreNames.contains("student")) {
+                            console.log("DB Storage created");
+                            db.createObjectStore("student", {keyPath: "id"});
+
+                        }
+
+                    };
+                    openRequest.onsuccess = function (event) {
+                        console.log("DB success");
+                        //db = event.target.result;
+                        db = openRequest.result;
+                    };
+
+                    openRequest.onerror = function (event) {
+                        console.log("DB error");
+                        //db = event.target.result;
+                        console.dir(event);
+                    };
+
+                }
+
+
+
+                $("#register").click(function () {
+                    if ($("#sname").val().length == 0) {
+                        alert("Please provide a Name");
+                    } else if ($email.val().length == 0) {
+                        alert("Please provide an email");
+                    } else {
+
+                        var sname = $sname.val();
+                        var email = $email.val();
+                        var range1a = $range1a.val();
+                        var range1b = $range1b.val();
+
+                        var student = {StudentName: sname, Email: email, Age: range1a, id: 1};
+
+                        var transaction = db.transaction(["student"], "readwrite");
+                        transaction.oncomplete = function (event) {
+                            console.log("Transaction Complete");
+                        };
+                        transaction.onerror = function (event) {
+                            console.log("Transaction Failed");
+
+                        };
+
+                        var storeRequest = transaction.objectStore("student").put(student);
+
+                        storeRequest.onsuccess = function (event) {
+                            console.log("Object saved");
+                            alert("Student Info for " + sname + " has been Saved");
+                        };
+
+                        storeRequest.onerror = function (event) {
+                            console.log("Object NOT saved");
+                            alert("Failed to Save Info for " + sname)
+                        };
+
+                        console.log("Student Name: " + sname + '\n' +
+                                "Email: " + email + '\n' );
+
+                        location.reload();
+
+                    }
+                });
+
+                $("#retrieve").click(function () {
+                    // $program=$input.filter("[name='program']");
+
+                    var storeRequest = db.transaction(["student"], "readwrite").objectStore("student").get(1);
+
+                    storeRequest.onsuccess = function () {
+
+//                        try {
+//                            $sname.val(storeRequest.result.Name);
+//                            $email.val(storeRequest.result.Email);
+//                            
+//                            $range1a.val(storeRequest.result.Age).slider("refresh");
+//                       
+//                        } catch (e) {
+//                            console.log("Error 404. No Data Found");
+//                            alert("Error 404. No Data Found");
+//                        }
+                    };
+
+                });
+
+                $("#clear").click(function () {
+                    //clearData();
+                    indexedDB.deleteDatabase('AssignmentDB2');
+                    alert("AssignmentDB has been Cleared!");
+                    location.reload();
+
+
+                });
+
+            });
+            });
+        </script> 
+    </body>
+</html>
