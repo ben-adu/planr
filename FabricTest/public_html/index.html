@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.js"></script>
+    </head>
+    <body>
+        <canvas id="c" width="300" height="300" style="border:1px solid #ccc"></canvas>
+        <p id="demo" onclick="myFunction()">First Save.</p>
+        <p id="demo" onclick="saveAsFile(JSON.stringify(canvas.toDatalessJSON()))">Second Save.</p>
+        <p id="demo" onclick="readTextFile()">load.</p>
+        <div id="content"></div>
+        <script>
+            var canvas = new fabric.Canvas('c');
+            canvas.backgroundColor = 'red';
+            JSON.stringify(canvas); // '{"objects":[],"background":"red"}'
+            (function () {
+
+
+
+                // create a rectangle with angle=45
+                var rect = new fabric.Rect({
+                    left: 100,
+                    top: 100,
+                    fill: 'blue',
+                    width: 20,
+                    height: 20,
+                    angle: 45
+                });
+
+                canvas.add(rect);
+                // canvas.item(0).sourcePath = '/assets/dragon.svg';
+                console.log(JSON.stringify(canvas.toDatalessJSON()));
+                var json = JSON.stringify(canvas.toDatalessJSON());
+
+                //var data = {a: 1, b: 2, c: 3};
+                //json = JSON.stringify(data);
+                var blob = new Blob([json], {type: "application/json"});
+                var url = URL.createObjectURL(blob);
+
+                var a = document.createElement('a');
+                a.download = "backup.json";
+                a.href = url;
+                a.textContent = "Download backup.json";
+                document.getElementById('content').appendChild(a);
+
+
+
+            })();
+
+            function saveAsFile(json) {
+                //var data = {a: 1, b: 2, c: 3};
+                //json = JSON.stringify(data);
+                var blob = new Blob([json], {type: "application/json"});
+                var url = URL.createObjectURL(blob);
+
+                var a = document.createElement('a');
+                a.download = "backup.json";
+                a.href = url;
+                a.textContent = "Download backup.json";
+            }
+
+
+
+            function myFunction() {
+                    canvas.item(0).sourcePath = 'C:\Users\Kurt\Documents\NetBeansProjects\FabricTest\assets';
+                console.log(JSON.stringify(canvas.toDatalessJSON()));
+            }
+            function myFunction2() {
+                readTextFile("\backup.json", function (text) {
+
+                    var data = JSON.parse(text);
+                    canvas.loadFromDatalessJSON(data, canvas.renderAll.bind(canvas));
+                    console.log(data);
+                });
+
+                    
+            }
+
+            function readTextFile(file, callback) {
+                var rawFile = new XMLHttpRequest();
+                rawFile.overrideMimeType("application/json");
+                rawFile.open("GET", file, true);
+                rawFile.onreadystatechange = function () {
+                    if (rawFile.readyState === 4 && rawFile.status === "200") {
+                        callback(rawFile.responseText);
+                    }
+                };
+                rawFile.send(null);
+            }
+
+
+
+
+        </script>
+    </body>
+</html>
