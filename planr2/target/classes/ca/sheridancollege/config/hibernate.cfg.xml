@@ -36,6 +36,7 @@
 		<mapping class="ca.sheridancollege.beans.User" />
 		<mapping class="ca.sheridancollege.beans.UserRole" />
 		<mapping class="ca.sheridancollege.beans.Customer" />
+		<mapping class="ca.sheridancollege.beans.Inventory" />
 		
 
 	</session-factory>

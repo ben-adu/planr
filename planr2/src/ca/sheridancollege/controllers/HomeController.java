@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ca.sheridancollege.beans.Customer;
+import ca.sheridancollege.beans.Inventory;
 import ca.sheridancollege.beans.MyUserDetailsService;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.beans.UserRole;
@@ -30,6 +31,7 @@ public class HomeController
 {
 	
 	private Customer customer= new Customer();
+	private Inventory inventory = new Inventory();
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model)

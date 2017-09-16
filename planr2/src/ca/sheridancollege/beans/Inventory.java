@@ -2,9 +2,16 @@ package ca.sheridancollege.beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+@Entity
+@NamedQueries(
+{ @NamedQuery(name = "Inventory.getItemList", query = "from Inventory"),
+		@NamedQuery(name = "Inventory.byId", query = "from Inventory where id=:id") })
 public class Inventory implements Serializable
 {
 	@Id
@@ -13,6 +20,11 @@ public class Inventory implements Serializable
 	private int quantity;
 	private String name;
 	private String description;
+	
+	public Inventory ()
+	{
+		
+	}
 	public Inventory(int id, int quantity, String name, String description)
 	{
 		this.id = id;

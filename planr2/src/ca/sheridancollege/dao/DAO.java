@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import ca.sheridancollege.beans.Customer;
+import ca.sheridancollege.beans.Inventory;
 import ca.sheridancollege.beans.User;
 
 public class DAO {
@@ -97,8 +98,68 @@ public class DAO {
 		Customer customer= (Customer) session.getNamedQuery("Customer.byId").setParameter("id", id).getResultList().get(0);
 		
 		return customer;
+	}
+	
+	public void createItem(Inventory inventory)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
 		
+		session.save(inventory);
 		
+		session.getTransaction().commit();
+		session.close();
 		
+	}
+	
+	public void saveItem(Inventory inventory)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		session.saveOrUpdate(inventory);
+		
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	public void  setInventoryList(ArrayList<Inventory>inventoryList)
+	{
+		this.customerList=customerList;
+	}
+	
+	public List<Inventory> getItemList()
+	{
+		Session session= sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Query query = session.createNamedQuery("Inventory.getItemList");
+		List<Inventory> inventoryList = query.getResultList();
+		
+		session.getTransaction().commit();
+		session.close();
+		return inventoryList;
+	}
+	
+	public void deleteInventory (int id)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Inventory inventory =(Inventory) session.get(Inventory.class, id);
+		session.delete(inventory);
+		
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	public Inventory getInventoryById(int id)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Inventory inventory = (Inventory) session.getNamedQuery("Inventory.byId").setParameter("id", id).getResultList().get(0);
+		
+		return inventory;
 	}
 }
