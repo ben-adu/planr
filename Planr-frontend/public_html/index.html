@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    
+  <head>
+    <meta charset="utf-8">
+    <script src="https://rawgit.com/kangax/fabric.js/master/dist/fabric.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+  
+  <body>
+      
+    <div id ="parent">
+        <canvas id="canvas" height="1500" width="1150" style="border:1px solid #ccc"></canvas>
+    </div>
+      
+    <script>
+     
+//   function windowsize(){
+//    var ctx = document.getElementById("canvas");
+//    ctx.width = window.innerWidth - 100;
+//    ctx.height = window.innerHeight - 100;
+//}
+//windowsize();
+
+  var canvas = new fabric.Canvas('canvas');
+  //canvas.add(new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 }));
+  canvas.setBackgroundImage('backdrop.png', canvas.renderAll.bind(canvas), {
+    backgroundImageOpacity: 0.5,
+    backgroundImageStretch: true
+});
+  this.__canvases.push(canvas);
+  
+ 
+
+	//	JSON.stringify(canvas); // '{"objects":[],"background":"red"}'
+
+// create a rectangle with angle=45
+//var rect = new fabric.Rect({
+//  left: 100,
+//  top: 100,
+//  fill: 'blue',
+//  width: 20,
+//  height: 20,
+//  angle: 45
+//});
+//
+//canvas.add(rect);
+//canvas.item(0).sourcePath = 'C:\Users\Kurt\OneDrive\Documents\School\Capstone Stuff';
+//console.log(JSON.stringify(canvas.toDatalessJSON()));
+
+
+    </script>
+  </body>
+</html>
