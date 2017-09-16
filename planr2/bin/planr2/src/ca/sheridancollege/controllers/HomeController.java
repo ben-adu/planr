@@ -1,0 +1,201 @@
+package ca.sheridancollege.controllers;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import ca.sheridancollege.beans.Customer;
+import ca.sheridancollege.beans.Inventory;
+import ca.sheridancollege.beans.MyUserDetailsService;
+import ca.sheridancollege.beans.User;
+import ca.sheridancollege.beans.UserRole;
+import ca.sheridancollege.dao.DAO;
+
+@Controller
+public class HomeController
+{
+	
+	private Customer customer= new Customer();
+	private Inventory inventory = new Inventory();
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Model model)
+	{
+		return "home";
+	}
+
+	@RequestMapping(value = "/secure", method = RequestMethod.GET)
+	public String secure(Model model)
+	{
+		return "secure";
+	}
+
+	@RequestMapping(value = "/createAccount", method = RequestMethod.GET)
+	public String createAccount(Model model)
+	{
+		return "createAccount";
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String register(Model model, @RequestParam String username, @RequestParam String password)
+	{
+
+		String encryptedPassword = new BCryptPasswordEncoder().encode(password);
+		User user = new User(username, encryptedPassword, true);
+
+		UserRole userRole = new UserRole(user, "ROLE_USER");
+		user.getUserRole().add(userRole);
+
+		DAO dao = new DAO();
+		dao.createUser(user);
+
+		UserDetails userDetails = new MyUserDetailsService().loadUserByUsername(username);
+		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails,
+				encryptedPassword, userDetails.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(auth);
+
+		model.addAttribute("accountCreated", true);
+		return "home";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model)
+	{
+		return "loginForm";
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	    return "home";
+	}
+	
+	@RequestMapping(value = "accept", method = RequestMethod.GET)
+	public String accept(Model model)
+	{
+		return "accept";
+	}
+	@RequestMapping(value = "display", method = RequestMethod.GET)
+	public String display(Model model)
+	{
+		DAO dao= new DAO();
+		model.addAttribute("customerList", dao.getCustomerList());
+		return "displayCustomer";
+	}
+	//  was gettng a 403 favicon error after login in so I redirected it to go to accept.jsp
+	@RequestMapping(value = "/favicon.ico", method = RequestMethod.GET)
+	public String favicon(Model model)
+	{
+		return "accept";
+	}
+	
+	@RequestMapping(value = "form", method = RequestMethod.GET)
+	public String form(Model model)
+	{
+		model.addAttribute("customer", new Customer());
+		return "form";
+	}
+	
+	@RequestMapping(value = "saveCustomer", method = RequestMethod.POST)
+	public String saveCustomer(Model model, @ModelAttribute Customer customer)
+	{
+		DAO dao = new DAO();
+		dao.saveCustomer(customer);
+		model.addAttribute("studentList", dao.getCustomerList());
+		return "saveCustomer";
+	}
+	
+	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
+	public String delete(Model model, @PathVariable int id)
+	{
+		DAO dao = new DAO();
+		dao.deleteCustomer(id);
+		
+		List<Customer> customerList = null;
+		customerList=dao.getCustomerList();
+		model.addAttribute("customerList", customerList);
+		return "deleteCustomer"; 
+	}
+	
+	@RequestMapping(value="edit/{id}", method = RequestMethod.GET)
+	public String edit(Model model, @PathVariable int id)
+	{
+		DAO dao= new DAO();
+		Customer customer = new Customer();
+		customer= dao.getByID(id);
+		model.addAttribute("customer", customer);
+		return "update";
+	}
+	
+	@RequestMapping(value="modify/{id}", method=RequestMethod.POST) //change back to post
+	public String modifyCustomer(Model model, @PathVariable int id, @ModelAttribute Customer customer)
+	{
+		DAO dao = new DAO();
+		List<Customer>customerList=null;
+		dao.saveCustomer(customer);
+		customerList=dao.getCustomerList();
+		model.addAttribute("customerList", customerList);
+		
+		return "modifyCustomer";
+	}
+	
+
+	
+	@RequestMapping(value = "inventory", method = RequestMethod.GET)
+	public String inventory(Model model)
+	{
+		
+		return "displayAngular";
+	}
+	
+	@RequestMapping(value = "/saveItem", method = RequestMethod.GET)
+	public String saveItem(Model model)
+	{
+		DAO dao = new DAO();
+		dao.saveItem(inventory);
+		model.addAttribute("itemList", dao.getItemList());
+		return "createItem";
+	}
+	
+	@RequestMapping(value="/displayItem", method= RequestMethod.GET)
+	public String displayItem(Model model)
+	{
+		DAO dao = new DAO();
+		model.addAttribute("itemList", dao.getItemList());
+		return "displayItem";
+	}
+	
+	@RequestMapping(value = "createItem", method = RequestMethod.GET)
+	public String createItem(Model model)
+	{
+		model.addAttribute("item", new Inventory());
+		return "createItem";
+	}
+	
+	//test
+	
+	
+	
+	
+
+	
+
+}
