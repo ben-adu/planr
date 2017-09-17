@@ -25,6 +25,9 @@
 		<security:intercept-url pattern="/edit/{id}" access="isAuthenticated()" />
 		<security:intercept-url pattern="/modify/{id}" access="isAuthenticated()" />
 		<security:intercept-url pattern="/getCustomer/{id}" access="isAuthenticated()" />
+		<security:intercept-url pattern="/saveItem" access="isAuthenticated()" />
+		<security:intercept-url pattern="/createItem" access="isAuthenticated()" />
+		<security:intercept-url pattern="/displayItem" access="isAuthenticated()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/scripts/**" access="permitAll" />

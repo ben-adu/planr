@@ -59,15 +59,15 @@
 <!-- body -->
 	<div class="container">
 	<ul class="collection">
-	<c:forEach var="customer" items="${customerList}">
+	<c:forEach var="inventory" items="${inventory}">
 	 <li class="collection-item avatar">
       <img src="images/ben.jpg" alt="" class="circle">
-      <span class="title">${customer.firstName} ${customer.lastName}</span>
-      <p>${customer.company} <br>
-         ${customer.eventName}<br>
-         ${customer.address}<br>
-         <a href="delete/${customer.id }">Delete Customer</a><br>
-		<a href="edit/${customer.id }">Update Customer Info</a><br>
+      <span class="title">${inventory.name}</span>
+      <p>${inventory.description} <br>
+         ${inventory.quantity}<br>
+         <a href="delete/${inventory.id }">Delete Customer</a><br>
+		<a href="edit/${inventory.id }">Update Customer Info</a><br>
+         <br>
          <br>
       </p>
       <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>

@@ -166,6 +166,30 @@ public class HomeController
 		return "displayAngular";
 	}
 	
+	@RequestMapping(value = "saveItem", method = RequestMethod.POST)
+	public String saveItem(Model model, @ModelAttribute Inventory inventory)
+	{
+		DAO dao = new DAO();
+		dao.saveItem(inventory);
+		model.addAttribute("inventory", dao.getItemList());
+		return "displayItem";
+	}
+	
+	@RequestMapping(value="displayItem", method= RequestMethod.GET)
+	public String displayItem(Model model)
+	{
+		DAO dao = new DAO();
+		model.addAttribute("inventory", dao.getItemList());
+		return "displayItem";
+	}
+	
+	@RequestMapping(value = "createItem", method = RequestMethod.GET)
+	public String createItem(Model model)
+	{
+		model.addAttribute("inventory", new Inventory());
+		return "createItem";
+	}
+	
 	//test
 	
 	
