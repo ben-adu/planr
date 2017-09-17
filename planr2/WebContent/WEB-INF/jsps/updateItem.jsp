@@ -5,8 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Display accounts</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script
@@ -24,18 +22,9 @@
 <link rel="stylesheet" href="css/style.css">
 <c:url value="/scripts/scriptJSON.js" var="scriptUrl" />
 <script src="${scriptUrl}"></script>
-
-<script>
-	(function($) {
-		$(function() {
-
-			$('.button-collapse').sideNav();
-
-		}); // end of document ready
-	})(jQuery); // end of jQuery name space
-</script>
+<title>Insert title here</title>
 </head>
-<body><!-- nav -->
+<body>
 	<nav class="default" role="navigation">
 	<ul id="slide-out" class="side-nav">
 		<li><div class="userView">
@@ -52,46 +41,37 @@
 	</ul>
 	<a href="#" data-activates="slide-out"
 		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-	<a href="secure" class="brand-logo center"><img src="images/mcs.png"
-		height="80"></a> </nav>
+	<a href="secure" class="brand-logo center"><img
+		src="images/mcs.png" height="80"></a> </nav>
 
+	<div class="container"><br>
+		<c:url value="/modifyItem/${inventory.id }" var="url" />
+		<form:form commandName="inventory" method="post" action="${url}">
+		First Name: <form:input path="name" value="${inventory.name}" />
+			<br />
+		Last Name: <form:input path="description" value="${inventory.description}" />
+			<br />
+		Company: <form:input path="quantity" value="${inventory.quantity}" />
+			<br />
+			<input type="submit" value="Save Customer" />
+		</form:form>
 
-<!-- body -->
-	<div class="container">
-	<ul class="collection">
-	<c:forEach var="inventory" items="${inventory}">
-	 <li class="collection-item avatar">
-      <img src="images/ben.jpg" alt="" class="circle">
-      <span class="title">${inventory.name}</span>
-      <p>${inventory.description} <br>
-         ${inventory.quantity}<br>
-         <a href="deleteItem/${inventory.id }">Delete Customer</a><br>
-		<a href="editItem/${inventory.id }">Update Customer Info</a><br>
-         <br>
-         <br>
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-    </li>
-	
-		
-	</c:forEach>
-	<c:url value="/form" var="addUrl" />
-	</ul>
-	
-	<!-- Fab -->
-	<div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
-      <i class="large material-icons">mode_edit</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red" href="form"><i class="material-icons">account_circle</i></a></li>
-      <li><a class="btn-floating blue" href="inventory"><i class="material-icons">build</i></a></li>
-       <li><a class="btn-floating blue" href="display"><i class="material-icons">supervisor_account</i></a></li>
-    </ul>
-  </div>
+		<!-- Fab -->
+		<div class="fixed-action-btn">
+			<a class="btn-floating btn-large red"> <i
+				class="large material-icons">mode_edit</i>
+			</a>
+			<ul>
+				<li><a class="btn-floating red" href="form"><i
+						class="material-icons">account_circle</i></a></li>
+				<li><a class="btn-floating blue" href="inventory"><i
+						class="material-icons">build</i></a></li>
+				<li><a class="btn-floating blue" href="display"><i
+						class="material-icons">supervisor_account</i></a></li>
+			</ul>
+		</div>
 
 	</div>
-
 
 </body>
 </html>

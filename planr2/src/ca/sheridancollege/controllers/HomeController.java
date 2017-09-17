@@ -202,6 +202,28 @@ public class HomeController
 		return "deleteItem"; 
 	}
 	
+	@RequestMapping(value="editItem/{id}", method = RequestMethod.GET)
+	public String editItem(Model model, @PathVariable int id)
+	{
+		DAO dao= new DAO();
+		Inventory inventory = new Inventory();
+		inventory= dao.getInventoryById(id);
+		model.addAttribute("inventory", inventory);
+		return "updateItem";
+	}
+	
+	@RequestMapping(value="modifyItem/{id}", method=RequestMethod.POST) //change back to post
+	public String modifyItem(Model model, @PathVariable int id, @ModelAttribute Inventory inventory)
+	{
+		DAO dao = new DAO();
+		List<Inventory>inventoryList=null;
+		dao.saveItem(inventory);
+		inventoryList=dao.getItemList();
+		model.addAttribute("inventoryList", inventoryList);
+		
+		return "modifyItem";
+	}
+	
 	//test
 	
 	
