@@ -16,6 +16,7 @@ import ca.sheridancollege.beans.User;
 public class DAO {
 	
 	private ArrayList<Customer>customerList=new ArrayList<Customer>();
+	private ArrayList<Inventory>inventoryList = new ArrayList<Inventory>();
 
 	SessionFactory sessionFactory = new Configuration()
 			.configure("ca/sheridancollege/config/hibernate.cfg.xml")
@@ -125,7 +126,7 @@ public class DAO {
 	
 	public void  setInventoryList(ArrayList<Inventory>inventoryList)
 	{
-		this.customerList=customerList;
+		this.inventoryList = inventoryList; 
 	}
 	
 	public List<Inventory> getItemList()

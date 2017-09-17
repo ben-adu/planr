@@ -190,6 +190,18 @@ public class HomeController
 		return "createItem";
 	}
 	
+	@RequestMapping(value="deleteItem/{id}", method = RequestMethod.GET)
+	public String deleteItem(Model model, @PathVariable int id)
+	{
+		DAO dao = new DAO();
+		dao.deleteInventory(id);
+		
+		List<Inventory> inventoryList = null;
+		inventoryList=dao.getItemList();
+		model.addAttribute("customerList", inventoryList);
+		return "deleteItem"; 
+	}
+	
 	//test
 	
 	

@@ -34,6 +34,12 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
+<script>
+  $(document).ready(function(){
+	window.location.href="/planr/displayItem";
+});
+
+</script>
 </head>
 <body><!-- nav -->
 	<nav class="default" role="navigation">
@@ -57,26 +63,7 @@
 
 
 <!-- body -->
-	<div class="container">
-	<ul class="collection">
-	<c:forEach var="inventory" items="${inventory}">
-	 <li class="collection-item avatar">
-      <img src="images/ben.jpg" alt="" class="circle">
-      <span class="title">${inventory.name}</span>
-      <p>${inventory.description} <br>
-         ${inventory.quantity}<br>
-         <a href="deleteItem/${inventory.id }">Delete Customer</a><br>
-		<a href="edit/${inventory.id }">Update Customer Info</a><br>
-         <br>
-         <br>
-      </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-    </li>
 	
-		
-	</c:forEach>
-	<c:url value="/form" var="addUrl" />
-	</ul>
 	
 	<!-- Fab -->
 	<div class="fixed-action-btn">
