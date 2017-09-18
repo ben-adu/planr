@@ -7,9 +7,15 @@
     </head>
     <body>
         <canvas id="c" width="300" height="300" style="border:1px solid #ccc"></canvas>
-        <p id="demo" onclick="myFunction()">First Save.</p>
-        <p id="demo" onclick="saveAsFile(JSON.stringify(canvas.toDatalessJSON()))">Second Save.</p>
-        <p id="demo" onclick="readTextFile()">load.</p>
+        <button id="demo" onclick="myFunction()">Show JSON in console.</button>
+        <p>This shows the the current layout in JSON format in the console.</p>
+
+        <button id="demo" onclick="readTextFile()">Load (default) JSON layout from "server".</button>
+        <p>This loads the default layout.</p>
+
+        <button id="demo" onclick="createJSONLink()">Save and Create JSON.</button>
+        <p>This creates the a link for the current layout as a JSON file.</p>
+        <a></a>
         <div id="content"></div>
         <script>
             var canvas = new fabric.Canvas('c');
@@ -21,19 +27,51 @@
 
                 // create a rectangle with angle=45
                 var rect = new fabric.Rect({
-                    left: 100,
-                    top: 100,
+                    left: 50,
+                    top: 50,
                     fill: 'blue',
+                    width: 20,
+                    height: 20,
+                    angle: 45
+                });
+                var rect2 = new fabric.Rect({
+                    left: 100,
+                    top: 50,
+                    fill: 'yellow',
+                    width: 20,
+                    height: 20,
+                    angle: 45
+                });
+                
+                var rect3 = new fabric.Rect({
+                    left: 150,
+                    top: 50,
+                    fill: 'green',
                     width: 20,
                     height: 20,
                     angle: 45
                 });
 
                 canvas.add(rect);
+                canvas.add(rect2);
+                canvas.add(rect3);
                 // canvas.item(0).sourcePath = '/assets/dragon.svg';
                 console.log(JSON.stringify(canvas.toDatalessJSON()));
-                var json;
 
+
+                //var data = {a: 1, b: 2, c: 3};
+                //json = JSON.stringify(data);
+//                var blob = new Blob([JSON.stringify(canvas.toJSON())], {type: "application/json"});
+//                var url = URL.createObjectURL(blob);
+//
+//                var a = document.createElement('a');
+//                a.download = "backup.json";
+//                a.href = url;
+//                a.textContent = "Download backup.json";
+//                document.getElementById('content').appendChild(a);
+
+            })();
+            function createJSONLink() {
                 //var data = {a: 1, b: 2, c: 3};
                 //json = JSON.stringify(data);
                 var blob = new Blob([JSON.stringify(canvas.toJSON())], {type: "application/json"});
@@ -44,40 +82,15 @@
                 a.href = url;
                 a.textContent = "Download backup.json";
                 document.getElementById('content').appendChild(a);
-
-            })();
-
-            function saveAsFile(json) {
-                //var data = {a: 1, b: 2, c: 3};
-                //json = JSON.stringify(data);
-                var blob = new Blob([json], {type: "application/json"});
-                var url = URL.createObjectURL(blob);
-
-                var a = document.createElement('a');
-                a.download = "backup.json";
-                a.href = url;
-                a.textContent = "Download backup.json";
             }
-
-
 
             function myFunction() {
                     canvas.item(0).sourcePath = 'C:\Users\Kurt\Documents\NetBeansProjects\FabricTest\assets';
                 console.log(JSON.stringify(canvas.toDatalessJSON()));
             }
-            function myFunction2() {
-                readTextFile("\backup.json", function (text) {
-
-                    var data = JSON.parse(text);
-                    canvas.loadFromDatalessJSON(data, canvas.renderAll.bind(canvas));
-                    console.log(data);
-                });
-
-                    
-            }
 
             function readTextFile() {
-                var url = "http://simpsoku.dev.fast.sheridanc.on.ca/syst35300/backup(2).json";
+                var url = "http://simpsoku.dev.fast.sheridanc.on.ca/syst35300/backup(5).json";
                 var data1;
                 $.getJSON(url, function (data) {
                     console.log(JSON.stringify(data))
@@ -87,9 +100,6 @@
                 //data1 = JSON.parse(data1);
                 canvas.loadFromJSON(JSON.stringify(data1), canvas.renderAll.bind(canvas));
             }
-
-
-
 
         </script>
     </body>
