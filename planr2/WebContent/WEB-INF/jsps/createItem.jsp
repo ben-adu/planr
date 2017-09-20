@@ -15,7 +15,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 <script src="scripts/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
@@ -29,16 +32,6 @@
 
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
-</script>
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-		$('.preloader-background').delay(1700).fadeOut('slow');
-
-		$('.preloader-wrapper').delay(1700).fadeOut();
-	});
-</script>
-<script src="/scripts/index.js">
-	
 </script>
 </head>
 <body>
@@ -83,13 +76,15 @@
 			</div>
 		</div>
 		<c:url value="saveItem" var="url" />
-		<form:form commandName="inventory" method="post" action="${url}">
+		<form:form commandName="inventory" method="post" action="${url}"
+			id="inventory" class="inventory">
 			<div class="row">
 				<div class="col s6">
 					<!-- left row -->
 					<div class="input-field col s12">
 						<input id="name" type="text" class="validate" name="name">
-						<label for="name">Equipment Name</label>
+						<label for="name" >Equipment Name</label>
+						<div class="errorTxt1"></div>
 					</div>
 					<div class="input-field col s12">
 						<input id="price" type="number" class="validate" name="price"
@@ -113,7 +108,6 @@
 						<input type="text" id="description" name="description"></input> <label
 							for="description">Description</label>
 					</div>
-
 					<div class="input-field col s12">
 						<input type="date" class="datepicker" name="date" id="date">
 					</div>
@@ -121,11 +115,61 @@
 
 
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <input type="submit" value="Submit"
+					value="${_csrf.token}" /> <input type="submit" value="Save!"
 					class="btn waves-effect waves-light" />
 			</div>
 		</form:form>
 	</div>
+	<script>
+		$(document).ready(function() {
+			$("#inventory").validate({
+				rules: {
+		            name: {
+		                required: true,
+		                minlength: 1
+		            },
+		            price: {
+		                required: true,
+		                number:true
+		            },
+		            date: {
+						required: true,
+						date: true
+					},
+					quantity: {
+						required: true,
+						minlength: 5,
+						number: true
+					},
+					curl: {
+		                required: true,
+		                url:true
+		            },
+		            
+		            cgender:"required",
+					cagree:"required",
+		        },
+				messages : {
+					name : {
+						required : "Please enter the name of the equipment"
+					},
+					price: {
+						required: "Please enter the price of the equipment",
+						number:"Please enter a price starting from $0.01"
+					}
+				},
+				errorElement : 'div',
+				errorPlacement : function(error, element) {
+					var placement = $(element).data('error');
+					if (placement) {
+						$(placement).append(error)
+					} else {
+						error.insertAfter(element);
+					}
+				}
+			});
+		});
+	</script>
 
 </body>
 </html>
