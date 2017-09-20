@@ -140,7 +140,7 @@ public class HomeController
 		return "deleteCustomer"; 
 	}
 	
-	@RequestMapping(value="edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
 	public String edit(Model model, @PathVariable int id)
 	{
 		DAO dao= new DAO();

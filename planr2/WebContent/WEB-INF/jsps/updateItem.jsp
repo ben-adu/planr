@@ -16,9 +16,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
-<script src="scripts/sweetalert.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
-<link rel="stylesheet" href="/css/style.css">
+<script src="../scripts/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
+<link rel="stylesheet" href="../css/style.css">
 <title>Create client profile</title>
 
 <script>
@@ -30,7 +30,7 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
-<script src="/scripts/index.js">
+<script src="../scripts/index.js">
 	
 </script>
 </head>
@@ -40,9 +40,9 @@
 	<ul id="slide-out" class="side-nav">
 		<li><div class="userView">
 				<div class="background">
-					<img src="images/lake.jpg">
+					<img src="../images/lake.jpg">
 				</div>
-				<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
+				<a href="#!user"><img class="circle" src="../images/ben.jpg"></a>
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
@@ -53,7 +53,7 @@
 	<a href="#" data-activates="slide-out"
 		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
 	<a href="secure" class="brand-logo center"><img
-		src="images/mcs.png" height="80"></a> </nav>
+		src="../images/mcs.png" height="80"></a> </nav>
 	<!--  end of nav -->
 	<div class="container ">
 		<div class="row">
@@ -94,7 +94,7 @@
 					</div>
 
 					<div class="input-field col s12">
-						<input type="date" class="datepicker" name="date" id="date" value="${inventory.date}"> <label for="date">Date</label>
+						<input type="date" class="datepicker" name="date" id="date" value="${inventory.date}">
 					</div>
 				</div>
 
