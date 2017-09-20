@@ -49,21 +49,29 @@
 
 @media only screen and (min-width: 601px) .container {
 	width
+	
+	
 	:
+	
 	 
+	
 	85%;
 }
 
 @media only screen and (min-width: 993px) .container {
 	width
+	
+	
 	:
+	
 	 
+	
 	70%;
 }
 </style>
 </head>
 <body>
-	<!-- nav -->
+	<!-- NAV -->
 	<nav class="default" role="navigation">
 	<ul id="slide-out" class="side-nav">
 		<li><div class="userView">
@@ -74,20 +82,34 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/logout" var="logOut" />
-		<li><a href="${logOut}" class="waves-effect"><i
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="${client }" class="waves-effect"><i
+				class="material-icons">perm_identity</i>Client Management</a></li>
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="#" class="waves-effect"><i
+				class="material-icons">business</i>Generate Reports</a></li>
+		<c:url value="/inventoryManagement" var="inventoryM" />
+		<li><a href="${ inventoryM}" class="waves-effect"><i
+				class="material-icons">devices_other</i>Inventory management</a></li>
+		<c:url value="#" var="siteLayout" />
+		<li><a href="#" class="waves-effect"><i
+				class="material-icons">map</i>Approved Site Layouts</a></li>
+		<c:url value="/inventoryManagement" var="client" />
+		<li><a href="${client}" class="waves-effect"><i
+				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+		<li><a href="/planr/logout" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
 	</ul>
 	<a href="#" data-activates="slide-out"
 		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
 	<a href="secure" class="brand-logo center"><img
 		src="images/mcs.png" height="80"></a> </nav>
-
+	<!--  END OF NAV -->
 
 	<!-- body -->
 	<div class="container">
 		<h5>Inventory</h5>
-		 
+
 		<ul class="collapsible popout" data-collapsible="accordion">
 			<c:forEach var="inventory" items="${inventory}">
 				<li>
@@ -100,12 +122,14 @@
 						<p>Date Added: ${inventory.date }</p>
 						<p>Description: ${inventory.description }</p>
 						<div class="row">
-						<div class="col s6">
-						<a href="deleteItem/${inventory.id }" class="waves-effect waves-light btn ">Delete</a>
-						</div>
-						<div class="col s6">
-						<a href="editItem/${inventory.id }" class="waves-effect waves-light btn ">Update</a>
-						</div>
+							<div class="col s6">
+								<a href="deleteItem/${inventory.id }"
+									class="waves-effect waves-light btn ">Delete</a>
+							</div>
+							<div class="col s6">
+								<a href="editItem/${inventory.id }"
+									class="waves-effect waves-light btn ">Update</a>
+							</div>
 						</div>
 					</div>
 				</li>
@@ -114,7 +138,7 @@
 			</c:forEach>
 			<c:url value="/form" var="addUrl" />
 		</ul>
-		
+
 		<!--  
 		<input type="text" id="myInput" onkeyup="myFunction()"
 			placeholder="Search for names.." title="Type in a name">
@@ -172,7 +196,7 @@
 		-->
 
 
-		<!-- Fab -->
+		<!-- Fab 
 		<div class="fixed-action-btn">
 			<a class="btn-floating btn-large red"> <i
 				class="large material-icons">mode_edit</i>
@@ -186,6 +210,7 @@
 						class="material-icons">supervisor_account</i></a></li>
 			</ul>
 		</div>
+		-->
 
 	</div>
 

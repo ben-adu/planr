@@ -35,7 +35,7 @@
 </script>
 </head>
 <body>
-	<!-- nav -->
+	<!-- NAV -->
 	<nav class="default" role="navigation">
 	<ul id="slide-out" class="side-nav">
 		<li><div class="userView">
@@ -46,20 +46,20 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/inventory" var="inventory" />
-		<li><a href="" class="waves-effect"><i class="material-icons">perm_identity</i>Client
-				Management</a></li>
-		<c:url value="/logout" var="logOut" />
-		<li><a href="${logOut}" class="waves-effect"><i
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="${client }" class="waves-effect"><i
+				class="material-icons">perm_identity</i>Client Management</a></li>
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="#" class="waves-effect"><i
 				class="material-icons">business</i>Generate Reports</a></li>
-		<c:url value="/logout" var="logOut" />
-		<li><a href="${logOut}" class="waves-effect"><i
+		<c:url value="/inventoryManagement" var="inventory" />
+		<li><a href="${ inventory}" class="waves-effect"><i
 				class="material-icons">devices_other</i>Inventory management</a></li>
-		<c:url value="/logout" var="logOut" />
-		<li><a href="${logOut}" class="waves-effect"><i
+		<c:url value="#" var="siteLayout" />
+		<li><a href="#" class="waves-effect"><i
 				class="material-icons">map</i>Approved Site Layouts</a></li>
-		<c:url value="/logout" var="logOut" />
-		<li><a href="${logOut}" class="waves-effect"><i
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="${client}" class="waves-effect"><i
 				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
 		<li><a href="${logOut}" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
@@ -67,8 +67,10 @@
 	<a href="#" data-activates="slide-out"
 		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
 	<a href="secure" class="brand-logo center"><img
-		src="images/mcs.png" height="80"></a> </nav>
-	<!--  end of nav -->
+		src="../images/mcs.png" height="80"></a> </nav>
+	<!--  END OF NAV -->
+	
+	
 	<div class="container ">
 		<div class="row">
 			<div class="col s12">
@@ -83,7 +85,7 @@
 					<!-- left row -->
 					<div class="input-field col s12">
 						<input id="name" type="text" class="validate" name="name">
-						<label for="name" >Equipment Name</label>
+						<label for="name">Equipment Name</label>
 						<div class="errorTxt1"></div>
 					</div>
 					<div class="input-field col s12">
@@ -123,39 +125,38 @@
 	<script>
 		$(document).ready(function() {
 			$("#inventory").validate({
-				rules: {
-		            name: {
-		                required: true,
-		                minlength: 1
-		            },
-		            price: {
-		                required: true,
-		                number:true
-		            },
-		            date: {
-						required: true,
-						date: true
+				rules : {
+					name : {
+						required : true,
+						minlength : 1
 					},
-					quantity: {
-						required: true,
-						minlength: 5,
-						number: true
+					price : {
+						required : true,
+						number : true
 					},
-					curl: {
-		                required: true,
-		                url:true
-		            },
-		            
-		            cgender:"required",
-					cagree:"required",
-		        },
+					date : {
+						required : true,
+						date : true
+					},
+					quantity : {
+						required : true,
+						number : true
+					},
+					curl : {
+						required : true,
+						url : true
+					},
+
+					cgender : "required",
+					cagree : "required",
+				},
 				messages : {
 					name : {
 						required : "Please enter the name of the equipment"
 					},
-					price: {
-						required: "Please enter the price of the equipment",
-						number:"Please enter a price starting from $0.01"
+					price : {
+						required : "Please enter the price of the equipment",
+						number : "Please enter a price starting from $0.01"
 					}
 				},
 				errorElement : 'div',

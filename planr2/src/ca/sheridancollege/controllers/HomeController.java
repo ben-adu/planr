@@ -55,6 +55,11 @@ public class HomeController
 	{
 		return "inventoryManagement";
 	}
+	@RequestMapping(value = "/clientManagement", method = RequestMethod.GET)
+	public String clientManagement(Model model)
+	{
+		return "clientManagement";
+	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(Model model, @RequestParam String username, @RequestParam String password)
@@ -177,7 +182,7 @@ public class HomeController
 		DAO dao = new DAO();
 		dao.saveItem(inventory);
 		model.addAttribute("inventory", dao.getItemList());
-		return "displayItem";
+		return "saveItem";
 	}
 	
 	@RequestMapping(value="displayItem", method= RequestMethod.GET)

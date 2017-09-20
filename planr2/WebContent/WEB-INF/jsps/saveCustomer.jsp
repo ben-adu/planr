@@ -93,7 +93,7 @@
 	<c:url value="/form" var="addUrl" />
 	</ul>
 	
-	<!-- Fab -->
+	<!-- Fab 
 	<div class="fixed-action-btn">
     <a class="btn-floating btn-large red">
       <i class="large material-icons">mode_edit</i>
@@ -104,6 +104,7 @@
        <li><a class="btn-floating blue" href="display"><i class="material-icons">supervisor_account</i></a></li>
     </ul>
   </div>
+  -->
 
 	</div>
 

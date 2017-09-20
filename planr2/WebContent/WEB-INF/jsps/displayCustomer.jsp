@@ -35,7 +35,8 @@
 	})(jQuery); // end of jQuery name space
 </script>
 </head>
-<body><!-- nav -->
+<body>
+<!-- NAV -->
 	<nav class="default" role="navigation">
 	<ul id="slide-out" class="side-nav">
 		<li><div class="userView">
@@ -46,17 +47,32 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/logout" var="logOut" />
-		<li><a href="${logOut}" class="waves-effect"><i
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="${client }" class="waves-effect"><i
+				class="material-icons">perm_identity</i>Client Management</a></li>
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="#" class="waves-effect"><i
+				class="material-icons">business</i>Generate Reports</a></li>
+		<c:url value="/inventoryManagement" var="inventory" />
+		<li><a href="${ inventory}" class="waves-effect"><i
+				class="material-icons">devices_other</i>Inventory management</a></li>
+		<c:url value="#" var="siteLayout" />
+		<li><a href="#" class="waves-effect"><i
+				class="material-icons">map</i>Approved Site Layouts</a></li>
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="${client}" class="waves-effect"><i
+				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+		<li><a href="/planr/logout" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
 	</ul>
 	<a href="#" data-activates="slide-out"
 		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-	<a href="secure" class="brand-logo center"><img src="images/mcs.png"
-		height="80"></a> </nav>
+	<a href="secure" class="brand-logo center"><img
+		src="images/mcs.png" height="80"></a> </nav>
+	<!--  END OF NAV -->
 
 
-<!-- body -->
+<!-- BODY -->
 	<div class="container">
 	<ul class="collection">
 	<c:forEach var="customer" items="${customerList}">
@@ -78,7 +94,7 @@
 	<c:url value="/form" var="addUrl" />
 	</ul>
 	
-	<!-- Fab -->
+	<!-- FAB -->
 	<div class="fixed-action-btn">
     <a class="btn-floating btn-large red">
       <i class="large material-icons">mode_edit</i>

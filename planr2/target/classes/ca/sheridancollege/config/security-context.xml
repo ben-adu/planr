@@ -18,6 +18,7 @@
 		<security:intercept-url pattern="/accept" access="isAuthenticated()" />
 		<security:intercept-url pattern="/favicon.ico" access="isAuthenticated()" />
 		<security:intercept-url pattern="/inventoryManagement" access="isAuthenticated()" />
+		<security:intercept-url pattern="/clientManagement" access="isAuthenticated()" />
 		<security:intercept-url pattern="/form" access="isAuthenticated()" />
 		<security:intercept-url pattern="/display" access="isAuthenticated()" />
 		<security:intercept-url pattern="/saveCustomer" access="isAuthenticated()" />

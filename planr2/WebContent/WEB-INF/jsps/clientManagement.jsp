@@ -42,9 +42,9 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/clientManagement" var="client" />
-		<li><a href="${client }" class="waves-effect"><i
-				class="material-icons">perm_identity</i>Client Management</a></li>
+		<c:url value="/clientManagement" var="clientM" />
+		<li><a href="${clientM }" class="waves-effect"><i class="material-icons">perm_identity</i>Client
+				Management</a></li>
 		<c:url value="/clientManagement" var="client" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">business</i>Generate Reports</a></li>
@@ -57,8 +57,9 @@
 		<c:url value="/secure" var="secure" />
 		<li><a href="${secure}" class="waves-effect"><i
 				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-		<li><a href="/planr/logout" class="waves-effect"><i
-				class="material-icons">perm_identity</i>Log out</a></li>
+		<c:url value="/logout" var="logout" />
+		<li><a href="${logout}" class="waves-effect"><i
+				class="material-icons">perm_identity</i>Logout</a></li>
 	</ul>
 	<a href="#" data-activates="slide-out"
 		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
@@ -76,11 +77,11 @@
 		<div class="row">
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="/planr/createItem">Create New Item</a>
+					href="/planr/form">New Customer</a>
 			</div>
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="/planr/displayItem">View Inventory</a>
+					href="/planr/display">View Customers</a>
 			</div>
 		</div>
 

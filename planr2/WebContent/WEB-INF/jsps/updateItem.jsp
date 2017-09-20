@@ -35,30 +35,44 @@
 </script>
 </head>
 <body>
-	<!-- nav -->
+	<!-- NAV -->
 	<nav class="default" role="navigation">
 	<ul id="slide-out" class="side-nav">
 		<li><div class="userView">
 				<div class="background">
-					<img src="../images/lake.jpg">
+					<img src="images/lake.jpg">
 				</div>
-				<a href="#!user"><img class="circle" src="../images/ben.jpg"></a>
+				<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/logout" var="logOut" />
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="${client }" class="waves-effect"><i
+				class="material-icons">perm_identity</i>Client Management</a></li>
+		<c:url value="/clientManagement" var="client" />
+		<li><a href="#" class="waves-effect"><i
+				class="material-icons">business</i>Generate Reports</a></li>
+		<c:url value="/inventoryManagement" var="inventoryM" />
+		<li><a href="${ inventoryM}" class="waves-effect"><i
+				class="material-icons">devices_other</i>Inventory management</a></li>
+		<c:url value="#" var="siteLayout" />
+		<li><a href="#" class="waves-effect"><i
+				class="material-icons">map</i>Approved Site Layouts</a></li>
+		<c:url value="/inventoryManagement" var="client" />
+		<li><a href="${client}" class="waves-effect"><i
+				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
 		<li><a href="${logOut}" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
 	</ul>
 	<a href="#" data-activates="slide-out"
 		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-	<a href="secure" class="brand-logo center"><img
+	<a href="/planr/secure" class="brand-logo center"><img
 		src="../images/mcs.png" height="80"></a> </nav>
-	<!--  end of nav -->
+	<!--  END OF NAV -->
 	<div class="container ">
 		<div class="row">
 			<div class="col s12">
-				<h4>Create Inventory</h4>
+				<h4>Edit Inventory</h4>
 			</div>
 		</div>
 		<c:url value="/modifyItem/${inventory.id}" var="url" />
