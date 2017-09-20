@@ -50,6 +50,11 @@ public class HomeController
 	{
 		return "createAccount";
 	}
+	@RequestMapping(value = "/inventoryManagement", method = RequestMethod.GET)
+	public String inventoryManagement(Model model)
+	{
+		return "inventoryManagement";
+	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(Model model, @RequestParam String username, @RequestParam String password)

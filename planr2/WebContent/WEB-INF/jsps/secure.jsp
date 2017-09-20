@@ -67,14 +67,29 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
+		<c:url value="/inventory" var="inventory" />
+		<li><a href="" class="waves-effect"><i class="material-icons">perm_identity</i>Client
+				Management</a></li>
 		<c:url value="/logout" var="logOut" />
+		<li><a href="${logOut}" class="waves-effect"><i
+				class="material-icons">business</i>Generate Reports</a></li>
+		<c:url value="/logout" var="logOut" />
+		<li><a href="${logOut}" class="waves-effect"><i
+				class="material-icons">devices_other</i>Inventory management</a></li>
+		<c:url value="/logout" var="logOut" />
+		<li><a href="${logOut}" class="waves-effect"><i
+				class="material-icons">map</i>Approved Site Layouts</a></li>
+		<c:url value="/secure" var="secure" />
+		<li><a href="${secure}" class="waves-effect"><i
+				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
 		<li><a href="${logOut}" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
 	</ul>
 	<a href="#" data-activates="slide-out"
 		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-	<a href="secure" class="brand-logo center"><img src="images/mcs.png"
-		height="80"></a> </nav>
+	<a href="secure" class="brand-logo center"><img
+		src="images/mcs.png" height="80"></a> </nav>
+	<!--  end of nav -->
 
 
 
@@ -82,53 +97,28 @@
 	<!-- Body -->
 
 	<div class="container">
+	<h4>Welcome Ben Adu</h4>
 		<div class="row">
-			<!-- Cards -->
-			<div class="col s4">
-				<div class="card hoverable">
-					<div class="card-image">
-						<img src="images/leafs.jpg"> 
-						<span class="card-title">Create Client Profile</span>
-						<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-					</div>
-					<div class="card-content">
-
-						<div class="card-action">
-							<a href="form">Click here to create client Profile</a>
-						</div>
-					</div>
-				</div>
+			<div class="col s6">
+				<a class="waves-effect waves-light btn-large" style="display:block" href="#"><i
+					class="material-icons left" >perm_identity</i>Client Management</a>
 			</div>
-			<div class="col s4">
-				<div class="card hoverable">
-					<div class="card-image">
-						<img src="images/guide.png">
-						 <span class="card-title">View Customers</span>
-						 <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-					</div>
-					<div class="card-content">
-
-						<div class="card-action">
-							<a href="display">Click here to view customers</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col s4">
-				<div class="card hoverable">
-					<div class="card-image">
-						<img src="images/dan.jpg"> <span class="card-title">View Inventory</span>
-						<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-					</div>
-					<div class="card-content">
-
-						<div class="card-action">
-							<a href="inventory">Click here to view inventory</a>
-						</div>
-					</div>
-				</div>
+			<div class="col s6">
+				<a class="waves-effect waves-light btn-large" style="display:block" href="/planr/inventoryManagement"><i
+					class="material-icons left">devices_other</i>Inventory Management</a>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col s6">
+				<a class="waves-effect waves-light btn-large" style="display:block" href="#"><i
+					class="material-icons left">business</i>Generate Reports</a>
+			</div>
+			<div class="col s6">
+				<a class="waves-effect waves-light btn-large" style="display:block" href="#"><i
+					class="material-icons left">map</i>Approve Site Layouts</a>
+			</div>
+		</div>
+	</div>
 	</div>
 
 </body>

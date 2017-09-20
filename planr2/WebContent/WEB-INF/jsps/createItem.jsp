@@ -53,7 +53,21 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
+		<c:url value="/inventory" var="inventory" />
+		<li><a href="" class="waves-effect"><i class="material-icons">perm_identity</i>Client
+				Management</a></li>
 		<c:url value="/logout" var="logOut" />
+		<li><a href="${logOut}" class="waves-effect"><i
+				class="material-icons">business</i>Generate Reports</a></li>
+		<c:url value="/logout" var="logOut" />
+		<li><a href="${logOut}" class="waves-effect"><i
+				class="material-icons">devices_other</i>Inventory management</a></li>
+		<c:url value="/logout" var="logOut" />
+		<li><a href="${logOut}" class="waves-effect"><i
+				class="material-icons">map</i>Approved Site Layouts</a></li>
+		<c:url value="/logout" var="logOut" />
+		<li><a href="${logOut}" class="waves-effect"><i
+				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
 		<li><a href="${logOut}" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
 	</ul>
@@ -101,7 +115,7 @@
 					</div>
 
 					<div class="input-field col s12">
-						<input type="date" class="datepicker" name="date" id="date"> <label for="date">Date</label>
+						<input type="date" class="datepicker" name="date" id="date">
 					</div>
 				</div>
 

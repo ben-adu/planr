@@ -9,7 +9,7 @@
 <title>Display accounts</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <script
@@ -35,10 +35,9 @@
 	})(jQuery); // end of jQuery name space
 </script>
 <script>
-  $(document).ready(function(){
-	window.location.href="/planr/displayItem";
-});
-
+	$(document).ready(function() {
+		window.location.href = "/planr/displayItem";
+	});
 </script>
 
 </head>
