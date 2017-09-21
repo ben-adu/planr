@@ -1,0 +1,34 @@
+body, html {
+    margin:0;
+    padding:0;
+/*    overflow:hidden*/
+
+}
+
+#btns-display {
+    position:relative;
+    display:inline-block;
+    height:40px;
+    width:100%;
+    float:left;
+    border-bottom:1px solid black;
+    z-index:10;
+}
+
+canvas-container {
+    position:relative;
+    display:inline-block;
+    width:100%;
+    overflow:scroll;
+    float:left;
+
+}
+
+#nav{
+  background-color:#2196f3;
+  height: 100px;
+  }
+
+ .stop_drawing{
+      top:6px;
+  }
