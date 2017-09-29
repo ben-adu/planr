@@ -27,8 +27,15 @@ canvas-container {
 #nav{
   background-color:#2196f3;
   height: 100px;
+  margin:left;
   }
-
+  
+#backdrop{
+     display: block;
+    margin: auto;  
+  }
+ 
+    
  .stop_drawing{
       top:6px;
   }
