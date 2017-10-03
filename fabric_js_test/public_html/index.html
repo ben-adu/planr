@@ -80,7 +80,7 @@
                 </div>
             </div>
         </div>
-        <!--            <div id="JSON">
+                    <div id="JSON">
                         <button id="demo" onclick="myFunction()" style="background-color: black; color: yellow;">Show JSON in console.</button>
                         <p>This shows the the current layout in JSON format in the console.</p>
         
@@ -90,7 +90,7 @@
                         <button id="demo" onclick="createJSONLink()" style="background-color: black; color: yellow;">Save and Create JSON.</button>
                         <p>This creates the a link for the current layout as a JSON file.</p>
                         <a></a>
-                    </div>-->
+                    </div>
     </body> 
 
     <script>
@@ -442,40 +442,40 @@
                 });
         }
 
-//                function createJSONLink() {
-//                    //var data = {a: 1, b: 2, c: 3};
-//                    //json = JSON.stringify(data);
-////                    var blob = new Blob([JSON.stringify(window._canvas.toJSON())], {type: "application/json"});
-////                    var url = URL.createObjectURL(blob);
-////
-////                    var a = document.createElement('a');
-////                    a.download = "backup.json";
-////                    a.href = url;
-////                    a.textContent = "Download backup.json";
-////                    document.getElementById('content').appendChild(a);
-//                var a = document.createElement('a');
-//                  a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
-//                  a.setAttribute('download', filename);
-//                  a.click()
-//
-//                                }
-//
-//                function myFunction() {
-//                        ///canvas.item(0).sourcePath = 'C:\Users\Kurt\Documents\NetBeansProjects\FabricTest\assets';
-//                    console.log(JSON.stringify(window._canvas.toDatalessJSON()));
-//                }
-//
-//                function readTextFile() {
-//                    var url = "/backup.json";
-//                    var data1;
-//                    $.getJSON(url, function (data) {
-//                        console.log(JSON.stringify(data))
-//                        data1 = data
-//                        window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(canvas))
-//                    });
-//                    //data1 = JSON.parse(data1);
-//                    window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(canvas));
-//                }
+                function createJSONLink() {
+                    //var data = {a: 1, b: 2, c: 3};
+                    //json = JSON.stringify(data);
+                    var blob = new Blob([JSON.stringify(window._canvas.toJSON())], {type: "application/json"});
+                    var url = URL.createObjectURL(blob);
+
+                    var a = document.createElement('a');
+                    a.download = "backup.json";
+                    a.href = url;
+                    a.textContent = "Download backup.json";
+                    document.getElementById('JSON').appendChild(a);
+                var a = document.createElement('a');
+                  a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
+                  a.setAttribute('download', filename);
+                  a.click()
+
+                                }
+
+                function myFunction() {
+                        ///canvas.item(0).sourcePath = 'C:\Users\Kurt\Documents\NetBeansProjects\FabricTest\assets';
+                    console.log(JSON.stringify(window._canvas.toDatalessJSON()));
+                }
+
+                function readTextFile() {
+                    var url = "/backup.json";
+                    var data1;
+                    $.getJSON(url, function (data) {
+                        console.log(JSON.stringify(data))
+                        data1 = data
+                        window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(canvas))
+                    });
+                    //data1 = JSON.parse(data1);
+                    window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(canvas));
+                }
 
     </script>
 </html>

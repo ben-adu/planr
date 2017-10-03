@@ -78,7 +78,7 @@
                         <button id="demo" onclick="readTextFile()" style="background-color: black; color: yellow;">Load (default) JSON layout from "server".</button>
                         <p>This loads the default layout.</p>
 
-                        <button id="demo" onclick="createJSONLink()" style="background-color: black; color: yellow;">Save and Create JSON.</button>
+                        <button id="demo" onclick="createJSONLink()" style="background-color: black; color: yellow;">Create JSON file download for current layout.</button>
                         <p>This creates the a link for the current layout as a JSON file.</p>
                         <a></a>
                     </div>
@@ -315,14 +315,14 @@
                 function createJSONLink() {
                     //var data = {a: 1, b: 2, c: 3};
                     //json = JSON.stringify(data);
-//                    var blob = new Blob([JSON.stringify(window._canvas.toJSON())], {type: "application/json"});
-//                    var url = URL.createObjectURL(blob);
-//
-//                    var a = document.createElement('a');
-//                    a.download = "backup.json";
-//                    a.href = url;
-//                    a.textContent = "Download backup.json";
-//                    document.getElementById('content').appendChild(a);
+                    var blob = new Blob([JSON.stringify(window._canvas.toJSON())], {type: "application/json"});
+                  var url = URL.createObjectURL(blob);
+
+                    var a = document.createElement('a');
+                    a.download = "backup.json";
+                    a.href = url;
+                    a.textContent = "Download backup.json";
+                   document.getElementById('content').appendChild(a);
                 var a = document.createElement('a');
                   a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
                   a.setAttribute('download', filename);
