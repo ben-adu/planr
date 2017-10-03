@@ -19,7 +19,11 @@
 
         <div id = "nav">  
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center"><img id="logo" src="images/mcs.png" height="100"/></a>
+                <a href="#" class="brand-logo center">
+                    <img id="logo" src="images/mcs.png" height="100"/>
+                    <!--<button id="btnSave" class="waves-effect waves-light btn">SAVE</button>-->
+                </a>
+                
             </div>
         </div>
         <BR>
@@ -36,21 +40,22 @@
                                 <img src ="images/pencil-cancel.png" class="stop_drawing" value="stop drawing" height="20"/>
                             </a></li>
 
-                        <li><a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" id="btnZoomOut"  />zoom_out</i></a></li>
+                        <li><a id="btnZoomOut" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"/>zoom_out</i></a></li>
 
-                        <li><a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" id="btnZoomIn"  />zoom_in</i></a></li>
+                        <li><a id="btnZoomIn" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"/>zoom_in</i></a></li>
 
-                        <li><a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" id="btnResetZoom"  />refresh</i></a></li>
+                        <li><a id="btnResetZoom" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"/>refresh</i></a></li>
 
                         <li><a id="delete" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete</i></a></li>
+                        
+                        <li><a id="copy" onclick="Copy()" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">content_copy</i></a></li>
+                        
+                        <li><a id="paste" onclick="Paste()" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">content_paste</i></a></li>
+                        <!--<li><a id="btnPanModeByMouse" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"/>pan_tool</i></a></li>-->
+                        <li><a id="create-text-obj" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">text_fields</i></a></li>
                     </ul>
-                    <input placeholder="Add Text to canvas" id="text-input" type="text" class="validate">
-                    <a class="btn-floating btn-small waves-effect waves-light green"  id="create-text-obj"><i class="material-icons" value ="add">send</i></a>
-
                 </div>
             </div>
-
-
 
             <div class="col s10">
 
@@ -89,24 +94,20 @@
     </body> 
 
     <script>
-        var canvasScale = 0.5;
+        var canvasScale = 1;
         var SCALE_FACTOR = 1.1;
         var zoomMax = 2.3;
-        var hh = window.innerHeight;
+        
+       
         function initCanvas() {
 
             $('.canvas-container').each(function (index) {
-
 
                 var canvasContainer = $(this)[0];
                 var canvasObject = $("canvas", this)[0];
 //                        var url = "images/backdrop.png";
                 var canvas = window._canvas = new fabric.Canvas(canvasObject);
 
-//                        canvas.setWidth($('.canvas-container').innerWidth()-5);
-//                        canvas.setWidth();
-//                        canvas.setHeight(hh);
-//                        canvas.setBackgroundImage(url, canvas.renderAll.bind(canvas));
                 var img = new Image();
                 img.src = "images/backdrop.png";
                 img.onload = function () {
@@ -117,15 +118,16 @@
                         top: 0
                     });
 
-                  
-                    canvas.setDimensions({
-                        width: img.width,
-                        height: img.height
-                    });
+                      var canvasHeight = canvas.setHeight(img.height);
+                      var canvasWidth = canvas.setWidth(img.width);
+                      canvasWidth, canvasHeight;
+//                    canvas.setDimensions({
+//                        width: img.width,
+//                        height: img.height
+//                    });
                 };
+                
                 var imageOffsetX, imageOffsetY;
-
-
 
                 function handleDragStart(e) {
                     [].forEach.call(images, function (img) {
@@ -173,7 +175,8 @@
                         width: img.width,
                         height: img.height,
                         left: x,
-                        top: y
+                        top: y,
+                        hasControls:false
                     });
                     canvas.add(newImage);
                     return false;
@@ -198,6 +201,62 @@
         }
         initCanvas();
 
+        var getFabricCanvases = (function () {
+                var fabricCanvasCollection;
+                return function getCanvases() {
+                    if (!fabricCanvasCollection) {
+                        fabricCanvasCollection = [];
+                        var fabricCanvas = $('.canvas-container canvas');
+                        fabricCanvas.each(function(index, item) {
+                            fabricCanvasCollection.push($(item));
+                        });
+                    }
+                    return fabricCanvasCollection;
+                }
+            })();
+           
+
+        $('#create-text-obj').on('click', function () {
+            create_text_obj();
+        });
+
+        var create_text_obj = function () {
+            var text_obj = new fabric.IText('Add Text', {
+                left: 400,
+                top: 225,
+                fontSize: 20,
+                textAlign: "left",
+                fill: "#black", 
+                lockRotation: true,
+                hasRotationPoint: false,
+                hasBorders: false
+            });
+
+            window._canvas.add(text_obj);
+        };
+
+        $("#delete").click(function () {
+            deleteObjects();
+        });
+
+        var onStartDrawing = function () {
+            window._canvas.isDrawingMode = true;
+        };
+
+        var onStopDrawing = function () {
+            window._canvas.isDrawingMode = false;
+        };
+
+
+        function deleteObjects() {
+            var activeObject = window._canvas.getActiveObject(),
+                    activeGroup = window._canvas.getActiveGroup();
+            if (activeObject) {
+                window._canvas.remove(activeObject);
+            }
+        }
+
+        
         $("#btnZoomIn").click(function () {
             zoomIn();
         });
@@ -264,44 +323,123 @@
             });
 
         }
+        
+    createListenersKeyboard();
 
+        function createListenersKeyboard() {
+            document.onkeydown = onKeyDownHandler;
+            //document.onkeyup = onKeyUpHandler;
+        }
 
-        $('#create-text-obj').on('click', function () {
-            var text = $('#text-input').val();
-            create_text_obj(text);
-        });
+        function onKeyDownHandler(event) {
+            //event.preventDefault();
 
-        var create_text_obj = function (text) {
-            var text_obj = new fabric.Text(text, {
-                left: 400,
-                top: 225,
-                fontSize: 60,
-                textAlign: "left",
-                fill: "#FF0000" // Set text color to red
-            });
-
-            window._canvas.add(text_obj);
-        };
-
-        $("#delete").click(function () {
-            deleteObjects();
-        });
-
-        var onStartDrawing = function () {
-            window._canvas.isDrawingMode = true;
-        };
-
-        var onStopDrawing = function () {
-            window._canvas.isDrawingMode = false;
-        };
-
-
-        function deleteObjects() {
-            var activeObject = window._canvas.getActiveObject(),
-                    activeGroup = window._canvas.getActiveGroup();
-            if (activeObject) {
-                window._canvas.remove(activeObject);
+            var key;
+            if(window.event){
+                key = window.event.keyCode;
             }
+            else{
+                key = event.keyCode;
+            }
+
+            switch(key){
+                case 187: // Zoom IN - Ctrl+"+"
+                    if(ableToShortcut()){
+                        if(event.ctrlKey){
+                            event.preventDefault();
+                            zoomIn();
+                        }
+                    }
+                    break;
+                    
+                case 189: // Zoom OUT Ctrl+"-"
+                    if(ableToShortcut()){
+                        if(event.ctrlKey){
+                            event.preventDefault();
+                            zoomOut();
+                        }
+                    }
+                    break;
+                    
+                case 48: // Reset Zoom - Ctrl+"0"
+                    if(ableToShortcut()){
+                        if(event.ctrlKey){
+                            event.preventDefault();
+                            resetZoom();
+                        }
+                    }
+                    break;
+
+                   case 8: // Delete
+                    if(ableToShortcut()){
+                            event.preventDefault();
+                            deleteObjects();
+
+                    }
+                    break; 
+
+                    case 67: //Copy - Ctrl+c
+                     if(ableToShortcut()){
+                         if(event.ctrlKey){
+                             event.preventDefault();
+                             Copy();
+                         }
+                     }
+                     break;
+
+                    case 86: //Paste - Ctrl+v
+                     if(ableToShortcut()){
+                         if(event.ctrlKey){
+                             event.preventDefault();
+                             Paste();
+                         }
+                     }
+                     break; 
+                default:
+                    // TODO
+                    break;
+            }
+        }
+
+        function ableToShortcut(){ //call the shortcut method
+
+            return true;
+        }
+
+        // To copy and add to clipboard a copy of the activeObject 
+        function Copy() {
+
+                window._canvas.getActiveObject().clone(function(cloned) {
+                        _clipboard = cloned;
+                });
+        }
+        // To paste from clipboard a copy of the activeObject
+        function Paste() {
+                // clone again, so you can do multiple copies.
+                _clipboard.clone(function(clonedObj) {
+                        window._canvas.discardActiveObject();
+                        clonedObj.set({
+                                left: clonedObj.left + 15,
+                                top: clonedObj.top + 15,
+                                evented: true,
+                                hasControls:false
+                        });
+                        if (clonedObj.type === 'activeSelection') {
+                                // active selection needs a reference to the canvas.
+                                clonedObj.canvas = window._canvas;
+                                clonedObj.forEachObject(function(obj) {
+                                        window._canvas.add(obj);
+                                });
+                                // this should solve the unselectability
+                                clonedObj.setCoords();
+                        } else {
+                                window._canvas.add(clonedObj);
+                        }
+                        _clipboard.top += 15;
+                        _clipboard.left += 15;
+                        window._canvas.setActiveObject(clonedObj);
+                        window._canvas.requestRenderAll();
+                });
         }
 
 //                function createJSONLink() {
@@ -338,8 +476,6 @@
 //                    //data1 = JSON.parse(data1);
 //                    window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(canvas));
 //                }
-
-
 
     </script>
 </html>
