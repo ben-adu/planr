@@ -466,15 +466,15 @@
                 }
 
                 function readTextFile() {
-                    var url = "/backup.json";
+                    var url = "http://simpsoku.dev.fast.sheridanc.on.ca/syst35300/backuptest.json";
                     var data1;
                     $.getJSON(url, function (data) {
                         console.log(JSON.stringify(data))
                         data1 = data
-                        window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(canvas))
+                        window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(window._canvas))
                     });
                     //data1 = JSON.parse(data1);
-                    window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(canvas));
+                    window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(window._canvas));
                 }
 
     </script>
