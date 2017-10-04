@@ -12,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Inventory;
 import ca.sheridancollege.beans.User;
+import ca.sheridancollege.beans.UserRole;
 
 public class DAO {
 	
@@ -32,11 +33,12 @@ public class DAO {
 		else return null;
 	}
 	
-	public void createUser(User user) {
+	public void createUser(User user, UserRole userRole) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
 		session.save(user);
+		session.save(userRole);
 
 		session.getTransaction().commit();
 		session.close();

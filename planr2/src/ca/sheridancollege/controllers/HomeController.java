@@ -62,17 +62,17 @@ public class HomeController
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(Model model, @RequestParam String username, @RequestParam String password)
+	public String register(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String role)
 	{
 
 		String encryptedPassword = new BCryptPasswordEncoder().encode(password);
 		User user = new User(username, encryptedPassword, true);
 
-		UserRole userRole = new UserRole(user, "ROLE_USER");
+		UserRole userRole = new UserRole(user, role);
 		user.getUserRole().add(userRole);
 
 		DAO dao = new DAO();
-		dao.createUser(user);
+		dao.createUser(user, userRole);
 
 		UserDetails userDetails = new MyUserDetailsService().loadUserByUsername(username);
 		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails,

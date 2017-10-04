@@ -20,6 +20,11 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="<c:url value="/css/style.css" />">
 <script src="<c:url value="/scripts/script.js" />"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+	});
+</script>
 </head>
 <body>
 	<!-- navbar  -->
@@ -60,9 +65,23 @@
 						for="icon_lock">Re-enter password</label>
 				</div>
 			</div>
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" /> <input type="submit"
-				value="Create Account!" onclick="verify()" class="btn waves-effect waves-light"/>
+			<div class="row">
+				<div class="input-field col s6">
+					<select name="role">
+						<option value="" disabled selected>SELECT ROLE</option>
+						<option value="ROLE_ADMIN">Employee</option>
+						<option value="ROLE_USER">Client</option>
+
+					</select> <label>Select type of User</label>
+				</div>
+			</div>
+			<div class="row"></div>
+			<div class="row">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="submit"
+					value="Create Account!" onclick="verify()"
+					class="btn waves-effect waves-light" />
+			</div>
 		</form>
 	</div>
 

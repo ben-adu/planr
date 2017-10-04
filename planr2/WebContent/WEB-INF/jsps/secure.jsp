@@ -98,6 +98,7 @@
 	<!-- Body -->
 
 	<div class="container">
+	<c:if test="${role eq 'ROLE_ADMIN' }"> Admin Test</c:if>
 	<h4>Welcome Ben Adu</h4>
 		<div class="row">
 			<div class="col s6">

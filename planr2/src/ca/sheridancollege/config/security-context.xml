@@ -14,7 +14,7 @@
 		</security:authentication-provider>
 	</security:authentication-manager>
 	<security:http use-expressions="true">
-		<security:intercept-url pattern="/secure" access="isAuthenticated()" />
+		<security:intercept-url pattern="/secure" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/accept" access="isAuthenticated()" />
 		<security:intercept-url pattern="/favicon.ico" access="isAuthenticated()" />
 		<security:intercept-url pattern="/inventoryManagement" access="isAuthenticated()" />
