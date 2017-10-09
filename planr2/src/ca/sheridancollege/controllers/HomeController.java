@@ -44,7 +44,13 @@ public class HomeController
 	{
 		return "secure";
 	}
-
+	
+	@RequestMapping(value = "/createLayout", method = RequestMethod.GET)
+	public String createLayout(Model model)
+	{
+		return "createLayout";
+	}
+	
 	@RequestMapping(value = "/createAccount", method = RequestMethod.GET)
 	public String createAccount(Model model)
 	{
