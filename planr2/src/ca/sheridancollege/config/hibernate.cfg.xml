@@ -22,14 +22,14 @@
 		<property name="show_sql">true</property>
 		
 		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">update</property>
 		
 		<!-- dbcp connection pool configuration-->
-		<property name="dbcp.initialSize">5</property>
+		<!-- <property name="dbcp.initialSize">5</property>
 		<property name="dbcp.maxTotal">20</property>
 		<property name="dbcp.maxIdle">10</property>
 		<property name="dbcp.minIdle">5</property>
-		<property name="dbcp.maxWaitMillis">-1</property>
+		<property name="dbcp.maxWaitMillis">-1</property> -->
 			
 		<!-- Name the annotated Entity classes -->
 		<mapping class="ca.sheridancollege.beans.User" />
