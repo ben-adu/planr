@@ -150,6 +150,9 @@
             </div>
         </div>
 <div id="JSON">
+						<button id="Save" onclick="" style="background-color: black; color: yellow;">Save Test</button>
+                        <p>Pass JSON to controller.</p>
+						
                         <button id="demo" onclick="myFunction()" style="background-color: black; color: yellow;">Show JSON in console.</button>
                         <p>This shows the the current layout in JSON format in the console.</p>
 
@@ -542,6 +545,29 @@ function readTextFile() {
     //data1 = JSON.parse(data1);
     window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(window._canvas));
 }
+
+$('.Save').click(function(){
+
+	var jsonString = JSON.stringify(canvas.toJSON())
+
+	$.ajax({
+        url: '/createLayout/',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(canvas.toJSON()) ,
+        contentType: 'application/json',
+        mimeType: 'application/json',
+        success: _callBack,
+        error: _errorCallback
+    });
+});
+
+
+
+
+
+
+
 </script>
 
 </html>

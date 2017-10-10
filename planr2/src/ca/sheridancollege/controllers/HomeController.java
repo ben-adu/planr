@@ -15,9 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Inventory;
@@ -240,9 +242,16 @@ public class HomeController
 		return "modifyItem";
 	}
 	
+	
+	
 	//test
 	
-	
+	/*@RequestMapping(value="/createLayout", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
+	@ResponseBody
+	public String addLayout(@RequestBody Test test) throws Exception {
+	    String name = test.name;
+	    return name;
+	}*/
 	
 	
 
