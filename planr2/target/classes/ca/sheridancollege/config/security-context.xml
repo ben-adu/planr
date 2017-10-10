@@ -13,9 +13,8 @@
 		<security:password-encoder ref="encoder"></security:password-encoder>
 		</security:authentication-provider>
 	</security:authentication-manager>
-	<security:http use-expressions="true">
-		<security:intercept-url pattern="/secure" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/createLayout" access="isAuthenticated()" />
+	<security:http use-expressions="true" auto-config="true">
+		<security:intercept-url pattern="/secure" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<security:intercept-url pattern="/accept" access="isAuthenticated()" />
 		<security:intercept-url pattern="/favicon.ico" access="isAuthenticated()" />
 		<security:intercept-url pattern="/inventoryManagement" access="isAuthenticated()" />
@@ -34,6 +33,7 @@
 		<security:intercept-url pattern="/deleteItem/{id}" access="isAuthenticated()" />
 		<security:intercept-url pattern="/modifyItem/{id}" access="isAuthenticated()" />
 		<security:intercept-url pattern="/editItem/{id}" access="isAuthenticated()" />
+		<security:intercept-url pattern="/createLayout" access="isAuthenticated()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/scripts/**" access="permitAll" />
