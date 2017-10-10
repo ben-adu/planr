@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -56,41 +58,81 @@
 		</div>
 	</div>
 
-	<!-- NAV -->
-	<nav class="default" role="navigation">
-	<ul id="slide-out" class="side-nav">
-		<li><div class="userView">
-				<div class="background">
-					<img src="images/lake.jpg">
-				</div>
-				<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
-					href="#!email"><span class="white-text email">ben@mail.com</span></a>
-			</div></li>
-		<c:url value="/clientManagement" var="client" />
-		<li><a href="${client }" class="waves-effect"><i
-				class="material-icons">perm_identity</i>Client Management</a></li>
-		<c:url value="/clientManagement" var="client" />
-		<li><a href="#" class="waves-effect"><i
-				class="material-icons">business</i>Generate Reports</a></li>
-		<c:url value="/inventoryManagement" var="inventory" />
-		<li><a href="${ inventory}" class="waves-effect"><i
-				class="material-icons">devices_other</i>Inventory management</a></li>
-		<c:url value="#" var="siteLayout" />
-		<li><a href="#" class="waves-effect"><i
-				class="material-icons">map</i>Approved Site Layouts</a></li>
-		<c:url value="/inventoryManagement" var="client" />
-		<li><a href="#" class="waves-effect"><i
-				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-		<c:url value="/logout" var="logout" />
-		<li><a href="${logout}" class="waves-effect"><i
-				class="material-icons">perm_identity</i>Logout</a></li>
-	</ul>
-	<a href="#" data-activates="slide-out"
-		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-	<a href="secure" class="brand-logo center"><img
-		src="images/mcs.png" height="80"></a> </nav>
+	<!-- ROLE_ADMIN NAV -->
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<nav class="default" role="navigation">
+		<ul id="slide-out" class="side-nav">
+			<li><div class="userView">
+					<div class="background">
+						<img src="images/lake.jpg">
+					</div>
+					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
+					<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
+						href="#!email"><span class="white-text email">ben@mail.com</span></a>
+				</div></li>
+			<c:url value="/clientManagement" var="client" />
+			<li><a href="${client }" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Client Management</a></li>
+			<c:url value="/clientManagement" var="client" />
+			<li><a href="#" class="waves-effect"><i
+					class="material-icons">business</i>Generate Reports</a></li>
+			<c:url value="/inventoryManagement" var="inventory" />
+			<li><a href="${ inventory}" class="waves-effect"><i
+					class="material-icons">devices_other</i>Inventory management</a></li>
+			<c:url value="#" var="siteLayout" />
+			<li><a href="#" class="waves-effect"><i
+					class="material-icons">map</i>Approved Site Layouts</a></li>
+			<c:url value="/inventoryManagement" var="client" />
+			<li><a href="#" class="waves-effect"><i
+					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+			<c:url value="/logout" var="logout" />
+			<li><a href="${logout}" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Logout</a></li>
+		</ul>
+		<a href="#" data-activates="slide-out"
+			class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+		<a href="secure" class="brand-logo center"><img
+			src="images/mcs.png" height="80"></a> </nav>
+	</sec:authorize>
 	<!--  END OF NAV -->
+
+	<!-- ROLE_USER NAV -->
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<nav class="default" role="navigation">
+		<ul id="slide-out" class="side-nav">
+			<li><div class="userView">
+					<div class="background">
+						<img src="images/lake.jpg">
+					</div>
+					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
+					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
+						href="#!email"><span class="white-text email">ben@mail.com</span></a>
+				</div></li>
+			<c:url value="/clientManagement" var="client" />
+			<li><a href="${client }" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Create Site Layout</a></li>
+			<c:url value="/clientManagement" var="client" />
+			<li><a href="#" class="waves-effect"><i
+					class="material-icons">business</i>Manage Site Layouts</a></li>
+			<c:url value="/inventoryManagement" var="inventory" />
+			<li><a href="${ inventory}" class="waves-effect"><i
+					class="material-icons">devices_other</i>View Electrical Map</a></li>
+			<c:url value="#" var="siteLayout" />
+			<li><a href="#" class="waves-effect"><i
+					class="material-icons">map</i>Planning Guidelines</a></li>
+			<c:url value="/inventoryManagement" var="client" />
+			<li><a href="#" class="waves-effect"><i
+					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+			<c:url value="/logout" var="logout" />
+			<li><a href="${logout}" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Logout</a></li>
+		</ul>
+		<a href="#" data-activates="slide-out"
+			class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+		<a href="secure" class="brand-logo center"><img
+			src="images/mcs.png" height="80"></a> </nav>
+	</sec:authorize>
+	<!-- End of ROLE_USER Nav -->
 
 
 
@@ -98,30 +140,64 @@
 	<!-- Body -->
 
 	<div class="container">
-	<c:if test="${role eq 'ROLE_ADMIN' }"> Admin Test</c:if>
-	<h4>Welcome Ben Adu</h4>
-		<div class="row">
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display:block" href="/planr/clientManagement"><i
-					class="material-icons left"  >perm_identity</i>Client Management</a>
+		<!-- View Employees See -->
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<h4>Welcome Ben Adu</h4>
+			<div class="row">
+				<div class="col s6">
+					<a class="waves-effect waves-light btn-large"
+						style="display: block" href="/planr/clientManagement"><i
+						class="material-icons left">perm_identity</i>Client Management</a>
+				</div>
+				<div class="col s6">
+					<a class="waves-effect waves-light btn-large"
+						style="display: block" href="/planr/inventoryManagement"><i
+						class="material-icons left">devices_other</i>Inventory Management</a>
+				</div>
 			</div>
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display:block" href="/planr/inventoryManagement"><i
-					class="material-icons left">devices_other</i>Inventory Management</a>
+			<div class="row">
+				<div class="col s6">
+					<a class="waves-effect waves-light btn-large"
+						style="display: block" href="#"><i class="material-icons left">business</i>Generate
+						Reports</a>
+				</div>
+				<div class="col s6">
+					<a class="waves-effect waves-light btn-large"
+						style="display: block" href="#"><i class="material-icons left">map</i>Approve
+						Site Layouts</a>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display:block" href="#"><i
-					class="material-icons left">business</i>Generate Reports</a>
+		</sec:authorize>
+
+		<!-- ROLE_USER's view -->
+		<sec:authorize access="hasRole('ROLE_USER')">
+			<h4>Welcome Ankit Shah</h4>
+			<div class="row">
+				<div class="col s6">
+					<a class="waves-effect waves-light btn-large"
+						style="display: block" href="/planr/clientManagement"><i
+						class="material-icons left">perm_identity</i>Create Site Layout</a>
+				</div>
+				<div class="col s6">
+					<a class="waves-effect waves-light btn-large"
+						style="display: block" href="/planr/inventoryManagement"><i
+						class="material-icons left">devices_other</i>Manage Site Layouts</a>
+				</div>
 			</div>
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display:block" href="#"><i
-					class="material-icons left">map</i>Approve Site Layouts</a>
+			<div class="row">
+				<div class="col s6">
+					<a class="waves-effect waves-light btn-large"
+						style="display: block" href="#"><i class="material-icons left">business</i>View Site Maps</a>
+				</div>
+				<div class="col s6">
+					<a class="waves-effect waves-light btn-large"
+						style="display: block" href="#"><i class="material-icons left">map</i>Guidelines</a>
+				</div>
 			</div>
-		</div>
+		</sec:authorize>
 	</div>
-	</div>
+
+
 
 </body>
 </html>
