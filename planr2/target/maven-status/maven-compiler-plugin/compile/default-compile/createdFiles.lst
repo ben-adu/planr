@@ -1,7 +1,0 @@
-ca/sheridancollege/beans/User.class
-ca/sheridancollege/beans/Inventory.class
-ca/sheridancollege/beans/MyUserDetailsService.class
-ca/sheridancollege/beans/Customer.class
-ca/sheridancollege/dao/DAO.class
-ca/sheridancollege/beans/UserRole.class
-ca/sheridancollege/controllers/HomeController.class

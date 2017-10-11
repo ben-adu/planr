@@ -53,6 +53,18 @@ public class HomeController
 		return "createLayout";
 	}
 	
+	@RequestMapping(value = "/siteLayout", method = RequestMethod.GET)
+	public String siteLayout(Model model)
+	{
+		return "siteLayout";
+	}
+	
+	@RequestMapping(value = "/eventDetails", method = RequestMethod.GET)
+	public String eventDetails(Model model)
+	{
+		return "eventDetails";
+	}
+	
 	@RequestMapping(value = "/createAccount", method = RequestMethod.GET)
 	public String createAccount(Model model)
 	{
@@ -106,12 +118,12 @@ public class HomeController
 	    return "home";
 	}
 	
-	@RequestMapping(value = "accept", method = RequestMethod.GET)
+	@RequestMapping(value = "/accept", method = RequestMethod.GET)
 	public String accept(Model model)
 	{
 		return "accept";
 	}
-	@RequestMapping(value = "display", method = RequestMethod.GET)
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public String display(Model model)
 	{
 		DAO dao= new DAO();
@@ -125,14 +137,14 @@ public class HomeController
 		return "accept";
 	}
 	
-	@RequestMapping(value = "form", method = RequestMethod.GET)
+	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form(Model model)
 	{
 		model.addAttribute("customer", new Customer());
 		return "form";
 	}
 	
-	@RequestMapping(value = "saveCustomer", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveCustomer", method = RequestMethod.POST)
 	public String saveCustomer(Model model, @ModelAttribute Customer customer)
 	{
 		DAO dao = new DAO();
@@ -141,7 +153,7 @@ public class HomeController
 		return "saveCustomer";
 	}
 	
-	@RequestMapping(value="delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
 	public String delete(Model model, @PathVariable int id)
 	{
 		DAO dao = new DAO();
@@ -163,7 +175,7 @@ public class HomeController
 		return "update";
 	}
 	
-	@RequestMapping(value="modify/{id}", method=RequestMethod.POST) //change back to post
+	@RequestMapping(value="/modify/{id}", method=RequestMethod.POST) //change back to post
 	public String modifyCustomer(Model model, @PathVariable int id, @ModelAttribute Customer customer)
 	{
 		DAO dao = new DAO();
@@ -177,14 +189,14 @@ public class HomeController
 	
 
 	
-	@RequestMapping(value = "inventory", method = RequestMethod.GET)
+	@RequestMapping(value = "/inventory", method = RequestMethod.GET)
 	public String inventory(Model model)
 	{
 		
 		return "displayAngular";
 	}
 	
-	@RequestMapping(value = "saveItem", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveItem", method = RequestMethod.POST)
 	public String saveItem(Model model, @ModelAttribute Inventory inventory)
 	{
 		DAO dao = new DAO();
@@ -193,7 +205,7 @@ public class HomeController
 		return "saveItem";
 	}
 	
-	@RequestMapping(value="displayItem", method= RequestMethod.GET)
+	@RequestMapping(value="/displayItem", method= RequestMethod.GET)
 	public String displayItem(Model model)
 	{
 		DAO dao = new DAO();
@@ -201,14 +213,14 @@ public class HomeController
 		return "displayItem";
 	}
 	
-	@RequestMapping(value = "createItem", method = RequestMethod.GET)
+	@RequestMapping(value = "/createItem", method = RequestMethod.GET)
 	public String createItem(Model model)
 	{
 		model.addAttribute("inventory", new Inventory());
 		return "createItem";
 	}
 	
-	@RequestMapping(value="deleteItem/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/deleteItem/{id}", method = RequestMethod.GET)
 	public String deleteItem(Model model, @PathVariable int id)
 	{
 		DAO dao = new DAO();
@@ -220,7 +232,7 @@ public class HomeController
 		return "deleteItem"; 
 	}
 	
-	@RequestMapping(value="editItem/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/editItem/{id}", method = RequestMethod.GET)
 	public String editItem(Model model, @PathVariable int id)
 	{
 		DAO dao= new DAO();
@@ -230,7 +242,7 @@ public class HomeController
 		return "updateItem";
 	}
 	
-	@RequestMapping(value="modifyItem/{id}", method=RequestMethod.POST) //change back to post
+	@RequestMapping(value="/modifyItem/{id}", method=RequestMethod.POST) //change back to post
 	public String modifyItem(Model model, @PathVariable int id, @ModelAttribute Inventory inventory)
 	{
 		DAO dao = new DAO();
