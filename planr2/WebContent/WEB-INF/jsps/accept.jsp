@@ -34,10 +34,10 @@ $(document).ready(function(){
 		function(isConfirm){
 		  if (isConfirm) {
 		    swal("Thanks", "Thank you for accepting the Terms on Condition", "success");
-		    window.location.href="/planr/secure";
+		    window.location.href="secure";
 		  } else {
 		    swal("Declined", "Loggin Out", "error");
-		    window.location.href="/planr/logout";
+		    window.location.href="logout";
 		  }
 		});
 });

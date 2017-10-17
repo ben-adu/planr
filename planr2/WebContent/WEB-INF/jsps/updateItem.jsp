@@ -46,19 +46,19 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/clientManagement" var="client" />
+		<c:url value="clientManagement" var="client" />
 		<li><a href="${client }" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Client Management</a></li>
-		<c:url value="/clientManagement" var="client" />
+		<c:url value="clientManagement" var="client" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">business</i>Generate Reports</a></li>
-		<c:url value="/inventoryManagement" var="inventoryM" />
+		<c:url value="inventoryManagement" var="inventoryM" />
 		<li><a href="${ inventoryM}" class="waves-effect"><i
 				class="material-icons">devices_other</i>Inventory management</a></li>
 		<c:url value="#" var="siteLayout" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">map</i>Approved Site Layouts</a></li>
-		<c:url value="/inventoryManagement" var="client" />
+		<c:url value="inventoryManagement" var="client" />
 		<li><a href="${client}" class="waves-effect"><i
 				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
 		<li><a href="${logOut}" class="waves-effect"><i

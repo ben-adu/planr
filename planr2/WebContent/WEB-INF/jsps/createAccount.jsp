@@ -41,7 +41,7 @@
 	<div class="container">
 		<div id="error"></div>
 		<h5>Create Account</h5>
-		<c:url value="/register" var="url" />
+		<c:url value="register" var="url" />
 		<form name="form" method="post" action="${url}"
 			onsubmit="return verify()" class="col s12">
 			<div class="row">

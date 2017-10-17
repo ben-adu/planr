@@ -82,22 +82,22 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/clientManagement" var="client" />
+		<c:url value="clientManagement" var="client" />
 		<li><a href="${client }" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Client Management</a></li>
-		<c:url value="/clientManagement" var="client" />
+		<c:url value="clientManagement" var="client" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">business</i>Generate Reports</a></li>
-		<c:url value="/inventoryManagement" var="inventoryM" />
+		<c:url value="inventoryManagement" var="inventoryM" />
 		<li><a href="${ inventoryM}" class="waves-effect"><i
 				class="material-icons">devices_other</i>Inventory management</a></li>
 		<c:url value="#" var="siteLayout" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">map</i>Approved Site Layouts</a></li>
-		<c:url value="/inventoryManagement" var="client" />
+		<c:url value="inventoryManagement" var="client" />
 		<li><a href="${client}" class="waves-effect"><i
 				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-		<li><a href="/planr/logout" class="waves-effect"><i
+		<li><a href="planr/logout" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
 	</ul>
 	<a href="#" data-activates="slide-out"
@@ -136,82 +136,8 @@
 
 
 			</c:forEach>
-			<c:url value="/form" var="addUrl" />
+			<c:url value="form" var="addUrl" />
 		</ul>
-
-		<!--  
-		<input type="text" id="myInput" onkeyup="myFunction()"
-			placeholder="Search for names.." title="Type in a name">
-		<div = "colsp12">
-			<table class="responsive-table centered striped bordered" id="myTable">
-				<!-- here should go some titles... 
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Manufacturer</th>
-					<th>Total Quantity</th>
-					<th>Price(each)</th>
-					<th>Date Added</th>
-					<th>Description</th>
-					<th>Action</th>
-				</tr>
-				<c:forEach var="inventory" items="${inventory}">
-					<tr>
-						<td><c:out value="${inventory.id}" /></td>
-						<td><c:out value="${inventory.name}" /></td>
-						<td><c:out value="${inventory.manufacturer}" /></td>
-						<td><c:out value="${inventory.quantity}" /></td>
-						<td><c:out value="${inventory.price}" /></td>
-						<td><c:out value="${inventory.date}" /></td>
-						<td><c:out value="${inventory.description}" /></td>
-						<td><a class="waves-effect waves-light btn"
-							href="deleteItem/${inventory.id }"><i
-								class="material-icons left">delete</i></a></td>
-						<td><a class="waves-effect waves-light btn"
-							href="EditItem/${inventory.id }"><i
-								class="material-icons left">edit</i></a></td>
-					</tr>
-				</c:forEach>
-			</table>
-		</div>
-		<script>
-			function myFunction() {
-				var input, filter, table, tr, td, i;
-				input = document.getElementById("myInput");
-				filter = input.value.toUpperCase();
-				table = document.getElementById("myTable");
-				tr = table.getElementsByTagName("tr");
-				for (i = 0; i < tr.length; i++) {
-					td = tr[i].getElementsByTagName("td")[0];
-					if (td) {
-						if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-							tr[i].style.display = "";
-						} else {
-							tr[i].style.display = "none";
-						}
-					}
-				}
-			}
-		</script>
-		-->
-
-
-		<!-- Fab 
-		<div class="fixed-action-btn">
-			<a class="btn-floating btn-large red"> <i
-				class="large material-icons">mode_edit</i>
-			</a>
-			<ul>
-				<li><a class="btn-floating red" href="form"><i
-						class="material-icons">account_circle</i></a></li>
-				<li><a class="btn-floating blue" href="inventory"><i
-						class="material-icons">build</i></a></li>
-				<li><a class="btn-floating blue" href="display"><i
-						class="material-icons">supervisor_account</i></a></li>
-			</ul>
-		</div>
-		-->
-
 	</div>
 
 

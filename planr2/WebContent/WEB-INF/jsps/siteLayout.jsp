@@ -33,37 +33,38 @@
 <body>
 	<!-- NAV -->
 	<nav class="default" role="navigation">
-	<ul id="slide-out" class="side-nav">
-		<li><div class="userView">
-				<div class="background">
-					<img src="images/lake.jpg">
-				</div>
-				<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
-					href="#!email"><span class="white-text email">ben@mail.com</span></a>
-			</div></li>
-		<c:url value="/clientManagement" var="client" />
-		<li><a href="${client }" class="waves-effect"><i
-				class="material-icons">perm_identity</i>Client Management</a></li>
-		<c:url value="/clientManagement" var="client" />
-		<li><a href="#" class="waves-effect"><i
-				class="material-icons">business</i>Generate Reports</a></li>
-		<c:url value="/inventoryManagement" var="inventory" />
-		<li><a href="${ inventory}" class="waves-effect"><i
-				class="material-icons">devices_other</i>Inventory management</a></li>
-		<c:url value="#" var="siteLayout" />
-		<li><a href="#" class="waves-effect"><i
-				class="material-icons">map</i>Approved Site Layouts</a></li>
-		<c:url value="/secure" var="secure" />
-		<li><a href="${secure}" class="waves-effect"><i
-				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-		<li><a href="/planr/logout" class="waves-effect"><i
-				class="material-icons">perm_identity</i>Log out</a></li>
-	</ul>
-	<a href="#" data-activates="slide-out"
-		class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-	<a href="secure" class="brand-logo center"><img
-		src="images/mcs.png" height="80"></a> </nav>
+		<ul id="slide-out" class="side-nav">
+			<li><div class="userView">
+					<div class="background">
+						<img src="images/lake.jpg">
+					</div>
+					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
+					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
+						href="#!email"><span class="white-text email">ben@mail.com</span></a>
+				</div></li>
+			<c:url value="createLayout" var="client" />
+			<li><a href="createLayout" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Create Site Layout</a></li>
+			<c:url value="manageLayout" var="client" />
+			<li><a href="manageLayouts" class="waves-effect"><i
+					class="material-icons">business</i>Manage Site Layouts</a></li>
+			<c:url value="electrical" var="inventory" />
+			<li><a href="electrical" class="waves-effect"><i
+					class="material-icons">devices_other</i>View Electrical Map</a></li>
+			<c:url value="guidelines" var="siteLayout" />
+			<li><a href="guidelines" class="waves-effect"><i
+					class="material-icons">map</i>Planning Guidelines</a></li>
+			<c:url value="secure" var="client" />
+			<li><a href="secure" class="waves-effect"><i
+					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+			<c:url value="logout" var="logout" />
+			<li><a href="${logout}" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Logout</a></li>
+		</ul>
+		<a href="#" data-activates="slide-out"
+			class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+		<a href="secure" class="brand-logo center"><img
+			src="images/mcs.png" height="80"></a> </nav>
 	<!--  END OF NAV -->
 	
 
@@ -79,26 +80,29 @@
 			</div>
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="manageLayout">Manage Site Layout</a>
+					href="manageLayouts">Manage Site Layout</a>
 			</div>
 
 		</div>
 		<div class="row">
+		<!--  
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
 					href="viewMap">View Site Map</a>
 			</div>
+			-->
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="electricalMap">View Electrical Map</a>
+					href="electrical">View Electrical Map</a>
 			</div>
-
-		</div>
-		<div class="row">
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
 					href="guidelines">Guidelines</a>
 			</div>
+
+		</div>
+		<div class="row">
+			
 		</div>
 
 	</div>

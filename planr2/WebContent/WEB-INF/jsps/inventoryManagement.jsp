@@ -42,22 +42,22 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/clientManagement" var="client" />
+		<c:url value="clientManagement" var="client" />
 		<li><a href="${client }" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Client Management</a></li>
-		<c:url value="/clientManagement" var="client" />
+		<c:url value="clientManagement" var="client" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">business</i>Generate Reports</a></li>
-		<c:url value="/inventoryManagement" var="inventory" />
+		<c:url value="inventoryManagement" var="inventory" />
 		<li><a href="${ inventory}" class="waves-effect"><i
 				class="material-icons">devices_other</i>Inventory management</a></li>
 		<c:url value="#" var="siteLayout" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">map</i>Approved Site Layouts</a></li>
-		<c:url value="/secure" var="secure" />
+		<c:url value="secure" var="secure" />
 		<li><a href="${secure}" class="waves-effect"><i
 				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-		<li><a href="/planr/logout" class="waves-effect"><i
+		<li><a href="logout" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
 	</ul>
 	<a href="#" data-activates="slide-out"
@@ -76,11 +76,11 @@
 		<div class="row">
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="/planr/createItem">Create New Item</a>
+					href="createItem">Create New Item</a>
 			</div>
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="/planr/displayItem">View Inventory</a>
+					href="displayItem">View Inventory</a>
 			</div>
 		</div>
 

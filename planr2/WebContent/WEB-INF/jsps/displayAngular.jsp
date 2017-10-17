@@ -69,7 +69,7 @@
 				<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 					href="#!email"><span class="white-text email">ben@mail.com</span></a>
 			</div></li>
-		<c:url value="/logout" var="logOut" />
+		<c:url value="logout" var="logOut" />
 		<li><a href="${logOut}" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Log out</a></li>
 	</ul>

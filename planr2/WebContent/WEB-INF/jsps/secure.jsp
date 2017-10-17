@@ -108,22 +108,22 @@
 					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
-			<c:url value="/clientManagement" var="client" />
-			<li><a href="${client }" class="waves-effect"><i
+			<c:url value="createLayout" var="client" />
+			<li><a href="createLayout" class="waves-effect"><i
 					class="material-icons">perm_identity</i>Create Site Layout</a></li>
-			<c:url value="/clientManagement" var="client" />
-			<li><a href="#" class="waves-effect"><i
+			<c:url value="manageLayout" var="client" />
+			<li><a href="manageLayouts" class="waves-effect"><i
 					class="material-icons">business</i>Manage Site Layouts</a></li>
-			<c:url value="/inventoryManagement" var="inventory" />
-			<li><a href="${ inventory}" class="waves-effect"><i
+			<c:url value="electrical" var="inventory" />
+			<li><a href="electrical" class="waves-effect"><i
 					class="material-icons">devices_other</i>View Electrical Map</a></li>
-			<c:url value="#" var="siteLayout" />
-			<li><a href="#" class="waves-effect"><i
+			<c:url value="guidelines" var="siteLayout" />
+			<li><a href="guidelines" class="waves-effect"><i
 					class="material-icons">map</i>Planning Guidelines</a></li>
-			<c:url value="/inventoryManagement" var="client" />
-			<li><a href="#" class="waves-effect"><i
+			<c:url value="secure" var="client" />
+			<li><a href="secure" class="waves-effect"><i
 					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-			<c:url value="/logout" var="logout" />
+			<c:url value="logout" var="logout" />
 			<li><a href="${logout}" class="waves-effect"><i
 					class="material-icons">perm_identity</i>Logout</a></li>
 		</ul>
@@ -146,12 +146,12 @@
 			<div class="row">
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="/planr/clientManagement"><i
+						style="display: block" href="clientManagement"><i
 						class="material-icons left">perm_identity</i>Client Management</a>
 				</div>
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="/planr/inventoryManagement"><i
+						style="display: block" href="inventoryManagement"><i
 						class="material-icons left">devices_other</i>Inventory Management</a>
 				</div>
 			</div>
@@ -175,23 +175,23 @@
 			<div class="row">
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="/planr/clientManagement"><i
+						style="display: block" href="createLayout"><i
 						class="material-icons left">perm_identity</i>Create Site Layout</a>
 				</div>
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="/planr/inventoryManagement"><i
+						style="display: block" href="manageLayouts"><i
 						class="material-icons left">devices_other</i>Manage Site Layouts</a>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="#"><i class="material-icons left">business</i>View Site Maps</a>
+						style="display: block" href="siteLayout"><i class="material-icons left">business</i>View Site Maps</a>
 				</div>
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="#"><i class="material-icons left">map</i>Guidelines</a>
+						style="display: block" href="guidelines"><i class="material-icons left">map</i>Guidelines</a>
 				</div>
 			</div>
 		</sec:authorize>

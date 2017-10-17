@@ -44,7 +44,7 @@
 
 <script>
   $(document).ready(function(){
-	window.location.href="/planr/display";
+	window.location.href="display";
 });
 
 </script>
@@ -90,7 +90,7 @@
 	
 		
 	</c:forEach>
-	<c:url value="/form" var="addUrl" />
+	<c:url value="form" var="addUrl" />
 	</ul>
 	
 	<!-- Fab 

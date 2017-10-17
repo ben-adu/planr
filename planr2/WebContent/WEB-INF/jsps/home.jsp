@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/style.css">
 <script>
   $(document).ready(function(){
-	window.location.href="/planr/accept";
+	window.location.href="accept";
 });
 
 </script>

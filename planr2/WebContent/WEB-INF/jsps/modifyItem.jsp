@@ -36,7 +36,7 @@
 </script>
 <script>
 	$(document).ready(function() {
-		window.location.href = "/planr/displayItem";
+		window.location.href = "displayItem";
 	});
 </script>
 

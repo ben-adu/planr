@@ -45,19 +45,19 @@
 		<c:url value="/clientManagement" var="clientM" />
 		<li><a href="${clientM }" class="waves-effect"><i class="material-icons">perm_identity</i>Client
 				Management</a></li>
-		<c:url value="/clientManagement" var="client" />
+		<c:url value="clientManagement" var="client" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">business</i>Generate Reports</a></li>
-		<c:url value="/inventoryManagement" var="inventory" />
+		<c:url value="inventoryManagement" var="inventory" />
 		<li><a href="${ inventory}" class="waves-effect"><i
 				class="material-icons">devices_other</i>Inventory management</a></li>
 		<c:url value="#" var="siteLayout" />
 		<li><a href="#" class="waves-effect"><i
 				class="material-icons">map</i>Approved Site Layouts</a></li>
-		<c:url value="/secure" var="secure" />
+		<c:url value="secure" var="secure" />
 		<li><a href="${secure}" class="waves-effect"><i
 				class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-		<c:url value="/logout" var="logout" />
+		<c:url value="logout" var="logout" />
 		<li><a href="${logout}" class="waves-effect"><i
 				class="material-icons">perm_identity</i>Logout</a></li>
 	</ul>
@@ -77,11 +77,11 @@
 		<div class="row">
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="/planr/form">New Customer</a>
+					href="form">New Customer</a>
 			</div>
 			<div class="col s6">
 				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="/planr/display">View Customers</a>
+					href="display">View Customers</a>
 			</div>
 		</div>
 
