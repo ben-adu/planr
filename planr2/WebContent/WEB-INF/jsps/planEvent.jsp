@@ -55,7 +55,8 @@ $(document).ready(function() {
 </head>
 <body>
 	<!-- NAV -->
-	<nav class="default" role="navigation">
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<nav class="default" role="navigation">
 		<ul id="slide-out" class="side-nav">
 			<li><div class="userView">
 					<div class="background">
@@ -65,9 +66,9 @@ $(document).ready(function() {
 					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
-			<c:url value="createLayout" var="client" />
-			<li><a href="createLayout" class="waves-effect"><i
-					class="material-icons">perm_identity</i>Create Site Layout</a></li>
+			<c:url value="planEvent" var="client" />
+			<li><a href="planEvent" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Plan Event</a></li>
 			<c:url value="manageLayout" var="client" />
 			<li><a href="manageLayouts" class="waves-effect"><i
 					class="material-icons">business</i>Manage Site Layouts</a></li>
@@ -88,6 +89,7 @@ $(document).ready(function() {
 			class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
 		<a href="secure" class="brand-logo center"><img
 			src="images/mcs.png" height="80"></a> </nav>
+	</sec:authorize>
 	<!--  END OF NAV -->
 	
 
