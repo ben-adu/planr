@@ -84,6 +84,24 @@ public class HomeController
 	{
 		return "electrical";
 	}
+	
+	@RequestMapping(value = "/planEvent", method = RequestMethod.GET)
+	public String planEvent(Model model)
+	{
+		return "planEvent";
+	}
+	
+	@RequestMapping(value = "/approveSiteLayout", method = RequestMethod.GET)
+	public String approveSiteLayout(Model model)
+	{
+		return "approveSiteLayout";
+	}
+	
+	@RequestMapping(value = "/generateReports", method = RequestMethod.GET)
+	public String generateReports(Model model)
+	{
+		return "generateReports";
+	}
 
 	@RequestMapping(value = "/createAccount", method = RequestMethod.GET)
 	public String createAccount(Model model)

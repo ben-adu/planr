@@ -3,16 +3,16 @@
 <hibernate-configuration>
 	<session-factory>
 		<!-- Database connection settings --> 
-		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<!-- <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://us-cdbr-azure-northcentral-b.cloudapp.net:3306/acsm_705403a15667919?serverTimezone=America/Toronto</property>
 		<property name="connection.username">be498b883166aa</property>
-		<property name="connection.password">545fbead</property> 
+		<property name="connection.password">545fbead</property>  -->
 		
-		 <!--   
+		   
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost:3306/hibernatedb?serverTimezone=America/Toronto</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">1234</property> -->
+		<property name="connection.password">1234</property>
 		
 		
 		

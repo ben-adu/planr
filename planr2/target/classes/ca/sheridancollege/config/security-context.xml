@@ -17,28 +17,32 @@
 		<security:intercept-url pattern="/secure" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<security:intercept-url pattern="/accept" access="isAuthenticated()" />
 		<security:intercept-url pattern="/favicon.ico" access="isAuthenticated()" />
-		<security:intercept-url pattern="/inventoryManagement" access="isAuthenticated()" />
-		<security:intercept-url pattern="/clientManagement" access="isAuthenticated()" />
+		<security:intercept-url pattern="/inventoryManagement" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/clientManagement" access="hasAnyRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/form" access="isAuthenticated()" />
-		<security:intercept-url pattern="/display" access="isAuthenticated()" />
-		<security:intercept-url pattern="/saveCustomer" access="isAuthenticated()" />
-		<security:intercept-url pattern="/inventory" access="isAuthenticated()" />
-		<security:intercept-url pattern="/delete/{id}" access="isAuthenticated()" />
-		<security:intercept-url pattern="/edit/{id}" access="isAuthenticated()" />
-		<security:intercept-url pattern="/modify/{id}" access="isAuthenticated()" />
-		<security:intercept-url pattern="/getCustomer/{id}" access="isAuthenticated()" />
-		<security:intercept-url pattern="/saveItem" access="isAuthenticated()" />
-		<security:intercept-url pattern="/createItem" access="isAuthenticated()" />
-		<security:intercept-url pattern="/displayItem" access="isAuthenticated()" />
-		<security:intercept-url pattern="/deleteItem/{id}" access="isAuthenticated()" />
-		<security:intercept-url pattern="/modifyItem/{id}" access="isAuthenticated()" />
-		<security:intercept-url pattern="/editItem/{id}" access="isAuthenticated()" />
-		<security:intercept-url pattern="/createLayout" access="isAuthenticated()" />
+		<security:intercept-url pattern="/display" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/saveCustomer" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/inventory" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/delete/{id}" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/edit/{id}" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/modify/{id}" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/getCustomer/{id}" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/saveItem" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/createItem" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/displayItem" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/deleteItem/{id}" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/modifyItem/{id}" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/editItem/{id}" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/approveSiteLayout" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/generateReports" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/createLayout" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/siteLayout" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/eventDetails" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/manageLayouts" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/guidelines" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/electrical" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/planEvent" access="hasAnyRole('ROLE_USER')" />
+		
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/scripts/**" access="permitAll" />

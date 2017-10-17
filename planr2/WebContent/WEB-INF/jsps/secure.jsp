@@ -158,12 +158,12 @@
 			<div class="row">
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="#"><i class="material-icons left">business</i>Generate
+						style="display: block" href="generateReports"><i class="material-icons left">business</i>Generate
 						Reports</a>
 				</div>
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="#"><i class="material-icons left">map</i>Approve
+						style="display: block" href="approveSiteLayout"><i class="material-icons left">map</i>Approve
 						Site Layouts</a>
 				</div>
 			</div>
@@ -175,8 +175,8 @@
 			<div class="row">
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="createLayout"><i
-						class="material-icons left">perm_identity</i>Create Site Layout</a>
+						style="display: block" href="planEvent"><i
+						class="material-icons left">perm_identity</i>Plan Event</a>
 				</div>
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
@@ -187,11 +187,11 @@
 			<div class="row">
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="siteLayout"><i class="material-icons left">business</i>View Site Maps</a>
+						style="display: block" href="electrical"><i class="material-icons left">business</i>View Electrical Map</a>
 				</div>
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="guidelines"><i class="material-icons left">map</i>Guidelines</a>
+						style="display: block" href="guidelines"><i class="material-icons left">map</i>View Guidelines</a>
 				</div>
 			</div>
 		</sec:authorize>
