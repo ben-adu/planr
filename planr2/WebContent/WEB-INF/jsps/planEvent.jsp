@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
@@ -50,6 +50,59 @@ $(document).ready(function() {
 	  $("#btnBack2").click(function() {
 		    $('ul.tabs').tabs('select_tab', 'test3');
 		  });
+	});
+</script>
+<script>
+
+	$(document).ready(function() {
+		
+		
+		$('select').material_select();
+		  $("#q1").change(function() {
+              if ($("#q1").val() == "two"){
+                  $("#q2").show();
+                  $("#q3").show();
+                  $("#q4").show();
+                  $("#q5").show();
+                  $("#q6").show();
+                  $("#q7").show();
+                  
+              }else if ($("#q1").val() == "three"){
+                  $("#q2").show();
+                  $("#q2").hide();
+                  $("#q4").show();
+                  $("#q5").show();
+                  $("#q6").show();
+                  $("#q7").show();
+                  $("#q8").show();
+                  $("#q9").show();
+                  
+              }else if ($("#q1").val() == "four"){
+            	  $("#q2").hide();
+          		  $("#q3").hide();
+            	  $("#q4").show();
+                  $("#q5").show();
+                  $("#q6").show();
+                  $("#q7").show();
+                  $("#q8").show();
+                  $("#q9").show();
+                  $("#q10").show();
+                  $("#q11").show();
+                  
+              }else{
+            	$("#q2").hide();
+          		$("#q3").hide();
+          		$("#q4").hide();
+          		$("#q5").hide();
+          		$("#q6").hide();
+          		$("#q7").hide();
+          		$("#q8").hide();
+          		$("#q9").hide();
+          		$("#q10").hide();
+          		$("#q11").hide();
+              }
+            	  
+          });
 	});
 </script>
 </head>
@@ -102,9 +155,11 @@ $(document).ready(function() {
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a class="active" href="#test1">Event Info</a></li>
-        <li class="tab col s3"><a  href="#test2">Setup Date</a></li>
-        <li class="tab col s3"><a href="#test3">Cleanup Date</a></li>
+        <li class="tab col s3"><a  href="#test2">Setup/Cleanup Date</a></li>
+        <li class="tab col s3"><a href="#test3">Splash Pad</a></li>
         <li class="tab col s3"><a href="#test4">Additional Details</a></li>
+        <li class="tab col s3"><a href="#test5">BLAH</a></li>
+        <li class="tab col s3"><a href="#test6">BLAHBLAH</a></li>
       </ul>
     </div>
     <div id="test1" class="col s12">
@@ -176,20 +231,131 @@ $(document).ready(function() {
     <div id="test3" class="col s12">
     <div class="container">
     	<div class="row">
-			<div class="col s6">
-				Event Name: MuslimFest </br>
-				Event Type: Large</br>
-				Start Date: October 10, 2017. </br>
-				End Date: October 10, 2017.</br>
-				Start Time: 3:00pm</br>
-				End Time: 12:00pm</br>
+				<div class="input-field col s8" id="q1s"><BR><BR><BR>
+					<select id="q1" name="q1">
+						<option value="none">Choose one</option>
+						<option value="two">2</option>
+						<option value="three">3</option>
+						<option value="four">4</option>
+					</select><h1><label>How many Splash Pad jets do you need on?</label></h1>
+				</div>	
 			</div>
 			
-
+			<div class="row">
+				<div class="input-field col s8" id="q2"><BR><BR><BR>
+					<select id="q2s">
+						<option value="" selected>Choose one</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select><h1><label>Which side of the Splash Pad would you like to turn off?</label></h1>
+				</div>	
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s8" id="q3"><BR><BR><BR>
+					<select id="q3s">
+						<option value="" selected>Choose one</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select><h1><label>Which side of the Splash Pad would you like to turn off?</label></h1>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s8" id="q4"><BR><BR><BR>
+					<select id="q4s">
+						<option value="" selected>Choose one</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select><h1><label>Please choose a side to adjust pressure</label></h1>
+				</div>
+			
+			
+				<div class="input-field col s4" id="q5"><BR><BR><BR>
+					<select id="q5s">
+						<option value="" selected>Choose one</option>
+						<option value="55">55%</option>
+						<option value="75">75%</option>
+						<option value="100">100%</option>
+					</select><h1><label>Pressure Level?</label></h1>
+				</div>	
+				</div>
+				
+				<div class="row">
+				<div class="input-field col s8" id="q6"><BR><BR><BR>
+					<select id="q6s">
+						<option value="" selected>Choose one</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select><h1><label>Please choose a side to adjust pressure</label></h1>
+				</div>
+			
+			
+				<div class="input-field col s4" id="q7"><BR><BR><BR>
+					<select id="q7s">
+						<option value="" selected>Choose one</option>
+						<option value="55">55%</option>
+						<option value="75">75%</option>
+						<option value="100">100%</option>
+					</select><h1><label>Pressure Level?</label></h1>
+				</div>	
+				</div>
+				
+				<div class="row">
+				<div class="input-field col s8" id="q8"><BR><BR><BR>
+					<select id="q8s">
+						<option value="" selected>Choose one</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select><h1><label>Please choose a side to adjust pressure</label></h1>
+				</div>
+			
+			
+				<div class="input-field col s4" id="q9"><BR><BR><BR>
+					<select id="q9s">
+						<option value="" selected>Choose one</option>
+						<option value="55">55%</option>
+						<option value="75">75%</option>
+						<option value="100">100%</option>
+					</select><h1><label>Pressure Level?</label></h1>
+				</div>	
+				</div>
+				
+				<div class="row">
+				<div class="input-field col s8" id="q10"><BR><BR><BR>
+					<select id="q10s">
+						<option value="" selected>Choose one</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select><h1><label>Please choose a side to adjust pressure</label></h1>
+				</div>
+			
+			
+				<div class="input-field col s4" id="q11"><BR><BR><BR>
+					<select id="q11s">
+						<option value="" selected>Choose one</option>
+						<option value="55">55%</option>
+						<option value="75">75%</option>
+						<option value="100">100%</option>
+					</select><h1><label>Pressure Level?</label></h1>
+				</div>	
+				</div>
+			
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<p>If you would like to modify the event details please contact the Event Services Team</p>
 			</div>
 		</div>
 		<div class="row">
@@ -209,22 +375,16 @@ $(document).ready(function() {
     <div id="test4" class="col s12">
     <div class="container">
     	<div class="row">
-			<div class="col s6">
-				Event Name: MuslimFest </br>
-				Event Type: Large</br>
-				Start Date: October 10, 2017. </br>
-				End Date: October 10, 2017.</br>
-				Start Time: 3:00pm</br>
-				End Time: 12:00pm</br>
+				<div class="input-field col s8"><BR><BR><BR>
+					<select name="role">
+						<option value="" disabled selected>Select one</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select><h1><label>Will you be bringing your own equipment to the Event?</label></h1>
+				</div>
+				
 			</div>
-			
-
-		</div>
-		<div class="row">
-			<div class="col s12">
-				<p>If you would like to modify the event details please contact the Event Services Team</p>
-			</div>
-		</div>
+		<BR><BR><BR>
 		<div class="row">
 			<div class="col s6">
 				  <a id="btnBack2" class="waves-effect waves-light btn-large" style="display: block"
@@ -232,7 +392,7 @@ $(document).ready(function() {
 			</div>  
 			<div class="col s6">
 				<a id="btnContinue2"class="waves-effect waves-light btn-large" style="display: block"
-					href="createLayout">Next</a>
+					href="createLayout">Create Layout</a>
 			</div>
 		</div>
     

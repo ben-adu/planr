@@ -163,8 +163,7 @@
 				</div>
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="approveSiteLayout"><i class="material-icons left">map</i>Approve
-						Site Layouts</a>
+						style="display: block" href="createLayout2"><i class="material-icons left">map</i>Create Site Layout</a>
 				</div>
 			</div>
 		</sec:authorize>

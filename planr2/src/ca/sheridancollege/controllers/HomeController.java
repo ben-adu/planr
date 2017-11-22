@@ -52,6 +52,7 @@ public class HomeController
 	{
 		return "createLayout";
 	}
+	
 
 	@RequestMapping(value = "/siteLayout", method = RequestMethod.GET)
 	public String siteLayout(Model model)

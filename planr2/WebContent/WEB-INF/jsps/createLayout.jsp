@@ -93,43 +93,44 @@
 			<div id="left-panel">
 				<ul id="toolbar">
 					<li><a
-						class="btn-floating btn-large waves-effect waves-light red"><i
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Enable Pencil"><i
 							class="material-icons" value="start drawing"
 							onclick="onStartDrawing();">edit</i></a></li>
 
 					<li><a
-						class="btn-floating btn-large waves-effect waves-light red"
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red"  data-position="right" data-delay="50" data-tooltip="Disable Pencil"
 						onclick="onStopDrawing();"> <img
 							src="images/pencil-cancel.png" class="stop_drawing"
 							id="stop_draw" value="stop drawing" height="20" />
 					</a></li>
 
 					<li><a id="btnZoomOut"
-						class="btn-floating btn-large waves-effect waves-light red"><i
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Zoom Out"><i
 							class="material-icons" />zoom_out</i></a></li>
 
 					<li><a id="btnZoomIn"
-						class="btn-floating btn-large waves-effect waves-light red"><i
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Zoom In"><i
 							class="material-icons" />zoom_in</i></a></li>
 
 					<li><a id="btnResetZoom"
-						class="btn-floating btn-large waves-effect waves-light red"><i
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Reset Zoom"><i
 							class="material-icons" />refresh</i></a></li>
 
 					<li><a id="delete"
-						class="btn-floating btn-large waves-effect waves-light red"><i
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Remove"><i
 							class="material-icons">delete</i></a></li>
 
 					<li><a id="copy" onclick="Copy()"
-						class="btn-floating btn-large waves-effect waves-light red"><i
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Copy"><i
 							class="material-icons">content_copy</i></a></li>
 
 					<li><a id="paste" onclick="Paste()"
-						class="btn-floating btn-large waves-effect waves-light red"><i
-							class="material-icons">content_paste</i></a></li>
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Paste"><i
+							class="material-icons">content_paste</i></a>
+                                        </li>
 					<!--<li><a id="btnPanModeByMouse" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"/>pan_tool</i></a></li>-->
 					<li><a id="create-text-obj"
-						class="btn-floating btn-large waves-effect waves-light red"><i
+						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Add Text"><i
 							class="material-icons">text_fields</i></a></li>
 				</ul>
 			</div>
@@ -167,28 +168,18 @@
 		</div>
 	</div>
 	<div id="JSON">
-		<button id="Save" onclick=""
-			style="background-color: black; color: yellow;">Save Test</button>
-		<p>Pass JSON to controller.</p>
-
+		<button id="Save" class="Save"	style="background-color: black; color: yellow;">Save Test</button>
+		
+		<button id="Load" class="Load"	style="background-color: black; color: yellow;">Load Test</button>
+		
 		<button id="demo" onclick="myFunction()"
 			style="background-color: black; color: yellow;">Show JSON in
 			console.</button>
-		<p>This shows the the current layout in JSON format in the
-			console.</p>
 
-		<button id="demo" onclick="readTextFile()"
-			style="background-color: black; color: yellow;">Load
-			(default) JSON layout from "server".</button>
-		<p>This loads the default layout.</p>
-
-		<button id="demo" onclick="createJSONLink()"
-			style="background-color: black; color: yellow;">Save and
-			Create JSON.</button>
-		<p>This creates the a link for the current layout as a JSON file.</p>
 		<a></a>
 	</div>
 </body>
+
 <script>
 	var canvasScale = 1;
 	var SCALE_FACTOR = 1.1;
@@ -550,61 +541,46 @@
 			window._canvas.requestRenderAll();
 		});
 	}
-	function createJSONLink() {
-		//var data = {a: 1, b: 2, c: 3};
-		//json = JSON.stringify(data);
-		var blob = new Blob([ JSON.stringify(window._canvas.toJSON()) ], {
-			type : "application/json"
-		});
-		var url = URL.createObjectURL(blob);
-
-		var a = document.createElement('a');
-		a.download = "backup.json";
-		a.href = url;
-		a.textContent = "Download backup.json";
-		document.getElementById('JSON').appendChild(a);
-		var a = document.createElement('a');
-		a.setAttribute('href', 'data:text/plain;charset=utf-u,'
-				+ encodeURIComponent(text));
-		a.setAttribute('download', filename);
-		a.click()
-
-	}
-
+	
 	function myFunction() {
 		///canvas.item(0).sourcePath = 'C:\Users\Kurt\Documents\NetBeansProjects\FabricTest\assets';
 		console.log(JSON.stringify(window._canvas.toDatalessJSON()));
 	}
 
-	function readTextFile() {
-		var url = "http://shahanki.dev.fast.sheridanc.on.ca/backup.json";
-		var data1;
-		$.getJSON(url, function(data) {
-			console.log(JSON.stringify(data))
-			data1 = data
-			window._canvas.loadFromJSON(JSON.stringify(data1),
-					window._canvas.renderAll.bind(window._canvas))
+	canvas.on({  
+		  'touch:gesture': function() {
+		    msgDiv.innerHTML = "<p>Touch: Gesture</p>";
+		  },
+		  'touch:drag': function() {
+		    msgDiv.innerHTML = "<p>Touch: Drag</p>";
+		  },
+		  'touch:orientation': function() {
+		     msgDiv.innerHTML = "<p>Touch: Orientation</p>";
+		  },
+		  'touch:longpress': function() {
+		     msgDiv.innerHTML = "<p>Touch: LongPress</p>";
+		  }
 		});
-		//data1 = JSON.parse(data1);
-		window._canvas.loadFromJSON(JSON.stringify(data1),
-				window._canvas.renderAll.bind(window._canvas));
-	}
 
 	$('.Save').click(function() {
 
-		var jsonString = JSON.stringify(canvas.toJSON())
+		var jsonString = JSON.stringify(window._canvas.toJSON());
+		alert(jsonString);
+		
 
 		$.ajax({
 			url : '/createLayout/',
 			type : 'POST',
 			dataType : 'json',
-			data : JSON.stringify(canvas.toJSON()),
+			data : jsonString,
 			contentType : 'application/json',
 			mimeType : 'application/json',
 			success : _callBack,
 			error : _errorCallback
 		});
+		window._canvas.requestRenderAll();
 	});
+	
 </script>
 
 </html>
