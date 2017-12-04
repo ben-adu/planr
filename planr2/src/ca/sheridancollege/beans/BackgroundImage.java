@@ -1,10 +1,9 @@
 package ca.sheridancollege.beans;
 
 
-import javax.persistence.Embeddable;
 
 
-@Embeddable
+
 public class BackgroundImage 
 {
 	private String type;

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Inventory;
+import ca.sheridancollege.beans.Map;
 import ca.sheridancollege.beans.MyUserDetailsService;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.beans.UserRole;
@@ -305,14 +306,11 @@ public class HomeController
 		return "modifyItem";
 	}
 
-	// test
-
-	/*
-	 * @RequestMapping(value="/createLayout", method = RequestMethod.POST,
-	 * produces = "application/json", consumes = "application/json")
-	 * 
-	 * @ResponseBody public String addLayout(@RequestBody Test test) throws
-	 * Exception { String name = test.name; return name; }
-	 */
-
+	@RequestMapping(value="/saveLayout/", method=RequestMethod.POST, consumes={"application/json"})
+	public String test(@RequestBody Map map)
+	{
+		
+		return "Succes";
+		
+	}
 }

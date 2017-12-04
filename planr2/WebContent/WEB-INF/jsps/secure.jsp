@@ -67,7 +67,7 @@
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
 			<c:url value="/clientManagement" var="client" />
@@ -105,7 +105,7 @@
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
 			<c:url value="planEvent" var="client" />
@@ -142,7 +142,7 @@
 	<div class="container">
 		<!-- View Employees See -->
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<h4>Welcome Ben Adu</h4>
+			<h4>Welcome ${pageContext.request.userPrincipal.name}</h4>
 			<div class="row">
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"
@@ -170,7 +170,7 @@
 
 		<!-- ROLE_USER's view -->
 		<sec:authorize access="hasRole('ROLE_USER')">
-			<h4>Welcome Ankit Shah</h4>
+			<h4>Welcome ${pageContext.request.userPrincipal.name}</h4>
 			<div class="row">
 				<div class="col s6">
 					<a class="waves-effect waves-light btn-large"

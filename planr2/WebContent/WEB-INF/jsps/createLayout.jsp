@@ -547,21 +547,6 @@
 		console.log(JSON.stringify(window._canvas.toDatalessJSON()));
 	}
 
-	canvas.on({  
-		  'touch:gesture': function() {
-		    msgDiv.innerHTML = "<p>Touch: Gesture</p>";
-		  },
-		  'touch:drag': function() {
-		    msgDiv.innerHTML = "<p>Touch: Drag</p>";
-		  },
-		  'touch:orientation': function() {
-		     msgDiv.innerHTML = "<p>Touch: Orientation</p>";
-		  },
-		  'touch:longpress': function() {
-		     msgDiv.innerHTML = "<p>Touch: LongPress</p>";
-		  }
-		});
-
 	$('.Save').click(function() {
 
 		var jsonString = JSON.stringify(window._canvas.toJSON());
@@ -569,14 +554,19 @@
 		
 
 		$.ajax({
-			url : '/createLayout/',
+			url : '/saveLayout/',
+			headers : {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            },
 			type : 'POST',
 			dataType : 'json',
-			data : jsonString,
+			data : JSON.stringify(jsonString),
 			contentType : 'application/json',
 			mimeType : 'application/json',
 			success : _callBack,
-			error : _errorCallback
+			error : _errorCallback,
+			
 		});
 		window._canvas.requestRenderAll();
 	});

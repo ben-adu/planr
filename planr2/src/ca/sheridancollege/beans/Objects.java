@@ -8,13 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
-@Entity
+
 public class Objects 
 {
-	@Id
-	@GeneratedValue
 
-	private int id;
 
 	private String type;
 
@@ -55,14 +52,6 @@ public class Objects
 	private String resizeFilters;
 	
 	
-	public int getId()
-	{
-		return id;
-	}
-	public void setId(int id)
-	{
-		this.id = id;
-	}
 	public String getType()
 	{
 		return type;

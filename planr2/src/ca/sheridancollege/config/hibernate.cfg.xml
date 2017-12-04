@@ -36,7 +36,8 @@
 		<mapping class="ca.sheridancollege.beans.User" />
 		<mapping class="ca.sheridancollege.beans.UserRole" />
 		<mapping class="ca.sheridancollege.beans.Customer" />
-		<mapping class="ca.sheridancollege.beans.Inventory" />
+		<mapping class="ca.sheridancollege.beans.Inventory"/>
+		<mapping class="ca.sheridancollege.beans.Event" />
 		
 		
 		
