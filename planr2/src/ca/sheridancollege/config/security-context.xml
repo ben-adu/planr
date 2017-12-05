@@ -42,6 +42,10 @@
 		<security:intercept-url pattern="/guidelines" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/electrical" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/planEvent" access="hasAnyRole('ROLE_USER')" />
+		
+		<security:intercept-url pattern="/calendar2" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/saveJSON" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/scripts/**" access="permitAll" />

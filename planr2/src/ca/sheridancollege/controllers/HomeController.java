@@ -93,6 +93,29 @@ public class HomeController
 		return "planEvent";
 	}
 	
+	@RequestMapping(value = "/calendar2", method = RequestMethod.GET)
+	public String calendar2(Model model)
+	{
+		return "calendar2";
+	}
+	
+	@RequestMapping(value = "/saveJSON" , method = RequestMethod.POST)
+	public String saveJSON(@RequestParam ("json") String jsons) {
+
+//		try {
+//			FileWriter fileWriter = new FileWriter("data.json");
+//			fileWriter.write(jsonString.toString());
+//			fileWriter.flush();
+//			fileWriter.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		System.out.println(jsons);
+		
+		
+	   return "calendar2";
+	}
+	
 	@RequestMapping(value = "/approveSiteLayout", method = RequestMethod.GET)
 	public String approveSiteLayout(Model model)
 	{
