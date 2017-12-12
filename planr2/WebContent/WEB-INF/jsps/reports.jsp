@@ -12,17 +12,27 @@
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-<!-- <link rel="stylesheet"
+<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 	
 	<link rel="stylesheet"
-	href="https://bootswatch.com/3/readable/bootstrap.min.css"> -->
+	href="https://bootswatch.com/3/readable/bootstrap.min.css">
 
 
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+<style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+	</style>
 
 
 <script src="scripts/sweetalert.min.js"></script>
@@ -147,104 +157,48 @@
 
 	<!-- Body -->
 	
-
-
-<script src="scripts/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
-<script src="scripts/dhtmlxscheduler_serialize.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="css/dhtmlxscheduler.css" type="text/css" charset="utf-8">
-
-
-<style type="text/css" >
-html, body{
-	margin:0px;
-	padding:0px;
-	height:100%;
-	overflow:hidden;
-}	
-.dhx_cal_navline input{
-	width:80px;
-	position:absolute;
-	top:1px;
-	font-family:Tahoma;
-	font-weight:8pt;
-}
-</style>
-
-
-<script type="text/javascript" charset="utf-8">
-function init() {
-	scheduler.config.xml_date="%Y-%m-%d %H:%i";
-	scheduler.config.prevent_cache = true;
-	scheduler.xy.margin_top=30;
 	
-	scheduler.init('scheduler_here',new Date(2018,0,20),"month");
-	//scheduler.parse("data.json","json");
-	scheduler.load("scripts/data.json","json");
+	<script type="text/javascript" charset="utf-8">
+	function newDate(days) {
+		  return moment().add(days, 'd');
+		}
+
+		var config = {
+		  type: 'line',
+		  data: {
+		    labels: [newDate(-4), newDate(-3), newDate(2), newDate(3), newDate(4), newDate(5), newDate(6)],
+		    datasets: [{
+		      label: "My First dataset",
+		      data: [1, 3, 4, 2, 1, 4, 2],
+		    }]
+		  },
+		  options: {
+		    scales: {
+		      xAxes: [{
+		        type: 'time',
+		        time: {
+		          displayFormats: {
+		          	'millisecond': 'MMM DD',
+		            'second': 'MMM DD',
+		            'minute': 'MMM DD',
+		            'hour': 'MMM DD',
+		            'day': 'MMM DD',
+		            'week': 'MMM DD',
+		            'month': 'MMM DD',
+		            'quarter': 'MMM DD',
+		            'year': 'MMM DD',
+		          }
+		        }
+		      }],
+		    },
+		  }
+		};
+
+		var ctx = document.getElementById("myChart").getContext("2d");
+		new Chart(ctx, config);
+
+	</script>
 	
-}
+	<canvas id="myChart"></canvas>
 
-function show() {
-	alert(scheduler.toJSON());
-}
-
-
-
-function save() {
-	var json_string = scheduler.toJSON(); //json string
-//     var fs = require("fs");
-//     fs.writeFile("data.json", JSON.stringify(json_string), (err) => {
-// if (err) {
-// console.error(err);
-// return;
-// };
-// console.log("File has been created");
-// });
-	
-	
-       var jsonfile={json:JSON.stringify(scheduler.getEvents)};
-$.ajax({
-    type: 'POST',
-    url: "/saveJSON", 
-    data: jsonfile,
-    dataType: "json"
-});
-console.log("hello");
-}
-
-
-function download() {
-	var form = document.forms[0];
-	form.action = "json_download.php";
-	form.elements.data.value = scheduler.toJSON();
-	form.submit();
-}
-</script>
-
-<body onload="init();">
-<div style='height:20px; padding:5px 10px;'>
-	<input type="button" name="download" value="Download" onclick="download()" style="right:500px;" />
-	<input type="button" name="show" value="Show" onclick="show()" style="right:400px;" />
-	<input type="button" name="save" value="Save" onclick="save()" style="right:300px;" />
-	<input type="hidden" value="<% out.println("scriptlet working in js method"); %>" id="chatWindowURL"/>
-</div>
-<form action="json_writer.php" method="post" target="hidden_frame" accept-charset="utf-8">
-	<input type="hidden" name="data" value="" id="data">
-</form>
-<iframe src='about:blank' frameborder="0" style="width:0px; height:0px;" id="hidden_frame" name="hidden_frame"></iframe>
-<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
-	<div class="dhx_cal_navline">
-		<div class="dhx_cal_prev_button">&nbsp;</div>
-		<div class="dhx_cal_next_button">&nbsp;</div>
-		<div class="dhx_cal_today_button"></div>
-		<div class="dhx_cal_date"></div>
-		<div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
-		<div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
-		<div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
-	</div>
-	<div class="dhx_cal_header">
-	</div>
-	<div class="dhx_cal_data">
-	</div>		
-</div>
-</body>
 </html>
