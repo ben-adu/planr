@@ -18,7 +18,6 @@
 	rel="stylesheet">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.19/fabric.js"></script>
-
 <script src="scripts/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
@@ -87,13 +86,25 @@
 
 	<!-- Body -->
 
-	<h3 style="text-align: center">Create Layout</h3>
 	<div class="row">
-
-		<div class="col s1">
+	<button onclick="changeView(1);">Default</button>
+	<button onclick="changeView(2);">Benches</button>
+	<button onclick="changeView(3);">Bistro Table/Chair</button>
+	<button onclick="changeView(4);">Crowd Control Barricades</button>
+	<button onclick="changeView(5);">Display Vehicle Zones</button>
+	<button onclick="changeView(6);">Drive & Park Zones</button>
+	<button onclick="changeView(7);">Electrical</button>
+	<button onclick="changeView(8);">First-Aid Tent</button>
+	<button onclick="changeView(9);">Food Vendor w/ Electrical</button>
+	<button onclick="changeView(10);">Food Vendor w/o Electrical</button>
+	</div>
+	
+	<div class="row">
+	
+		<div class="col s0">
 
 			<div id="left-panel">
-				<ul id="toolbar">
+				<ul class="list-inline" id="toolbar">
 					<li><a
 						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Enable Pencil"><i
 							class="material-icons" value="start drawing"
@@ -138,39 +149,138 @@
 			</div>
 		</div>
 
-		<div class="col s10">
+		<div class="col s9">
 
 			<div class="canvas-container">
-				<canvas id="canvasObject" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas1" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas2" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas3" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas4" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas5" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas6" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas7" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas8" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas9" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas10" style="border:1px solid #ccc"></canvas>
+				<%-- <canvas id="canvas11" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas12" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas13" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas14" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas15" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas16" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas17" style="border:1px solid #ccc"></canvas> --%>
 			</div>
 		</div>
 
-		<div class="col s1">
+		<div class="col s2">
 			<div class="furniture">
-				<ul id="image-list">
-					<li><img draggable="true" src="images/first-aid.png"
-						height="50"></li>
-					<li><img draggable="true" src="images/water.png" height="50"></li>
-					<li><img draggable="true" src="images/food-truck.png"
-						height="50"></li>
-					<li><img draggable="true" src="images/port-o-let.png"
-						height="50"></li>
-					<li><img draggable="true" src="images/acess-table.png"
-						height="50"></li>
-					<li><img draggable="true" src="images/Electrical.png"
-						height="50"></li>
-					<li><img draggable="true" src="images/food-vendor.png"
-						height="50"></li>
-					<li><img draggable="true" src="images/picnic_table.png"
-						height="50"></li>
-					<li><img draggable="true" src="images/umbrella.png"
-						height="50"></li>
+				<ul class="collapsible" data-collapsible="accordion" id="image-list">
+				
+					<li>
+					<div class="collapsible-header" id="group1">Food vendor w/o electrical</div>
+					<div class="collapsible-body">
+						<span>
+							<img draggable="true" src="images/Food without electric/10x10.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food without electric/10x15.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food without electric/15x15.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food without electric/10x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food without electric/20x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food without electric/>20x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food without electric/>20x30.png" height="40">
+						</span>
+					</div>
+					</li>
+					
+					<li>
+					<div class="collapsible-header">Food vendor with electrical</div>
+					<div class="collapsible-body">
+						<span>
+							<img draggable="true" src="images/Food with electric/10x10.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food with electric/10x15.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food with electric/15x15.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food with electric/10x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food with electric/20x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food with electric/>20x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Food with electric/>20x30.png" height="40">
+						</span>
+					</div>
+					</li>
+					
+					<li>
+					<div class="collapsible-header">Vendor without electrical</div>
+					<div class="collapsible-body">
+						<span>
+							<img draggable="true" src="images/Vendor without electric/10x10.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor without electric/10x15.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor without electric/15x15.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor without electric/10x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor without electric/20x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor without electric/>20x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor without electric/>20x30.png" height="40">
+						</span>
+					</div>
+					</li>
+					
+					<li>
+					<div class="collapsible-header">Vendor with electrical</div>
+					<div class="collapsible-body">
+						<span>
+							<img draggable="true" src="images/Vendor with electric/10x10.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor with electric/10x15.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor with electric/15x15.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor with electric/10x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor with electric/20x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor with electric/>20x20.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Vendor with electric/>20x30.png" height="40">
+						</span>
+					</div>
+					</li>
+					
+					<li>
+					<div class="collapsible-header">Portables</div>
+					<div class="collapsible-body">
+						<span>
+							<img draggable="true" src="images/Portables/portolet.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Portables/handwashstation.png" height="40">
+						<BR>
+							<img draggable="true" src="images/Portables/waterStation.png" height="40">
+						<BR>
+						</span>
+					</div>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
 	</div>
+	
 	<div id="JSON">
-		<button id="Save" class="Save"	style="background-color: black; color: yellow;">Save Test</button>
+		<button id="Save" class="Save" style="background-color: black; color: yellow;">Save Test</button>
 		
 		<button id="Load" class="Load"	style="background-color: black; color: yellow;">Load Test</button>
 		
@@ -182,7 +292,15 @@
 	</div>
 </body>
 
-<script>
+<!-- script to default page view on canvas1 (default canvas) -->
+<script> 
+$(document).ready(function() {
+    changeView(1);
+});
+</script>
+
+<!-- main script to load canvas and create default functions -->
+<script> 
 	var canvasScale = 1;
 	var SCALE_FACTOR = 1.1;
 	var zoomMax = 2.3;
@@ -192,32 +310,182 @@
 		$('.canvas-container')
 				.each(
 						function(index) {
-
+							
+							var activeCanvas;
 							var canvasContainer = $(this)[0];
-							var canvasObject = $("canvas", this)[0];
-							var canvas = window._canvas = new fabric.Canvas(
-									canvasObject);
-
+							
+							var canvas1 = $("canvas", this)[0];
+							
+							var canvasOne = window._canvas = new fabric.Canvas(canvas1);
+							var canvasTwo = new fabric.Canvas(canvas2);
+							var canvasThree = new fabric.Canvas(canvas3);
+							var canvasFour = new fabric.Canvas(canvas4);
+							var canvasFive = new fabric.Canvas(canvas5);
+							var canvasSix = new fabric.Canvas(canvas6);
+							var canvasSeven = new fabric.Canvas(canvas7);
+							var canvasEight = new fabric.Canvas(canvas8);
+							var canvasNine = new fabric.Canvas(canvas9);
+							var canvasTen = new fabric.Canvas(canvas10);
+							/* var canvasEleven = new fabric.Canvas(canvas11);
+							var canvasTwelve = new fabric.Canvas(canvas12);
+							var canvasThirteen = new fabric.Canvas(canvas13);
+							var canvasFourteen = new fabric.Canvas(canvas14);
+							var canvasFifteen = new fabric.Canvas(canvas15);
+							var canvasSixteen = new fabric.Canvas(canvas16);
+							var canvasSeventeen = new fabric.Canvas(canvas17); */
+							
+							
 							var img = new Image();
-							img.src = "images/backdrop.png";
+							img.src = "images/BackgroundImages/backdrop.bmp";
 							img.onload = function() {
-								canvas.setBackgroundImage(img.src,
-										canvas.renderAll.bind(canvas), {
+								canvasOne.setBackgroundImage(img.src,
+										canvasOne.renderAll.bind(canvasOne), {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
 											top : 0
 										});
-
-								var canvasHeight = canvas.setHeight(img.height);
-								var canvasWidth = canvas.setWidth(img.width);
+								var canvasHeight = canvasOne.setHeight(img.height);
+								var canvasWidth = canvasOne.setWidth(img.width);
 								canvasWidth, canvasHeight;
-								//            canvas.setDimensions({
-								//                width: img.width,
-								//                height: img.height
-								//            });
 							};
-
+							
+							var img2= new Image();
+							img2.src = "images/BackgroundImages/backdrop_benches.bmp";
+							img2.onload = function(){
+								canvasTwo.setBackgroundImage(img2.src,
+										canvasTwo.renderAll.bind(canvasTwo), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight2 = canvasTwo.setHeight(img.height);
+								var canvasWidth2 = canvasTwo.setWidth(img.width);
+								canvasWidth2, canvasHeight2;
+							};
+							
+							var img3= new Image();
+							img3.src ="images/BackgroundImages/backdrop_bistroTC.bmp";
+							img3.onload = function(){
+								canvasThree.setBackgroundImage(img3.src,
+										canvasThree.renderAll.bind(canvasThree), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight3 = canvasThree.setHeight(img.height);
+								var canvasWidth3 = canvasThree.setWidth(img.width);
+								canvasWidth3, canvasHeight3;
+							};
+							
+							var img4= new Image();
+							img4.src ="images/BackgroundImages/backdrop_crowdControl.bmp";
+							img4.onload = function(){
+								canvasFour.setBackgroundImage(img4.src,
+										canvasFour.renderAll.bind(canvasFour), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight4 = canvasFour.setHeight(img.height);
+								var canvasWidth4 = canvasFour.setWidth(img.width);
+								canvasWidth4, canvasHeight4;
+							};
+							
+							var img5= new Image();
+							img5.src ="images/BackgroundImages/backdrop_displayVehicle.bmp";
+							img5.onload = function(){
+								canvasFive.setBackgroundImage(img5.src,
+										canvasFive.renderAll.bind(canvasFive), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight5 = canvasFive.setHeight(img.height);
+								var canvasWidth5 = canvasFive.setWidth(img.width);
+								canvasWidth5, canvasHeight5;
+							};
+							
+							var img6= new Image();
+							img6.src ="images/BackgroundImages/backdrop_drivingZones.bmp";
+							img6.onload = function(){
+								canvasSix.setBackgroundImage(img6.src,
+										canvasSix.renderAll.bind(canvasSix), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight6 = canvasSix.setHeight(img.height);
+								var canvasWidth6 = canvasSix.setWidth(img.width);
+								canvasWidth6, canvasHeight6;
+							};
+							
+							var img7= new Image();
+							img7.src ="images/BackgroundImages/backdrop_electrical.bmp";
+							img7.onload = function(){
+								canvasSeven.setBackgroundImage(img7.src,
+										canvasSeven.renderAll.bind(canvasSeven), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight7 = canvasSeven.setHeight(img.height);
+								var canvasWidth7 = canvasSeven.setWidth(img.width);
+								canvasWidth7, canvasHeight7;
+							};
+							
+							var img8= new Image();
+							img8.src ="images/BackgroundImages/backdrop_firstaid.bmp";
+							img8.onload = function(){
+								canvasEight.setBackgroundImage(img8.src,
+										canvasEight.renderAll.bind(canvasEight), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight8 = canvasEight.setHeight(img.height);
+								var canvasWidth8 = canvasEight.setWidth(img.width);
+								canvasWidth8, canvasHeight8;
+							};
+							
+							var img9= new Image();
+							img9.src ="images/BackgroundImages/backdrop_foodwElectrical.bmp";
+							img9.onload = function(){
+								canvasNine.setBackgroundImage(img9.src,
+										canvasNine.renderAll.bind(canvasNine), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight9 = canvasNine.setHeight(img.height);
+								var canvasWidth9 = canvasNine.setWidth(img.width);
+								canvasWidth9, canvasHeight9;
+							};
+							
+							var img10= new Image();
+							img10.src ="images/BackgroundImages/backdrop_foodwoElectrical.bmp";
+							img10.onload = function(){
+								canvasTen.setBackgroundImage(img10.src,
+										canvasTen.renderAll.bind(canvasTen), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight10 = canvasTen.setHeight(img.height);
+								var canvasWidth10 = canvasTen.setWidth(img.width);
+								canvasWidth10, canvasHeight10;
+							};
+							
+							
 							var imageOffsetX, imageOffsetY;
 
 							function handleDragStart(e) {
@@ -259,10 +527,9 @@
 										.querySelector('.furniture img.img_dragging');
 								console.log('event: ', e);
 
-								var offset = $(canvasObject).offset();
+								var offset = $(canvas1).offset();
 								var y = e.clientY - (offset.top + imageOffsetY);
-								var x = e.clientX
-										- (offset.left + imageOffsetX);
+								var x = e.clientX - (offset.left + imageOffsetX);
 
 								var newImage = new fabric.Image(img, {
 									width : img.width,
@@ -271,7 +538,10 @@
 									top : y,
 									hasControls : false
 								});
-								canvas.add(newImage);
+								canvasOne.add(newImage);
+								
+								
+								
 								return false;
 							}
 
@@ -300,7 +570,7 @@
 						});
 	}
 	initCanvas();
-
+/* 
 	var getFabricCanvases = (function() {
 		var fabricCanvasCollection;
 		return function getCanvases() {
@@ -313,8 +583,161 @@
 			}
 			return fabricCanvasCollection;
 		}
-	})();
+	})(); */
 
+	
+	function changeView(value) {
+	    if (value == 1) {
+	        activeCanvas = canvas1;
+	        
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+
+	    if (value == 2) {
+	        activeCanvas = canvas2;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'block');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+	    
+	    if (value == 3) {
+	        activeCanvas = canvas3;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'block');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+	    
+	    if (value == 4) {
+	        activeCanvas = canvas4;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'block');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+	    
+	    if (value == 5) {
+	        activeCanvas = canvas5;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'block');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+	    
+	    if (value == 6) {
+	        activeCanvas = canvas6;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'block');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+	    
+	    if (value == 7) {
+	        activeCanvas = canvas7;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'block');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+	    
+	    if (value == 8) {
+	        activeCanvas = canvas7;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'block');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+	    
+	    if (value == 9) {
+	        activeCanvas = canvas7;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'block');
+	        $('#canvas10').parent().css('display', 'none');
+	    }
+	    
+	    if (value == 10) {
+	        activeCanvas = canvas7;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'block');
+	    }
+	} 
+	
 	$('#create-text-obj').on('click', function() {
 		create_text_obj();
 	});
@@ -346,9 +769,27 @@
 		window._canvas.isDrawingMode = false;
 	};
 
+	/* var panning = false; //panning canvas using mouse
+	window._canvas.on('mouse:up', function (e) {
+	    panning = false;
+	});
+
+	window._canvas.on('mouse:down', function (e) {
+	    panning = true;
+	});
+	window._canvas.on('mouse:move', function (e) {
+	    if (panning && e && e.e) {
+	        debugger;
+	        var units = 1;
+	        var delta = new fabric.Point(e.e.movementX, e.e.movementY);
+	        window._canvas.relativePan(delta);
+	    }
+	}); */
+	
+	
 	function deleteObjects() {
-		var activeObject = window._canvas.getActiveObject(), activeGroup = window._canvas
-				.getActiveGroup();
+		var activeObject = window._canvas.getActiveObject();
+		var activeGroup = window._canvas.getActiveGroup();
 		if (activeObject) {
 			window._canvas.remove(activeObject);
 		}
@@ -515,6 +956,7 @@
 			_clipboard = cloned;
 		});
 	}
+	
 	// To paste from clipboard a copy of the activeObject
 	function Paste() {
 		// clone again, so you can do multiple copies.
@@ -532,7 +974,6 @@
 				clonedObj.forEachObject(function(obj) {
 					window._canvas.add(obj);
 				});
-				// this should solve the unselectability
 				clonedObj.setCoords();
 			} else {
 				window._canvas.add(clonedObj);

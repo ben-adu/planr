@@ -30,8 +30,6 @@ import ca.sheridancollege.beans.Inventory;
 import ca.sheridancollege.beans.Map;
 import ca.sheridancollege.beans.MyUserDetailsService;
 import ca.sheridancollege.beans.Objects;
-import ca.sheridancollege.beans.One;
-import ca.sheridancollege.beans.Two;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.beans.UserRole;
 import ca.sheridancollege.dao.DAO;
