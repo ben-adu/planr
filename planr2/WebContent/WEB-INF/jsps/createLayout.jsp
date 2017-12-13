@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -550,25 +552,29 @@
 	$('.Save').click(function() {
 
 		var jsonString = JSON.stringify(window._canvas.toJSON());
-		alert(jsonString);
+		var token = $("meta[name='_csrf']").attr("content"); 
+		var header = $("meta[name='_csrf_header']").attr("content");
+		
 		
 
-		$.ajax({
-			url : '/saveLayout/',
-			headers : {
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/json'
-            },
-			type : 'POST',
-			dataType : 'json',
-			data : JSON.stringify(jsonString),
-			contentType : 'application/json',
-			mimeType : 'application/json',
-			success : _callBack,
-			error : _errorCallback,
-			
-		});
-		window._canvas.requestRenderAll();
+		 $.ajax({
+		        type: 'POST',
+		        url: 'http://localhost:8080/planr/saveLayout',
+		        data:jsonString,
+		        dataType: 'applicatio/json',
+		        beforeSend: function(xhr) {
+		            // here it is
+		            xhr.setRequestHeader(header, token);
+		        },
+		        contentType: 'application/json'
+		    }).done(function(data) {
+		        console.log(data);
+		        console.log('AJAX call was successfully executed;')
+		    }).fail(function(){
+		    	console.log('AJAX call failed :()');
+		    	console.log(jsonString);
+		    });
+		
 	});
 	
 </script>

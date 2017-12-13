@@ -17,7 +17,7 @@
 		
 		
 		<!-- Set the database dialect -->
-		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
@@ -38,7 +38,11 @@
 		<mapping class="ca.sheridancollege.beans.Customer" />
 		<mapping class="ca.sheridancollege.beans.Inventory"/>
 		<mapping class="ca.sheridancollege.beans.Event" />
-		
+		<mapping class="ca.sheridancollege.beans.Objects" />
+ 		<mapping class="ca.sheridancollege.beans.Map" />
+ 		<mapping class="ca.sheridancollege.beans.BackgroundImage" /> 
+ 		<mapping class="ca.sheridancollege.beans.Calendar" /> 
+ 		
 		
 		
 

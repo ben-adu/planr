@@ -37,15 +37,15 @@
 		<security:intercept-url pattern="/generateReports" access="hasAnyRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/createLayout" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/siteLayout" access="hasAnyRole('ROLE_USER')" />
-		<security:intercept-url pattern="/eventDetails" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/eventDetails" access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/creatingEvent" access="hasAnyRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/manageLayouts" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/guidelines" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/electrical" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/planEvent" access="hasAnyRole('ROLE_USER')" />
-		
-		<security:intercept-url pattern="/calendar2" access="hasAnyRole('ROLE_USER')" />
-		<security:intercept-url pattern="/saveJSON" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		
+		<security:intercept-url pattern="/saveLayout" access="permitAll" />
+		<security:intercept-url pattern="/saveCalendar" access="permitAll" />
+		<security:intercept-url pattern="/calendar" access="permitAll" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/scripts/**" access="permitAll" />
@@ -58,6 +58,7 @@
 		<security:intercept-url pattern="/logout" access="permitAll" />
 		<security:intercept-url pattern="/**" access="denyAll"  />
 		<security:form-login login-page="/login"/>
+		
 		
 		
 	</security:http>

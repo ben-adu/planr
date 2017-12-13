@@ -1,39 +1,51 @@
+
 package ca.sheridancollege.beans;
 
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
-
-public class Objects 
+@Entity
+public class Objects
 {
-
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE )
+	private int id;
 	private String type;
-
-	private String originX;
-
+	String originX;
 	private String originY;
+	@Column(name="left1")
 	private String left;
-	private String top;
-	private String width;
-	private String height;
+	private int top;
+	private int width;
+	private int height;
 	private String fill;
 	private String stroke;
-	private String strokeWidth;
+	private int strokeWidth;
 	private String strokeDashArray;
 	private String strokeLineCap;
 	private String strokeLineJoin;
-	private String strokeMiterLimit;
-	private String scaleX;
-	private String scaleY;
-	private String angle;
+	private int strokeMiterLimit;
+	private int scaleX;
+	private int scaleY;
+	private int angle;
 	private String flipX;
-	private String opacity;
+	private String flipY;
+	private int opacity;
 	private String shadow;
 	private String visible;
 	private String clipTo;
@@ -41,17 +53,15 @@ public class Objects
 	private String fillRule;
 	private String globalCompositeOperation;
 	private String transformMatrix;
-	private String skewX;
-	private String skewY;
+	private int skewX;
+	private int skewY;
 	private String crossOrigin;
 	private String alignX;
-	private String alighnY;
+	private String alignY;
 	private String meetOrSlice;
 	private String src;
-	private String filters;
-	private String resizeFilters;
-	
-	
+	private String[] filters;
+	private String[] resizeFilters;
 	public String getType()
 	{
 		return type;
@@ -84,27 +94,27 @@ public class Objects
 	{
 		this.left = left;
 	}
-	public String getTop()
+	public int getTop()
 	{
 		return top;
 	}
-	public void setTop(String top)
+	public void setTop(int top)
 	{
 		this.top = top;
 	}
-	public String getWidth()
+	public int getWidth()
 	{
 		return width;
 	}
-	public void setWidth(String width)
+	public void setWidth(int width)
 	{
 		this.width = width;
 	}
-	public String getHeight()
+	public int getHeight()
 	{
 		return height;
 	}
-	public void setHeight(String height)
+	public void setHeight(int height)
 	{
 		this.height = height;
 	}
@@ -116,7 +126,7 @@ public class Objects
 	{
 		this.fill = fill;
 	}
-	public String getStroke()
+	public java.lang.Object getStroke()
 	{
 		return stroke;
 	}
@@ -124,15 +134,15 @@ public class Objects
 	{
 		this.stroke = stroke;
 	}
-	public String getStrokeWidth()
+	public int getStrokeWidth()
 	{
 		return strokeWidth;
 	}
-	public void setStrokeWidth(String strokeWidth)
+	public void setStrokeWidth(int strokeWidth)
 	{
 		this.strokeWidth = strokeWidth;
 	}
-	public String getStrokeDashArray()
+	public java.lang.Object getStrokeDashArray()
 	{
 		return strokeDashArray;
 	}
@@ -156,35 +166,35 @@ public class Objects
 	{
 		this.strokeLineJoin = strokeLineJoin;
 	}
-	public String getStrokeMiterLimit()
+	public int getStrokeMiterLimit()
 	{
 		return strokeMiterLimit;
 	}
-	public void setStrokeMiterLimit(String strokeMiterLimit)
+	public void setStrokeMiterLimit(int strokeMiterLimit)
 	{
 		this.strokeMiterLimit = strokeMiterLimit;
 	}
-	public String getScaleX()
+	public int getScaleX()
 	{
 		return scaleX;
 	}
-	public void setScaleX(String scaleX)
+	public void setScaleX(int scaleX)
 	{
 		this.scaleX = scaleX;
 	}
-	public String getScaleY()
+	public int getScaleY()
 	{
 		return scaleY;
 	}
-	public void setScaleY(String scaleY)
+	public void setScaleY(int scaleY)
 	{
 		this.scaleY = scaleY;
 	}
-	public String getAngle()
+	public int getAngle()
 	{
 		return angle;
 	}
-	public void setAngle(String angle)
+	public void setAngle(int angle)
 	{
 		this.angle = angle;
 	}
@@ -196,11 +206,19 @@ public class Objects
 	{
 		this.flipX = flipX;
 	}
-	public String getOpacity()
+	public String getFlipY()
+	{
+		return flipY;
+	}
+	public void setFlipY(String flipY)
+	{
+		this.flipY = flipY;
+	}
+	public int getOpacity()
 	{
 		return opacity;
 	}
-	public void setOpacity(String opacity)
+	public void setOpacity(int opacity)
 	{
 		this.opacity = opacity;
 	}
@@ -260,19 +278,19 @@ public class Objects
 	{
 		this.transformMatrix = transformMatrix;
 	}
-	public String getSkewX()
+	public int getSkewX()
 	{
 		return skewX;
 	}
-	public void setSkewX(String skewX)
+	public void setSkewX(int skewX)
 	{
 		this.skewX = skewX;
 	}
-	public String getSkewY()
+	public int getSkewY()
 	{
 		return skewY;
 	}
-	public void setSkewY(String skewY)
+	public void setSkewY(int skewY)
 	{
 		this.skewY = skewY;
 	}
@@ -292,13 +310,13 @@ public class Objects
 	{
 		this.alignX = alignX;
 	}
-	public String getAlighnY()
+	public String getAlignY()
 	{
-		return alighnY;
+		return alignY;
 	}
-	public void setAlighnY(String alighnY)
+	public void setAlignY(String alignY)
 	{
-		this.alighnY = alighnY;
+		this.alignY = alignY;
 	}
 	public String getMeetOrSlice()
 	{
@@ -316,29 +334,39 @@ public class Objects
 	{
 		this.src = src;
 	}
-	public String getFilters()
+	public String[] getFilters()
 	{
 		return filters;
 	}
-	public void setFilters(String filters)
+	public void setFilters(String[] filters)
 	{
 		this.filters = filters;
 	}
-	public String getResizeFilters()
+	public String[] getResizeFilters()
 	{
 		return resizeFilters;
 	}
-	public void setResizeFilters(String resizeFilters)
+	public void setResizeFilters(String[] resizeFilters)
 	{
 		this.resizeFilters = resizeFilters;
 	}
 	
-	public Objects(String type, String originX, String originY, String left, String top, String width, String height,
-			String fill, String stroke, String strokeWidth, String strokeDashArray, String strokeLineCap,
-			String strokeLineJoin, String strokeMiterLimit, String scaleX, String scaleY, String angle, String flipX,
-			String opacity, String shadow, String visible, String clipTo, String backgroundColor, String fillRule,
-			String globalCompositeOperation, String transformMatrix, String skewX, String skewY, String crossOrigin,
-			String alignX, String alighnY, String meetOrSlice, String src, String filters, String resizeFilters)
+	
+	public int getId()
+	{
+		return id;
+	}
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	public Objects(String type, String originX, String originY, String left, int top, int width, int height,
+			String fill, String stroke, int strokeWidth, String strokeDashArray, String strokeLineCap,
+			String strokeLineJoin, int strokeMiterLimit, int scaleX, int scaleY, int angle, String flipX, String flipY,
+			int opacity, String shadow, String visible, String clipTo, String backgroundColor, String fillRule,
+			String globalCompositeOperation, String transformMatrix, int skewX, int skewY, String crossOrigin,
+			String alignX, String alignY, String meetOrSlice, String src, String[] filters,
+			String[] resizeFilters)
 	{
 		this.type = type;
 		this.originX = originX;
@@ -358,6 +386,7 @@ public class Objects
 		this.scaleY = scaleY;
 		this.angle = angle;
 		this.flipX = flipX;
+		this.flipY = flipY;
 		this.opacity = opacity;
 		this.shadow = shadow;
 		this.visible = visible;
@@ -370,7 +399,7 @@ public class Objects
 		this.skewY = skewY;
 		this.crossOrigin = crossOrigin;
 		this.alignX = alignX;
-		this.alighnY = alighnY;
+		this.alignY = alignY;
 		this.meetOrSlice = meetOrSlice;
 		this.src = src;
 		this.filters = filters;
@@ -379,9 +408,23 @@ public class Objects
 	public Objects()
 	{
 	}
+	@Override
+	public String toString()
+	{
+		return "Objects [type=" + type + ", originX=" + originX + ", originY=" + originY + ", left=" + left + ", top="
+				+ top + ", width=" + width + ", height=" + height + ", fill=" + fill + ", stroke=" + stroke
+				+ ", strokeWidth=" + strokeWidth + ", strokeDashArray=" + strokeDashArray + ", strokeLineCap="
+				+ strokeLineCap + ", strokeLineJoin=" + strokeLineJoin + ", strokeMiterLimit=" + strokeMiterLimit
+				+ ", scaleX=" + scaleX + ", scaleY=" + scaleY + ", angle=" + angle + ", flipX=" + flipX + ", flipY="
+				+ flipY + ", opacity=" + opacity + ", shadow=" + shadow + ", visible=" + visible + ", clipTo=" + clipTo
+				+ ", backgroundColor=" + backgroundColor + ", fillRule=" + fillRule + ", globalCompositeOperation="
+				+ globalCompositeOperation + ", transformMatrix=" + transformMatrix + ", skewX=" + skewX + ", skewY="
+				+ skewY + ", crossOrigin=" + crossOrigin + ", alignX=" + alignX + ", alignY=" + alignY
+				+ ", meetOrSlice=" + meetOrSlice + ", src=" + src + ", filters=" + filters + ", resizeFilters="
+				+ resizeFilters + "]";
+	}
 	
-	
-	
+
 	
 	
 	

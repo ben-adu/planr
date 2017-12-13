@@ -6,12 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
@@ -29,23 +27,49 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
-<script>
-$(document).ready(function() {
-	  $('ul.tabs').tabs();
-	  $("#btnContinue").click(function() {
-	    $('ul.tabs').tabs('select_tab', 'test2');
-	  });
-	  $("#btnContinue1").click(function() {
-		    $('ul.tabs').tabs('select_tab', 'test3');
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$('select').material_select();
+		
+		$('.datepicker').pickadate({
+		    selectMonths: true,
+		    selectYears: 5, 
+		    today: 'Today',
+		    clear: 'Clear',
+		    close: 'Ok',
+		    closeOnSelect: true, 
+		    format: 'yyyy-mm-dd',
+		    onClose: function(){
+		        $(document.activeElement).blur()
+		    }
 		  });
-	  $("#btnBack").click(function() {
-		    $('ul.tabs').tabs('select_tab', 'test1');
-		  });
-	  $("#btnBack1").click(function() {
-		    $('ul.tabs').tabs('select_tab', 'test2');
-		  });
+		
+		
 	});
+	
 </script>
+<script>
+
+$( document ).ready(function() {
+	$('.timepicker').pickatime({
+    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+    twelvehour: false, // Use AM/PM or 24-hour format
+    donetext: 'OK', // text for done-button
+    cleartext: 'Clear', // text for clear-button
+    canceltext: 'Cancel', // Text for cancel-button
+    autoclose: true, // automatic close timepicker
+    format:"HH:MM:SS",
+    aftershow: function(){} //Function for after opening timepicker
+  });
+	 $('.timepicker').on('change', function() {
+	        let receivedVal = $(this).val();
+	        $(this).val(receivedVal + ":00");
+	    });
+  });
+  </script>
+
 </head>
 <body>
 	<!-- NAV -->
@@ -92,115 +116,116 @@ $(document).ready(function() {
 	<div class="container">
 	
 		<h4 style="text-align: center">Event Details</h4>
-		<div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s4"><a class="active" href="#test1">Event Info</a></li>
-        <li class="tab col s4"><a  href="#test2">Setup Date</a></li>
-        <li class="tab col s4"><a href="#test3">Cleanup Date</a></li>
-      </ul>
-    </div>
-    <div id="test1" class="col s12">
-    <div class="container">
-    	<div class="row">
-			<div class="col s6">
-				Event Name: MuslimFest </br>
-				Event Type: Large</br>
-				Start Date: October 10, 2017. </br>
-				End Date: October 10, 2017.</br>
-				Start Time: 3:00pm</br>
-				End Time: 12:00pm</br>
+		<BR><BR>
+		<c:url value="creatingEvent" var="url" />
+		<form name="event" method="post" action="${url}"
+			onsubmit="return verify()" class="col s12" id="event" class="event">
+			
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">business</i> <input
+						type="text" name="eventIdentifier" id="icon_prefix" required="" aria-required="true"/> <label
+						for="icon_prefix">Event Identifier</label>
+				</div>
+				
+				<div class="input-field col s6">
+					<i class="material-icons prefix">email</i> <input
+						type="email" name="email" id="icon_prefix" class="validate" required="" aria-required="true"/> <label
+						for="icon_prefix">Email</label>
+				</div>
 			</div>
 			
-
-		</div>
-		<div class="row">
-			<div class="col s12">
-				<p>If you would like to modify the event details please contact the Event Services Team</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s6">
-				  <!-- <a id="btnBack" class="waves-effect waves-light btn-large" style="display: block"
-					href="" >Back</a>  -->
-			</div>  
-			<div class="col s6">
-				<a id="btnContinue"class="waves-effect waves-light btn-large" style="display: block"
-					href="#test2">Next</a>
-			</div>
-		</div>
-    
-    </div>
-    </div>
-    <div id="test2" class="col s12">
-    <!-- Set up dates -->
-    <div class="container">
-    	<div class="row">
-			<div class="col s6">
-				Event Name: MuslimFest </br>
-				Event Type: Large</br>
-				Start Date: October 10, 2017. </br>
-				End Date: October 10, 2017.</br>
-				Start Time: 3:00pm</br>
-				End Time: 12:00pm</br>
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">account_circle</i> <input
+						type="text" name="firstName" id="icon_prefix" required="" aria-required="true"/> <label
+						for="icon_prefix">First Name</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">business</i> <input
+						type="text" name="eventName" id="icon_prefix" required="" aria-required="true"/> <label
+						for="icon_prefix">Event Name</label>
+				</div>
 			</div>
 			
-
-		</div>
-		<div class="row">
-			<div class="col s12">
-				<p>If you would like to modify the event details please contact the Event Services Team</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s6">
-				  <a id="btnBack" class="waves-effect waves-light btn-large" style="display: block"
-					href="#test1" >Back</a> 
-			</div>  
-			<div class="col s6">
-				<a id="btnContinue1"class="waves-effect waves-light btn-large" style="display: block"
-					href="#test3">Next</a>
-			</div>
-		</div>
-    
-    </div>
-		</div>
-    </div>
-    <div id="test3" class="col s12">
-    <div class="container">
-    	<div class="row">
-			<div class="col s6">
-				Event Name: MuslimFest </br>
-				Event Type: Large</br>
-				Start Date: October 10, 2017. </br>
-				End Date: October 10, 2017.</br>
-				Start Time: 3:00pm</br>
-				End Time: 12:00pm</br>
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">account_circle</i> <input
+						type="text" name="lastName" id="icon_prefix" required="" aria-required="true"/> <label
+						for="icon_prefix">Last Name</label>
+				</div>
+				
+				<div class="input-field col s6">
+					<i class="material-icons prefix">business</i> <input
+						type="text" name="contract" id="icon_prefix" required="" aria-required="true"/> <label
+						for="icon_prefix">Contract Number</label>
+				</div>
 			</div>
 			
-
-		</div>
-		<div class="row">
-			<div class="col s12">
-				<p>If you would like to modify the event details please contact the Event Services Team</p>
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">event_available</i>
+					 <label for="eStartDate">Event Start Date</label>
+     				 <input id="eStartDate" type="text" class="datepicker" required="" name="eStartDate">
+				</div>
+				
+				<div class="input-field col s6">
+					<i class="material-icons prefix">access_time</i>
+					 <label for="eStartTime">Event Start Time</label>
+     				 <input id="eStartTime" type="text" class="timepicker" required="" aria-required="true" name="eStartTime">
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col s6">
-				  <a id="btnBack1" class="waves-effect waves-light btn-large" style="display: block"
-					href="#test2" >Back</a> 
-			</div>  
-			<div class="col s6">
-				<!-- <a id="btnContinue2"class="waves-effect waves-light btn-large" style="display: block"
-					href="#test3">Next</a> -->
+			
+			<div class="row">	
+				<div class="input-field col s6">
+					<i class="material-icons prefix">event_available</i>
+					 <label for="eEndDate">Event End Date</label>
+     				 <input id="eEndDate" type="text" class="datepicker" required="" name="eEndDate">
+				</div>
+				
+				<div class="input-field col s6">
+					<i class="material-icons prefix">access_time</i>
+					 <label for="eEndTime">Event End Time</label>
+     				 <input id="eEndTime" type="text" class="timepicker" required="" aria-required="true" name="eEndTime">
+				</div>
 			</div>
-		</div>
-    
-    </div>
-    </div>
-  </div>
-	
-
+			
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">event_available</i>
+					 <label for="eSetupDate">Set-up/Load-in Date</label>
+     				 <input id="eSetupDate" type="text" class="datepicker" required="" name="eSetupDate">
+				</div>
+				
+				<div class="input-field col s6">
+					<i class="material-icons prefix">access_time</i>
+					 <label for="eSetupTime">Set-up/Load-in Time</label>
+     				 <input id="eSetupTime" type="text" class="timepicker" required="" aria-required="true" name="eSetupTime">
+				</div>
+			</div>
+			
+			<div class="row">
+			<div class="input-field col s6">
+					<i class="material-icons prefix">event_available</i>
+					 <label for="eCleanupDate">Clean-up/Load-out Date</label>
+     				 <input id="eCleanupDate" type="text" class="datepicker" required=""  name="eCleanupDate">
+			</div>
+			
+			<div class="input-field col s6">
+					<i class="material-icons prefix">access_time</i>
+					 <label for="eCleanupTime">Clean-up/Load-out Time</label>
+     				 <input id="eCleanupTime" type="text" class="timepicker" required="" aria-required="true" name="eCleanupTime">
+			</div>	
+			</div>
+			
+			<div class="row">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="submit"
+					value="Create Event!" onclick="verify()"
+					class="btn waves-effect waves-light" />
+			</div>
+		</form>
+		
 	</div>
 	
 

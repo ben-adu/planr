@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +23,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ca.sheridancollege.beans.Calendar;
 import ca.sheridancollege.beans.Customer;
+import ca.sheridancollege.beans.Event;
 import ca.sheridancollege.beans.Inventory;
 import ca.sheridancollege.beans.Map;
 import ca.sheridancollege.beans.MyUserDetailsService;
+import ca.sheridancollege.beans.Objects;
+import ca.sheridancollege.beans.One;
+import ca.sheridancollege.beans.Two;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.beans.UserRole;
 import ca.sheridancollege.dao.DAO;
@@ -91,29 +98,6 @@ public class HomeController
 	public String planEvent(Model model)
 	{
 		return "planEvent";
-	}
-	
-	@RequestMapping(value = "/calendar2", method = RequestMethod.GET)
-	public String calendar2(Model model)
-	{
-		return "calendar2";
-	}
-	
-	@RequestMapping(value = "/saveJSON" , method = RequestMethod.POST)
-	public String saveJSON(@RequestParam ("json") String jsons) {
-
-//		try {
-//			FileWriter fileWriter = new FileWriter("data.json");
-//			fileWriter.write(jsonString.toString());
-//			fileWriter.flush();
-//			fileWriter.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		System.out.println(jsons);
-		
-		
-	   return "calendar2";
 	}
 	
 	@RequestMapping(value = "/approveSiteLayout", method = RequestMethod.GET)
@@ -329,11 +313,52 @@ public class HomeController
 		return "modifyItem";
 	}
 
-	@RequestMapping(value="/saveLayout/", method=RequestMethod.POST, consumes={"application/json"})
-	public String test(@RequestBody Map map)
+//	@ResponseBody
+//	@RequestMapping(value="/saveLayout", method=RequestMethod.POST)
+//	public String saveLayout(@RequestBody final Map map)
+//	{
+//		System.out.println("it works");
+//		return "Success";
+//		
+//	}
+
+	@RequestMapping(value="/saveLayout", method=RequestMethod.POST, consumes={"application/json"})
+	public String test(@RequestBody Map map, Model model)
 	{
+		Objects objects = new Objects();
+		DAO dao = new DAO();
+		dao.saveMap(map);
+		model.addAttribute("map", dao.getMapList());
+		System.out.println(map.getBackgroundImage());
+		System.out.println(map.getObjects());
+		System.out.println(objects.getOriginX());
+		System.out.println("test");
+		return "createLayout";
 		
-		return "Succes";
+	}
+	
+	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
+	public String calendar(Model model)
+	{
+
+		return "calendar";
+	}
+	
+	
+	@RequestMapping(value="/saveCalendar", method=RequestMethod.POST, consumes={"application/json"})
+	public String saveCal(@RequestBody Calendar calendar)
+	{
+		System.out.println(calendar.getId());
+		return "calendar";
 		
+	}
+	
+	@RequestMapping(value = "/creatingEvent", method = RequestMethod.POST)
+	public String createEvent(Model model, @ModelAttribute Event event)
+	{
+		DAO dao = new DAO();
+		dao.saveEvent(event);
+		model.addAttribute("eventist", dao.getEventList());
+		return "secure";
 	}
 }

@@ -10,7 +10,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import ca.sheridancollege.beans.Customer;
+import ca.sheridancollege.beans.Event;
 import ca.sheridancollege.beans.Inventory;
+import ca.sheridancollege.beans.Map;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.beans.UserRole;
 
@@ -18,6 +20,7 @@ public class DAO {
 	
 	private ArrayList<Customer>customerList=new ArrayList<Customer>();
 	private ArrayList<Inventory>inventoryList = new ArrayList<Inventory>();
+	private ArrayList<Map> mapList = new ArrayList<Map>();
 
 	SessionFactory sessionFactory = new Configuration()
 			.configure("ca/sheridancollege/config/hibernate.cfg.xml")
@@ -165,4 +168,64 @@ public class DAO {
 		
 		return inventory;
 	}
+	
+	public void saveEvent(Event event)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		session.saveOrUpdate(event);
+		
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	public List<Event> getEventList()
+	{
+		Session session= sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Query query = session.createNamedQuery("Event.getEventList");
+		List<Event> eventList = query.getResultList();
+		
+		session.getTransaction().commit();
+		session.close();
+		return eventList;
+	}
+	public void deleteEvent (int id)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Event event =(Event) session.get(Event.class, id);
+		session.delete(event);
+		
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	public void saveMap(Map map)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		session.saveOrUpdate(map);
+		session.getTransaction().commit();
+		
+		session.close();
+	}
+
+	public ArrayList<Map> getMapList()
+	{
+		return mapList;
+	}
+
+	public void setMapList(ArrayList<Map> mapList)
+	{
+		this.mapList = mapList;
+	}
+	
+
+	
+	
 }

@@ -7,24 +7,31 @@ import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries(
+		{@NamedQuery(name="Event.getEventList", query = "from Event"),
+		@NamedQuery(name= "Event.byId", query = "from Event where id=:id")})
 public class Event
 {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE )
 	private int id;
+	private String eventIdentifier;
 	private String firstName;
 	private String lastName;
 	private String eventName;
-	private String startDate;
-	private String startTime;
-	private String endDate;
-	private String endTime;
+	private String eStartDate;
+	private String eStartTime;
+	private String eEndDate;
+	private String eEndTime;
 	private String eSetupDate;
 	private String eSetupTime;
 	private String eCleanupDate;
@@ -76,13 +83,13 @@ public class Event
 	public void setCleanUpList(List<CleanUp> cleanUpList) {
 		this.cleanUpList = cleanUpList;
 	}
-	public int getId()
+	public String getEventIdentifier()
 	{
-		return id;
+		return eventIdentifier;
 	}
-	public void setId(int id)
+	public void setEventIdentifier(String eventIdentifier)
 	{
-		this.id = id;
+		this.eventIdentifier = eventIdentifier;
 	}
 	public String getEventName()
 	{
@@ -92,38 +99,72 @@ public class Event
 	{
 		this.eventName = eventName;
 	}
-	public String getStartDate()
+	public String geteStartDate()
 	{
-		return startDate;
+		return eStartDate;
 	}
-	public void setStartDate(String startDate)
+	public void seteStartDate(String eStartDate)
 	{
-		this.startDate = startDate;
+		this.eStartDate = eStartDate;
 	}
-	public String getStartTime()
+	public String geteStartTime()
 	{
-		return startTime;
+		return eStartTime;
 	}
-	public void setStartTime(String startTime)
+	public void setStartTime(String eStartTime)
 	{
-		this.startTime = startTime;
+		this.eStartTime = eStartTime;
 	}
-	public String getEndDate()
+	public String geteEndDate()
 	{
-		return endDate;
+		return eEndDate;
 	}
-	public void setEndDate(String endDate)
+	public void seteEndDate(String eEndDate)
 	{
-		this.endDate = endDate;
+		this.eEndDate = eEndDate;
 	}
-	public String getEndTime()
+	public String geteEndTime()
 	{
-		return endTime;
+		return eEndTime;
 	}
-	public void setEndTime(String endTime)
+	public void seteEndTime(String eEndTime)
 	{
-		this.endTime = endTime;
+		this.eEndTime = eEndTime;
 	}
+	public int getId()
+	{
+		return id;
+	}
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	public void seteStartTime(String eStartTime)
+	{
+		this.eStartTime = eStartTime;
+	}
+	public Event()
+	{
+	}
+	public Event(String eventIdentifier, String firstName, String lastName, String eventName, String eStartDate,
+			String eStartTime, String eEndDate, String eEndTime, String eSetupDate, String eSetupTime,
+			String eCleanupDate, String eCleanupTime, List<CleanUp> cleanUpList)
+	{
+		this.eventIdentifier = eventIdentifier;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.eventName = eventName;
+		this.eStartDate = eStartDate;
+		this.eStartTime = eStartTime;
+		this.eEndDate = eEndDate;
+		this.eEndTime = eEndTime;
+		this.eSetupDate = eSetupDate;
+		this.eSetupTime = eSetupTime;
+		this.eCleanupDate = eCleanupDate;
+		this.eCleanupTime = eCleanupTime;
+		this.cleanUpList = cleanUpList;
+	}
+	
 	
 	/*public List<CleanUp> getCleanUpList()
 	{
@@ -134,6 +175,5 @@ public class Event
 		this.cleanUpList = cleanUpList;
 	}*/
 	
-
 
 }

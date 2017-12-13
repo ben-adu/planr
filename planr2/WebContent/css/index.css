@@ -5,47 +5,35 @@
   }
 
 .canvas-container {
-    position:relative;
-    /*display:inline-block;*/
-    /*width:auto;*/
-    /*overflow:scroll;*/
-    /*float:left;*/
+   
     margin:auto;
     /*height: 1000px;*/
     overflow: scroll;
-    /*background-size: auto;*/
     max-width: 100%;
     max-height: 100%;
 }
 
-/*#canvas{
-        overflow:scroll;
-
-}*/
 
  .stop_drawing{
       top:16px;
   }
   
 #image-list{
-    height:auto;
+   /*  height:auto; 
     margin: auto;
     left: 10px;
     padding: 0px;
-    width:90px;
+    width:100%;
     overflow-y:auto;
-    overflow-x:hidden;
+    overflow-x:hidden; */
 }
 
 #image-list li{
-    margin-bottom: 20px;
-/*    border: 1px dashed #000;*/
-    cursor:move;
+ 
 }
 
 #image-list li img{
     display: block;
-    margin: auto;
 }
 
 #toolbar{
@@ -56,16 +44,16 @@
 }
 
 #toolbar li{
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 
 }
 
 ::-webkit-scrollbar {
-    width: 1px;
-    height: 1px;/* remove scrollbar space */
+    width: 3px;
+    height: 3px;/* remove scrollbar space */
     background: transparent;  /* optional: just make scrollbar invisible */
 }
 /* optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: red;
+    background: teal;
 }
