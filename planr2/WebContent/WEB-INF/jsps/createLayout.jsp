@@ -190,9 +190,9 @@
 						<BR>
 							<img draggable="true" src="images/Food without electric/20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food without electric/>20x20.png" height="40">
+							<img draggable="true" src="images/Food without electric/g20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food without electric/>20x30.png" height="40">
+							<img draggable="true" src="images/Food without electric/g20x30.png" height="40">
 						</span>
 					</div>
 					</li>
@@ -211,9 +211,9 @@
 						<BR>
 							<img draggable="true" src="images/Food with electric/20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food with electric/>20x20.png" height="40">
+							<img draggable="true" src="images/Food with electric/g20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food with electric/>20x30.png" height="40">
+							<img draggable="true" src="images/Food with electric/g20x30.png" height="40">
 						</span>
 					</div>
 					</li>
@@ -232,9 +232,9 @@
 						<BR>
 							<img draggable="true" src="images/Vendor without electric/20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor without electric/>20x20.png" height="40">
+							<img draggable="true" src="images/Vendor without electric/g20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor without electric/>20x30.png" height="40">
+							<img draggable="true" src="images/Vendor without electric/g20x30.png" height="40">
 						</span>
 					</div>
 					</li>
@@ -253,9 +253,9 @@
 						<BR>
 							<img draggable="true" src="images/Vendor with electric/20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor with electric/>20x20.png" height="40">
+							<img draggable="true" src="images/Vendor with electric/g20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor with electric/>20x30.png" height="40">
+							<img draggable="true" src="images/Vendor with electric/g20x30.png" height="40">
 						</span>
 					</div>
 					</li>
