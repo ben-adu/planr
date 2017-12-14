@@ -8,14 +8,32 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+
 
 <script src="scripts/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
+
+<style type="text/css">
+.my-error-class {
+    color:red;
+}
+.my-valid-class {
+    color:green;
+}
+</style>
+
 <title>Event Details</title>
 
 <script>
@@ -45,6 +63,147 @@
 		    }
 		  });
 		
+		$.validator.addMethod("ALPHANUMERICC", function(value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9]+$/i.test(value);
+        }, "Please enter only alphanumeric characters");
+		
+		
+		
+		
+		
+		$("#event").validate({
+			errorClass: "my-error-class",
+		    validClass: "my-valid-class",
+			rules : {
+				eEndDate : {
+					
+					greaterThan:"#eStartDate"
+				},
+				eventIdentifier : {
+					required : true,
+					minlength : 1,
+					ALPHANUMERICC:"required IDENTIFIER"
+				},
+				firstName : {
+					required : true,
+					minlength : 1,
+					ALPHANUMERICC:"required FIRSTNAME "
+				},
+				eventName : {
+					required : true,
+					minlength : 1,
+					ALPHANUMERICC:"required EVENTNAME"
+				},
+				lastName : {
+					required : true,
+					minlength : 1,
+					ALPHANUMERICC:"required LASTNAME"
+				},
+				contract : {
+					required : true,
+					minlength : 1,
+					ALPHANUMERICC:"required COTRACT"
+				},
+				
+
+				eStartDate : "required",
+				eStartTime : "required",
+				eEndDate : "required",
+				eEndTime : "required",
+				eSetupDate : "required",
+				eSetupTime : "required",
+				eCleanupDate : "required",
+				eCleanupTime : "required",
+			},
+			messages : {
+				eventIdentifier : {
+					required : "Please enter the name of the equipment"
+				},
+				price : {
+					required : "Please enter the price of the equipment",
+					number : "Please enter a price starting from $0.01"
+				}
+			},
+			errorElement : 'div',
+			errorPlacement : function(error, element) {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
+		});
+		
+		//Date Validation
+	var from_$input = $('#eStartDate').pickadate(),
+	    from_picker = from_$input.pickadate('picker')
+
+	var to_$input = $('#eEndDate').pickadate(),
+	    to_picker = to_$input.pickadate('picker')
+
+
+	
+	if ( from_picker.get('value') ) {
+	  to_picker.set('min', from_picker.get('select'))
+	}
+	if ( to_picker.get('value') ) {
+	  from_picker.set('max', to_picker.get('select'))
+	}
+
+	
+	from_picker.on('set', function(event) {
+	  if ( event.select ) {
+	    to_picker.set('min', from_picker.get('select'))    
+	  }
+	  else if ( 'clear' in event ) {
+	    to_picker.set('min', false)
+	  }
+	})
+	to_picker.on('set', function(event) {
+	  if ( event.select ) {
+	    from_picker.set('max', to_picker.get('select'))
+	  }
+	  else if ( 'clear' in event ) {
+	    from_picker.set('max', false)
+	  }
+	})
+	//Date Validation	
+	
+	var Kfrom_$input = $('#eSetupDate').pickadate(),
+	    Kfrom_picker = Kfrom_$input.pickadate('picker')
+
+	var Kto_$input = $('#eCleanupDate').pickadate(),
+	    Kto_picker = Kto_$input.pickadate('picker')
+
+
+	
+	if ( Kfrom_picker.get('value') ) {
+	  Kto_picker.set('min', Kfrom_picker.get('select'))
+	}
+	if ( Kto_picker.get('value') ) {
+	  Kfrom_picker.set('max', Kto_picker.get('select'))
+	}
+
+	
+	Kfrom_picker.on('set', function(event) {
+	  if ( event.select ) {
+	    Kto_picker.set('min', Kfrom_picker.get('select'))    
+	  }
+	  else if ( 'clear' in event ) {
+	    Kto_picker.set('min', false)
+	  }
+	})
+	Kto_picker.on('set', function(event) {
+	  if ( event.select ) {
+	    Kfrom_picker.set('max', Kto_picker.get('select'))
+	  }
+	  else if ( 'clear' in event ) {
+	    Kfrom_picker.set('max', false)
+	  }
+	})
+	
+			
 		
 	});
 	
@@ -81,8 +240,8 @@ $( document ).ready(function() {
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
-						href="#!email"><span class="white-text email">ben@mail.com</span></a>
+					<a href="#!name"><span class="white-text name">ANKIT
+							SHAH</span></a> <a href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
 			<c:url value="planEvent" var="client" />
 			<li><a href="planEvent" class="waves-effect"><i
@@ -109,115 +268,129 @@ $( document ).ready(function() {
 			src="images/mcs.png" height="80"></a> </nav>
 	</sec:authorize>
 	<!--  END OF NAV -->
-	
+
 
 	<!-- Body -->
 
 	<div class="container">
-	
+
 		<h4 style="text-align: center">Event Details</h4>
-		<BR><BR>
+		<BR>
+		<BR>
 		<c:url value="creatingEvent" var="url" />
 		<form name="event" method="post" action="${url}"
 			onsubmit="return verify()" class="col s12" id="event" class="event">
-			
+
 			<div class="row">
 				<div class="input-field col s6">
-					<i class="material-icons prefix">business</i> <input
-						type="text" name="eventIdentifier" id="icon_prefix" required="" aria-required="true"/> <label
-						for="icon_prefix">Event Identifier</label>
+					<i class="material-icons prefix">business</i> <input type="text"
+						name="eventIdentifier" id="eventIdentifier" required="" class="validate"
+						aria-required="true" /> <label for="icon_prefix">Event
+						Identifier</label>
 				</div>
-				
+
 				<div class="input-field col s6">
-					<i class="material-icons prefix">email</i> <input
-						type="email" name="email" id="icon_prefix" class="validate" required="" aria-required="true"/> <label
-						for="icon_prefix">Email</label>
+					<i class="material-icons prefix">email</i> <input type="email"
+						name="email" id="email" class="validate" required="" class="validate"
+						aria-required="true" /> <label for="icon_prefix">Email</label>
 				</div>
 			</div>
-			
-			<div class="row">
-				<div class="input-field col s6">
-					<i class="material-icons prefix">account_circle</i> <input
-						type="text" name="firstName" id="icon_prefix" required="" aria-required="true"/> <label
-						for="icon_prefix">First Name</label>
-				</div>
-				<div class="input-field col s6">
-					<i class="material-icons prefix">business</i> <input
-						type="text" name="eventName" id="icon_prefix" required="" aria-required="true"/> <label
-						for="icon_prefix">Event Name</label>
-				</div>
-			</div>
-			
+
 			<div class="row">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">account_circle</i> <input
-						type="text" name="lastName" id="icon_prefix" required="" aria-required="true"/> <label
-						for="icon_prefix">Last Name</label>
+						type="text" name="firstName" id="firstName" required="" class="validate"
+						class="validate" aria-required="true" /> <label for="icon_prefix">First
+						Name</label>
 				</div>
-				
 				<div class="input-field col s6">
-					<i class="material-icons prefix">business</i> <input
-						type="text" name="contract" id="icon_prefix" required="" aria-required="true"/> <label
-						for="icon_prefix">Contract Number</label>
+					<i class="material-icons prefix">business</i> <input type="text"
+						name="eventName" id="eventName" required="" class="validate"
+						aria-required="true" /> <label for="icon_prefix">Event
+						Name</label>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="input-field col s6">
-					<i class="material-icons prefix">event_available</i>
-					 <label for="eStartDate">Event Start Date</label>
-     				 <input id="eStartDate" type="text" class="datepicker" required="" name="eStartDate">
+					<i class="material-icons prefix">account_circle</i> <input
+						type="text" name="lastName" id="lastName" required="" class="validate"
+						class="validate" aria-required="true" /> <label for="icon_prefix">Last
+						Name</label>
 				</div>
-				
+
 				<div class="input-field col s6">
-					<i class="material-icons prefix">access_time</i>
-					 <label for="eStartTime">Event Start Time</label>
-     				 <input id="eStartTime" type="text" class="timepicker" required="" aria-required="true" name="eStartTime">
+					<i class="material-icons prefix">business</i> <input type="text"
+						name="contract" id="contract" required="" class="validate"
+						aria-required="true" /> <label for="icon_prefix">Contract
+						Number</label>
 				</div>
 			</div>
-			
-			<div class="row">	
-				<div class="input-field col s6">
-					<i class="material-icons prefix">event_available</i>
-					 <label for="eEndDate">Event End Date</label>
-     				 <input id="eEndDate" type="text" class="datepicker" required="" name="eEndDate">
-				</div>
-				
-				<div class="input-field col s6">
-					<i class="material-icons prefix">access_time</i>
-					 <label for="eEndTime">Event End Time</label>
-     				 <input id="eEndTime" type="text" class="timepicker" required="" aria-required="true" name="eEndTime">
-				</div>
-			</div>
-			
+
 			<div class="row">
 				<div class="input-field col s6">
-					<i class="material-icons prefix">event_available</i>
-					 <label for="eSetupDate">Set-up/Load-in Date</label>
-     				 <input id="eSetupDate" type="text" class="datepicker" required="" name="eSetupDate">
+					<i class="material-icons prefix">event_available</i> <label
+						for="eStartDate">Event Start Date</label> <input id="eStartDate"
+						type="text" class="datepicker" required="" class="validate"
+						name="eStartDate">
 				</div>
-				
+
 				<div class="input-field col s6">
-					<i class="material-icons prefix">access_time</i>
-					 <label for="eSetupTime">Set-up/Load-in Time</label>
-     				 <input id="eSetupTime" type="text" class="timepicker" required="" aria-required="true" name="eSetupTime">
+					<i class="material-icons prefix">access_time</i> <label
+						for="eStartTime">Event Start Time</label> <input id="eStartTime"
+						type="text" class="timepicker" required="" class="validate"
+						aria-required="true" name="eStartTime">
 				</div>
 			</div>
-			
+
 			<div class="row">
-			<div class="input-field col s6">
-					<i class="material-icons prefix">event_available</i>
-					 <label for="eCleanupDate">Clean-up/Load-out Date</label>
-     				 <input id="eCleanupDate" type="text" class="datepicker" required=""  name="eCleanupDate">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">event_available</i> <label
+						for="eEndDate">Event End Date</label> <input id="eEndDate"
+						type="text" class="datepicker" required="" class="validate"
+						name="eEndDate">
+				</div>
+
+				<div class="input-field col s6">
+					<i class="material-icons prefix">access_time</i> <label
+						for="eEndTime">Event End Time</label> <input id="eEndTime"
+						type="text" class="timepicker" required="" class="validate"
+						aria-required="true" name="eEndTime">
+				</div>
 			</div>
-			
-			<div class="input-field col s6">
-					<i class="material-icons prefix">access_time</i>
-					 <label for="eCleanupTime">Clean-up/Load-out Time</label>
-     				 <input id="eCleanupTime" type="text" class="timepicker" required="" aria-required="true" name="eCleanupTime">
-			</div>	
+
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">event_available</i> <label
+						for="eSetupDate">Set-up/Load-in Date</label> <input
+						id="eSetupDate" type="text" class="datepicker" required=""
+						class="validate" name="eSetupDate">
+				</div>
+
+				<div class="input-field col s6">
+					<i class="material-icons prefix">access_time</i> <label
+						for="eSetupTime">Set-up/Load-in Time</label> <input
+						id="eSetupTime" type="text" class="timepicker" required=""
+						class="validate" aria-required="true" name="eSetupTime">
+				</div>
 			</div>
-			
+
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">event_available</i> <label
+						for="eCleanupDate">Clean-up/Load-out Date</label> <input
+						id="eCleanupDate" type="text" class="datepicker" required=""
+						class="validate" name="eCleanupDate">
+				</div>
+
+				<div class="input-field col s6">
+					<i class="material-icons prefix">access_time</i> <label
+						for="eCleanupTime">Clean-up/Load-out Time</label> <input
+						id="eCleanupTime" type="text" class="timepicker" required=""
+						class="validate" aria-required="true" name="eCleanupTime">
+				</div>
+			</div>
+
 			<div class="row">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> <input type="submit"
@@ -225,9 +398,8 @@ $( document ).ready(function() {
 					class="btn waves-effect waves-light" />
 			</div>
 		</form>
-		
+
 	</div>
-	
 
 </body>
 </html>

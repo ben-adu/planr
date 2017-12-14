@@ -517,6 +517,12 @@ $(document).ready(function() {
 			</div>
 		</div>
     </form>
+    
+    
+    
+    
+    
+    
     <footer class="page-footer">
           <div class="container">
             <div class="row">
