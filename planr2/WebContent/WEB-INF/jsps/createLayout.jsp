@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.19/fabric.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.20/fabric.js"></script>
 <script src="scripts/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
@@ -304,14 +304,15 @@ $(document).ready(function() {
 	var canvasScale = 1;
 	var SCALE_FACTOR = 1.1;
 	var zoomMax = 2.3;
-
+	var activeCanvas;
+	
 	function initCanvas() {
 
 		$('.canvas-container')
 				.each(
 						function(index) {
 							
-							var activeCanvas;
+							
 							var canvasContainer = $(this)[0];
 							
 							var canvas1 = $("canvas", this)[0];
@@ -333,6 +334,7 @@ $(document).ready(function() {
 							var canvasFifteen = new fabric.Canvas(canvas15);
 							var canvasSixteen = new fabric.Canvas(canvas16);
 							var canvasSeventeen = new fabric.Canvas(canvas17); */
+							
 							
 							
 							var img = new Image();
@@ -487,16 +489,22 @@ $(document).ready(function() {
 							
 							
 							var imageOffsetX, imageOffsetY;
-
+							
+							
 							function handleDragStart(e) {
 								[].forEach.call(images, function(img) {
 									img.classList.remove('img_dragging');
 								});
 								this.classList.add('img_dragging');
-
+								
 								var imageOffset = $(this).offset();
 								imageOffsetX = e.clientX - imageOffset.left;
 								imageOffsetY = e.clientY - imageOffset.top;
+								/* 
+								var imageOffset = $(canvas3).offset();
+								imageOffsetX3 = e.clientX - imageOffset.left;
+								imageOffsetY3 = e.clientY - imageOffset.top; */
+								
 							}
 
 							function handleDragOver(e) {
@@ -527,10 +535,20 @@ $(document).ready(function() {
 										.querySelector('.furniture img.img_dragging');
 								console.log('event: ', e);
 
-								var offset = $(canvas1).offset();
-								var y = e.clientY - (offset.top + imageOffsetY);
-								var x = e.clientX - (offset.left + imageOffsetX);
 
+								if (activeCanvas == canvas1){
+									var offset = $(canvas1).offset();
+									var y = e.clientY - (offset.top + imageOffsetY);
+									var x = e.clientX - (offset.left + imageOffsetX);
+								}
+								
+								if (activeCanvas == canvas3){
+									var offset3 = $(canvas3).offset();
+									var y = e.clientY - (offset3.top + imageOffsetY);
+									var x = e.clientX - (offset3.left + imageOffsetX);
+									
+								}
+		
 								var newImage = new fabric.Image(img, {
 									width : img.width,
 									height : img.height,
@@ -539,9 +557,9 @@ $(document).ready(function() {
 									hasControls : false
 								});
 								canvasOne.add(newImage);
+								canvasThree.add(newImage);
 								
-								
-								
+								 
 								return false;
 							}
 
@@ -558,6 +576,7 @@ $(document).ready(function() {
 										handleDragStart, true);
 								img.addEventListener('dragend', handleDragEnd,
 										true);
+								
 							});
 							canvasContainer.addEventListener('dragenter',
 									handleDragEnter, false);
@@ -568,8 +587,10 @@ $(document).ready(function() {
 							canvasContainer.addEventListener('drop',
 									handleDrop, false);
 						});
+
 	}
 	initCanvas();
+	
 /* 
 	var getFabricCanvases = (function() {
 		var fabricCanvasCollection;
@@ -586,8 +607,8 @@ $(document).ready(function() {
 	})(); */
 
 	
-	function changeView(value) {
-	    if (value == 1) {
+	function changeView(option) {
+	    if (option == 1) {
 	        activeCanvas = canvas1;
 	        
 	        $('#canvas1').parent().css('display', 'block');
@@ -600,9 +621,10 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        
 	    }
 
-	    if (value == 2) {
+	    if (option == 2) {
 	        activeCanvas = canvas2;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -617,7 +639,7 @@ $(document).ready(function() {
 	        $('#canvas10').parent().css('display', 'none');
 	    }
 	    
-	    if (value == 3) {
+	    if (option == 3) {
 	        activeCanvas = canvas3;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -630,9 +652,10 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        
 	    }
 	    
-	    if (value == 4) {
+	    if (option == 4) {
 	        activeCanvas = canvas4;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -647,7 +670,7 @@ $(document).ready(function() {
 	        $('#canvas10').parent().css('display', 'none');
 	    }
 	    
-	    if (value == 5) {
+	    if (option == 5) {
 	        activeCanvas = canvas5;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -662,7 +685,7 @@ $(document).ready(function() {
 	        $('#canvas10').parent().css('display', 'none');
 	    }
 	    
-	    if (value == 6) {
+	    if (option == 6) {
 	        activeCanvas = canvas6;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -677,7 +700,7 @@ $(document).ready(function() {
 	        $('#canvas10').parent().css('display', 'none');
 	    }
 	    
-	    if (value == 7) {
+	    if (option == 7) {
 	        activeCanvas = canvas7;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -692,7 +715,7 @@ $(document).ready(function() {
 	        $('#canvas10').parent().css('display', 'none');
 	    }
 	    
-	    if (value == 8) {
+	    if (option == 8) {
 	        activeCanvas = canvas7;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -707,7 +730,7 @@ $(document).ready(function() {
 	        $('#canvas10').parent().css('display', 'none');
 	    }
 	    
-	    if (value == 9) {
+	    if (option == 9) {
 	        activeCanvas = canvas7;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -722,7 +745,7 @@ $(document).ready(function() {
 	        $('#canvas10').parent().css('display', 'none');
 	    }
 	    
-	    if (value == 10) {
+	    if (option == 10) {
 	        activeCanvas = canvas7;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -1017,6 +1040,8 @@ $(document).ready(function() {
 		    });
 		
 	});
+	
+	
 	
 </script>
 
