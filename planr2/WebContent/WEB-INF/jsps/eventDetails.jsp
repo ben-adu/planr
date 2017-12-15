@@ -67,7 +67,9 @@
             return this.optional(element) || /^[a-zA-Z0-9]+$/i.test(value);
         }, "Please enter only alphanumeric characters");
 		
-		
+		jQuery.validator.addMethod("lettersonly", function(value, element) {
+			  return this.optional(element) || /^[a-z]+$/i.test(value);
+			}, "Letters only please");
 		
 		
 		
@@ -87,7 +89,7 @@
 				firstName : {
 					required : true,
 					minlength : 1,
-					ALPHANUMERICC:"required FIRSTNAME "
+					lettersonly: true
 				},
 				eventName : {
 					required : true,
@@ -97,7 +99,7 @@
 				lastName : {
 					required : true,
 					minlength : 1,
-					ALPHANUMERICC:"required LASTNAME"
+					lettersonly: true
 				},
 				contract : {
 					required : true,

@@ -9,6 +9,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -301,18 +306,19 @@ $(document).ready(function() {
     </div>
     </div>
     
+    
     <div id="test2" class="col s12">
     <!-- Set up dates -->
     <div class="container">
     	
     <c:url value="splashPadSetup" var="url" />
-	<form name="form" method="post" action="${url}" 
+	<form name="splashForm" id="splashForm" method="post" action="${url}" 
 			onsubmit="return verify()" class="col s12">
 		
     	<div class="row">
 				<div class="input-field col s8" id="q1s"><BR><BR><BR>
 					<select id="q1" name="q1" required="">
-						<option value="none" selected>Choose one</option>
+						<option value="" selected>Choose one</option>
 						<option value="two">2</option>
 						<option value="three">3</option>
 						<option value="four">4</option>
@@ -322,7 +328,7 @@ $(document).ready(function() {
 			
 			<div class="row">
 				<div class="input-field col s8" id="q2"><BR><BR><BR>
-					<select id="q2s">
+					<select id="q2s" required="" class="validate">
 						<option value="" selected>Choose one</option>
 						<option value="north">North</option>
 						<option value="south">South</option>
@@ -448,57 +454,106 @@ $(document).ready(function() {
     </div>
     </div>
     
+    <script type="text/javascript">
+	$(document).ready(function() {
+		$("#rentalForm").validate({
+			/* errorClass: "my-error-class",
+		    validClass: "my-valid-class", */
+			rules : {
+				
+				chairs : "required",
+				fences : "required",
+				barricades : "required",
+				toilets : "required",
+				hand : "required",
+				foot : "required",
+				tables : "required",
+				water : "required",
+			},
+			messages : {
+				eventIdentifier : {
+					required : "Please enter the name of the equipment"
+				},
+				price : {
+					required : "Please enter the price of the equipment",
+					number : "Please enter a price starting from $0.01"
+				}
+			},
+			errorElement : 'div',
+			errorPlacement : function(error, element) {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
+		
+		});
+		
+		$('#rentalForm input').on('keyup blur', function () {
+	        if ($('#rentalForm input').valid()) {
+	            $('#btnContinue2').prop('disabled', false);
+	        } else {
+	        	$("#btnContinue2").prop('disabled',true)
+	        }
+	    })
+	});
+	
+	</script>
+    
     <div id="test3" class="col s12">
     <div class="container">
     
     <c:url value="equipmentRentals" var="url" />
-		<form name="form" method="post" action="${url}"
-			onsubmit="return verify()" class="col s12">
+		<form name="rentalForm" method="post" action="${url}"
+			onsubmit="return verify()" id="rentalForm" class="col s12">
     	
     	<div class="row">
     	
     	<span>
     	All questions are mandatory. If a question does not apply to your event, enter "0"<BR>
     	
+	
     	
     	</span>
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input type="number" min="0" step="1" required="" class="validate" name="chairs" id="chairs" placeholder="Enter a number">
 					<h1><label>How many chairs are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input type="number" min="0" step="1" required="" class="validate" name="fences" id="fences" placeholder="Enter a number">
 					<h1><label>How many privacy fences are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input type="number" min="0" step="1" required="" class="validate" name="barricades" id="barricades" placeholder="Enter a number">
 					<h1><label>How many barricades are you bringing onsite?*</label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input type="number" min="0" step="1" required="" class="validate" name="toilets" id="toilets" placeholder="Enter a number">
 					<h1><label>How many port-o-lets are you bringing onsite?****</label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input type="number" min="0" step="1" required="" class="validate" name="hand" id="hand" placeholder="Enter a number">
 					<h1><label>How many hand-washing stations are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input type="number" min="0" step="1" required="" class="validate" name="foot" id="foot" placeholder="Enter a number">
 					<h1><label>How many foot-washing stations are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input type="number" min="0" step="1" required="" class="validate" name="tables" id="eventIdentifier" placeholder="Enter a number">
 					<h1><label>How many tables or picnic tables are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input type="number" min="0" step="1" required="" class="validate" name="water" id="water" placeholder="Enter a number">
 					<h1><label>How many portable water-filling stations are you bringing onsite?* </label></h1>
 				</div>
 		</div>
@@ -570,16 +625,26 @@ Equipment Rental Guidelines apply to portable washrooms.
     
 	</div>
     </div>
-    
+    <script type="text/javascript">
+	$(document).ready(function() {
+		$("#mcsForm").validate({
+	rules : {
+				
+		metalBarricades : "required"
+			}
+		});
+	});
+	</script>
     
     <div id="test4" class="col s12">
     <div class="container">
-   
+   <form name="mcsForm" method="post" action="${url}"
+			onsubmit="return verify()" id="mcsForm" class="col s12">
    			<div class="row col s12">
    				<div class="input-field col s8" required="">
 				    <span><B>Metal barricades</B></span><BR>
 				    <span>7' x 3.67'</span>
-				    <select required="">
+				    <select id="metalBarricades" name="metalBarricades" required="" class="validate">
 				      <option value="" disabled selected>Choose one</option>
 				      <option value="self">Set up yourself</option>
 				      <option value="city">Set up by City staff at additional cost**</option>
@@ -644,6 +709,7 @@ Equipment Rental Guidelines apply to portable washrooms.
 							<label for="notes1">Additional notes about equipment</label>
 						</div>
 					</div>
+					</form>
 
 		<div class="row">
 			<div class="col s6">
@@ -662,10 +728,61 @@ Equipment Rental Guidelines apply to portable washrooms.
     </div>
     </div>
     
+    <script type="text/javascript">
+	$(document).ready(function() {
+		$("#vendors").validate({
+			/* errorClass: "my-error-class",
+		    validClass: "my-valid-class", */
+			rules : {
+				
+				inflate1s : "required",
+				inflate1size : "required",
+				inflate2s : "required",
+				inflate2size : "required",
+				games1s : "required",
+				foodTruck1s : "required",
+				
+			},
+			messages : {
+				eventIdentifier : {
+					required : "Please enter the name of the equipment"
+				},
+				price : {
+					required : "Please enter the price of the equipment",
+					number : "Please enter a price starting from $0.01"
+				}
+			},
+			errorElement : 'div',
+			errorPlacement : function(error, element) {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
+		
+		});
+		
+		/* $('#rentalForm input').on('keyup blur', function () {
+	        if ($('#rentalForm input').valid()) {
+	            $('#btnContinue2').prop('disabled', false);
+	        } else {
+	        	$("#btnContinue2").prop('disabled',true)
+	        }
+	    }) */
+	});
+	
+	</script>
+    
+    
+    
+    
    <div id="test5" class="col s12">
     
     <div class="container">
-     
+     <form name="vendors" method="post" action="${url}"
+			onsubmit="return verify()" id="vendors" class="col s12">
      <div class="row">
      	<div id="inflate1" class="input-field col s12"><BR><BR><BR>
 						<input id="inflate1s" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
