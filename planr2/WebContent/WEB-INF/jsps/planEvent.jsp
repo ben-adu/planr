@@ -9,11 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
-	<script
-	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
-<script
-	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -100,8 +95,9 @@ $(document).ready(function() {
 	$(document).ready(function() {
 		
 		$('select').material_select();
-		  $("#q1").change(function() {
-              if ($("#q1").val() == "two"){
+		
+		  $("#splashPadNo").change(function() {
+              if ($("#splashPadNo").val() == "two"){
                   $("#q2").show();
                   $("#q3").show();
                   $("#q4").show();
@@ -114,7 +110,7 @@ $(document).ready(function() {
                   $("#q11").hide();
                   
                   
-              }else if ($("#q1").val() == "three"){
+              }else if ($("#splashPadNo").val() == "three"){
                   $("#q2").show();
                   $("#q3").hide();
                   $("#q4").show();
@@ -126,7 +122,7 @@ $(document).ready(function() {
                   $("#q10").hide();
                   $("#q11").hide();
                   
-              }else if ($("#q1").val() == "four"){
+              }else if ($("#splashPadNo").val() == "four"){
             	  $("#q2").hide();
           		  $("#q3").hide();
             	  $("#q4").show();
@@ -153,8 +149,24 @@ $(document).ready(function() {
             	  
           });
 		  
+		  $("#splashPadOne").change(function() {
+			  
+              if ($("#splashPadOne").val() == "North"){
+            	  $("#splashPadTwo option[value='North']").remove();
+              }else if ($("#splashPadOne").val() == "south"){
+            	  $("#splashPadTwo option[value='south']").remove();
+              }else if ($("#splashPadOne").val() == "east"){
+            	  $("#splashPadTwo option[value='east']").remove();
+              }else if ($("#splashPadOne").val() == "west"){
+            	  $("#splashPadTwo option[value='west']").remove();
+		  }
+		  });        
+		  
+		  
+		  
+		  
 		  $("#inflate1").change(function() {
-              if ($("#inflate1s").val() != 0){
+              if ($("#inflateOne").val() != 0){
             	  $("#size1").show();
             	  $("#size1").attr('required');
             	  $("#size1").attr('validate');
@@ -166,7 +178,7 @@ $(document).ready(function() {
 		  });
 		  
 		  $("#inflate2").change(function() {
-              if ($("#inflate2s").val() != 0){
+              if ($("#inflateTwo").val() != 0){
             	  $("#size2").show();
             	  $("#size2").attr('required');
               } else{
@@ -176,7 +188,7 @@ $(document).ready(function() {
 		  });
 		  
 		  $("#games1").change(function() {
-              if ($("#games1s").val() != 0){
+              if ($("#gamesNum").val() != 0){
             	  $("#games2").show();
             	  $("#games3").show();
             	  $("#games2").attr('required');
@@ -190,7 +202,7 @@ $(document).ready(function() {
 		  });
 		  
 		  $("#trailer1").change(function() {
-              if ($("#trailer1s").val() != 0){
+              if ($("#trailerNum").val() != 0){
             	  $("#trailer2").show();
               } else{
             	  $("#trailer2").hide();
@@ -198,7 +210,7 @@ $(document).ready(function() {
 		  });
 		  
 		  $("#displayCar1").change(function() {
-              if ($("#displayCar1s").val() != 0){
+              if ($("#displayCarNum").val() != 0){
             	  $("#displayCar2").show();
               } else{
             	  $("#displayCar2").hide();
@@ -206,7 +218,7 @@ $(document).ready(function() {
 		  });
 		  
 		  $("#displayTruck1").change(function() {
-              if ($("#displayTruck1s").val() != 0){
+              if ($("#displayTruckNum").val() != 0){
             	  $("#displayTruck2").show();
               } else{
             	  $("#displayTruck2").hide();
@@ -216,7 +228,6 @@ $(document).ready(function() {
 	});
 </script>
 
-</head>
 <body>
 	<!-- NAV -->
 	<sec:authorize access="hasRole('ROLE_USER')">
@@ -227,7 +238,7 @@ $(document).ready(function() {
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
 			<c:url value="planEvent" var="client" />
@@ -306,19 +317,18 @@ $(document).ready(function() {
     </div>
     </div>
     
-    
     <div id="test2" class="col s12">
     <!-- Set up dates -->
     <div class="container">
     	
     <c:url value="splashPadSetup" var="url" />
-	<form name="splashForm" id="splashForm" method="post" action="${url}" 
+	<form name="form" method="post" action="${url}" 
 			onsubmit="return verify()" class="col s12">
 		
     	<div class="row">
 				<div class="input-field col s8" id="q1s"><BR><BR><BR>
-					<select id="q1" name="q1" required="">
-						<option value="" selected>Choose one</option>
+					<select id="splashPadNo" name="splashPadNo" required="">
+						<option value="none" selected>Choose one</option>
 						<option value="two">2</option>
 						<option value="three">3</option>
 						<option value="four">4</option>
@@ -328,7 +338,7 @@ $(document).ready(function() {
 			
 			<div class="row">
 				<div class="input-field col s8" id="q2"><BR><BR><BR>
-					<select id="q2s" required="" class="validate">
+					<select id="splashPadOne" name="splashPadOne">
 						<option value="" selected>Choose one</option>
 						<option value="north">North</option>
 						<option value="south">South</option>
@@ -340,7 +350,7 @@ $(document).ready(function() {
 			
 			<div class="row">
 				<div class="input-field col s8" id="q3"><BR><BR><BR>
-					<select id="q3s">
+					<select id="splashPadTwo" name="splashPadTwo">
 						<option value="" selected>Choose one</option>
 						<option value="north">North</option>
 						<option value="south">South</option>
@@ -352,7 +362,7 @@ $(document).ready(function() {
 			
 			<div class="row">
 				<div class="input-field col s8" id="q4"><BR><BR><BR>
-					<select id="q4s">
+					<select id="pressureOne" name="pressureOne">
 						<option value="" selected>Choose one</option>
 						<option value="north">North</option>
 						<option value="south">South</option>
@@ -363,7 +373,7 @@ $(document).ready(function() {
 			
 			
 				<div class="input-field col s4" id="q5"><BR><BR><BR>
-					<select id="q5s">
+					<select id="pressureLevelOne" name="pressureLevelOne">
 						<option value="" selected>Choose one</option>
 						<option value="55">55%</option>
 						<option value="75">75%</option>
@@ -374,7 +384,7 @@ $(document).ready(function() {
 				
 				<div class="row">
 				<div class="input-field col s8" id="q6"><BR><BR><BR>
-					<select id="q6s">
+					<select id="pressureTwo" name="pressureTwo">
 						<option value="" selected>Choose one</option>
 						<option value="north">North</option>
 						<option value="south">South</option>
@@ -385,7 +395,7 @@ $(document).ready(function() {
 			
 			
 				<div class="input-field col s4" id="q7"><BR><BR><BR>
-					<select id="q7s">
+					<select id="pressureLevelTwo" name="pressureLevelTwo">
 						<option value="" selected>Choose one</option>
 						<option value="55">55%</option>
 						<option value="75">75%</option>
@@ -396,7 +406,7 @@ $(document).ready(function() {
 				
 				<div class="row">
 				<div class="input-field col s8" id="q8"><BR><BR><BR>
-					<select id="q8s">
+					<select id="pressureThree" name="pressureThree">
 						<option value="" selected>Choose one</option>
 						<option value="north">North</option>
 						<option value="south">South</option>
@@ -407,7 +417,7 @@ $(document).ready(function() {
 			
 			
 				<div class="input-field col s4" id="q9"><BR><BR><BR>
-					<select id="q9s">
+					<select id="pressureLevelThree" name="pressureLevelThree">
 						<option value="" selected>Choose one</option>
 						<option value="55">55%</option>
 						<option value="75">75%</option>
@@ -418,7 +428,7 @@ $(document).ready(function() {
 				
 				<div class="row">
 				<div class="input-field col s8" id="q10"><BR><BR><BR>
-					<select id="q10s">
+					<select id="pressureFour" name="pressureFour">
 						<option value="" selected>Choose one</option>
 						<option value="north">North</option>
 						<option value="south">South</option>
@@ -429,7 +439,7 @@ $(document).ready(function() {
 			
 			
 				<div class="input-field col s4" id="q11"><BR><BR><BR>
-					<select id="q11s">
+					<select id="pressureLevelFour" name="pressureLevelFour">
 						<option value="" selected>Choose one</option>
 						<option value="55">55%</option>
 						<option value="75">75%</option>
@@ -454,106 +464,57 @@ $(document).ready(function() {
     </div>
     </div>
     
-    <script type="text/javascript">
-	$(document).ready(function() {
-		$("#rentalForm").validate({
-			/* errorClass: "my-error-class",
-		    validClass: "my-valid-class", */
-			rules : {
-				
-				chairs : "required",
-				fences : "required",
-				barricades : "required",
-				toilets : "required",
-				hand : "required",
-				foot : "required",
-				tables : "required",
-				water : "required",
-			},
-			messages : {
-				eventIdentifier : {
-					required : "Please enter the name of the equipment"
-				},
-				price : {
-					required : "Please enter the price of the equipment",
-					number : "Please enter a price starting from $0.01"
-				}
-			},
-			errorElement : 'div',
-			errorPlacement : function(error, element) {
-				var placement = $(element).data('error');
-				if (placement) {
-					$(placement).append(error)
-				} else {
-					error.insertAfter(element);
-				}
-			}
-		
-		});
-		
-		$('#rentalForm input').on('keyup blur', function () {
-	        if ($('#rentalForm input').valid()) {
-	            $('#btnContinue2').prop('disabled', false);
-	        } else {
-	        	$("#btnContinue2").prop('disabled',true)
-	        }
-	    })
-	});
-	
-	</script>
-    
     <div id="test3" class="col s12">
     <div class="container">
     
     <c:url value="equipmentRentals" var="url" />
-		<form name="rentalForm" method="post" action="${url}"
-			onsubmit="return verify()" id="rentalForm" class="col s12">
+		<form name="form" method="post" action="${url}"
+			onsubmit="return verify()" class="col s12">
     	
     	<div class="row">
     	
     	<span>
     	All questions are mandatory. If a question does not apply to your event, enter "0"<BR>
     	
-	
     	
     	</span>
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" name="chairs" id="chairs" placeholder="Enter a number">
+						<input id="chairNum" name="chairNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many chairs are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" name="fences" id="fences" placeholder="Enter a number">
+						<input id="fenceNum" name="fenceNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many privacy fences are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" name="barricades" id="barricades" placeholder="Enter a number">
+						<input id="barricadeNum" name="barricadeNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many barricades are you bringing onsite?*</label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" name="toilets" id="toilets" placeholder="Enter a number">
+						<input id="shitterNum" name="shitterNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many port-o-lets are you bringing onsite?****</label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" name="hand" id="hand" placeholder="Enter a number">
+						<input id="handWashNum" name="handWashNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many hand-washing stations are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" name="foot" id="foot" placeholder="Enter a number">
+						<input id="footWashNum" name="footWashNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many foot-washing stations are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" name="tables" id="eventIdentifier" placeholder="Enter a number">
+						<input id="picnicNum" name="picnicNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many tables or picnic tables are you bringing onsite?* </label></h1>
 				</div>
 		
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="0" step="1" required="" class="validate" name="water" id="water" placeholder="Enter a number">
+						<input id="waterStationNum" name="waterStationNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many portable water-filling stations are you bringing onsite?* </label></h1>
 				</div>
 		</div>
@@ -625,26 +586,16 @@ Equipment Rental Guidelines apply to portable washrooms.
     
 	</div>
     </div>
-    <script type="text/javascript">
-	$(document).ready(function() {
-		$("#mcsForm").validate({
-	rules : {
-				
-		metalBarricades : "required"
-			}
-		});
-	});
-	</script>
+    
     
     <div id="test4" class="col s12">
     <div class="container">
-   <form name="mcsForm" method="post" action="${url}"
-			onsubmit="return verify()" id="mcsForm" class="col s12">
+   
    			<div class="row col s12">
    				<div class="input-field col s8" required="">
 				    <span><B>Metal barricades</B></span><BR>
 				    <span>7' x 3.67'</span>
-				    <select id="metalBarricades" name="metalBarricades" required="" class="validate">
+				    <select required="" id="metalBarricade" name="metalBarricade">
 				      <option value="" disabled selected>Choose one</option>
 				      <option value="self">Set up yourself</option>
 				      <option value="city">Set up by City staff at additional cost**</option>
@@ -656,7 +607,7 @@ Equipment Rental Guidelines apply to portable washrooms.
 				<div class="input-field col s8" required="">
 				    <span><B>Picnic tables</B></span><BR>
 				    <span>regular 5' x 6', accessible 5' x 7'</span>
-				    <select required="">
+				    <select required="" id="picnicTable" name="picnicTable">
 				      <option value="" disabled selected>Choose one</option>
 				      <option value="self">Set up yourself</option>
 				      <option value="city">Set up by City staff at additional cost**</option>
@@ -668,7 +619,7 @@ Equipment Rental Guidelines apply to portable washrooms.
 				<div class="input-field col s8" required="">
 				    <span><B>White picket fences</B></span><BR>
 				    <span>6' x 3.4'</span>
-				    <select required="">
+				    <select required="" id="whiteFence" name="whiteFence">
 				      <option value="" disabled selected>Choose one</option>
 				      <option value="remain">Remain in current default location</option>
 				      <option value="remove">Remove from site</option>
@@ -681,7 +632,7 @@ Equipment Rental Guidelines apply to portable washrooms.
 				<div class="input-field col s8" required="">
 				    <span><B>Umbrellas</B></span><BR>
 				    <span>10' x 10'</span>
-				    <select required="">
+				    <select required="" id="umbrella" name="umbrella">
 				      <option value="" disabled selected>Choose one</option>
 				      <option value="remain">Remain in current default location</option>
 				      <option value="remove">Remove from site</option>
@@ -693,7 +644,7 @@ Equipment Rental Guidelines apply to portable washrooms.
 			<div class="row col s12">	
 				<div class="input-field col s8" required="">
 				    <span><B>Bistro tables and chairs</B></span><BR>
-				    <select required="">
+				    <select required="" id="bistroTable" name="bistroTable">
 				      <option value="" disabled selected>Choose one</option>
 				      <option value="self">Set up yourself</option>
 				      <option value="remain">Remain in current default location</option>
@@ -705,11 +656,10 @@ Equipment Rental Guidelines apply to portable washrooms.
 
 					<div class="row col s12">
 						<div class="input-field col s8">
-							<textarea id="notes1" class="materialize-textarea"></textarea>
+							<textarea id="rentalNotes" name="rentalNotes" class="materialize-textarea"></textarea>
 							<label for="notes1">Additional notes about equipment</label>
 						</div>
 					</div>
-					</form>
 
 		<div class="row">
 			<div class="col s6">
@@ -728,106 +678,55 @@ Equipment Rental Guidelines apply to portable washrooms.
     </div>
     </div>
     
-    <script type="text/javascript">
-	$(document).ready(function() {
-		$("#vendors").validate({
-			/* errorClass: "my-error-class",
-		    validClass: "my-valid-class", */
-			rules : {
-				
-				inflate1s : "required",
-				inflate1size : "required",
-				inflate2s : "required",
-				inflate2size : "required",
-				games1s : "required",
-				foodTruck1s : "required",
-				
-			},
-			messages : {
-				eventIdentifier : {
-					required : "Please enter the name of the equipment"
-				},
-				price : {
-					required : "Please enter the price of the equipment",
-					number : "Please enter a price starting from $0.01"
-				}
-			},
-			errorElement : 'div',
-			errorPlacement : function(error, element) {
-				var placement = $(element).data('error');
-				if (placement) {
-					$(placement).append(error)
-				} else {
-					error.insertAfter(element);
-				}
-			}
-		
-		});
-		
-		/* $('#rentalForm input').on('keyup blur', function () {
-	        if ($('#rentalForm input').valid()) {
-	            $('#btnContinue2').prop('disabled', false);
-	        } else {
-	        	$("#btnContinue2").prop('disabled',true)
-	        }
-	    }) */
-	});
-	
-	</script>
-    
-    
-    
-    
    <div id="test5" class="col s12">
     
     <div class="container">
-     <form name="vendors" method="post" action="${url}"
-			onsubmit="return verify()" id="vendors" class="col s12">
+     
      <div class="row">
      	<div id="inflate1" class="input-field col s12"><BR><BR><BR>
-						<input id="inflate1s" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input id="inflateOne" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many Inflatables (sports zone type) are you bringing onsite?***</label></h1>
 		</div>
      </div>
      
      <div class="row">
      	<div id ="size1" class="input-field col s12"><BR><BR><BR>
-						<input id="inflate1size" type="text">
+						<input id="inflateOneSize" type="text">
 					<h1><label>Provide the size of each sports zone type inflatable</label></h1>
 		</div>
      </div>
      
      <div class="row">
      	<div id="inflate2" class="input-field col s12"><BR><BR><BR>
-						<input id="inflate2s" type="number" min="0" max="3" step="1" required="" class="validate" placeholder="Enter a number">
+						<input id="inflateTwo" type="number" min="0" max="3" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many Inflatables (bouncy castle type) are you bringing onsite?***</label></h1>
 		</div>
      </div>
      
      <div class="row">
      	<div id ="size2" class="input-field col s12"><BR><BR><BR>
-						<input id="inflate2size" type="text">
+						<input id="inflateTwoSize" type="text">
 					<h1><label>Provide the size of bouncy castle type inflatable</label></h1>
 		</div>
      </div>
      
      <div class="row">
      	<div id="games1" class="input-field col s12"><BR><BR><BR>
-						<input id="games1s" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+						<input id="gamesNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>Are you bringing rides or games onsite (ex: train, plush animals, tennis)?***</label></h1>
 		</div>
      </div>
      
      <div class="row">
      	<div id ="games2" class="input-field col s12"><BR><BR><BR>
-						<input id="games3type" type="text">
+						<input id="gamesType" type="text">
 					<h1><label>If bringing rides or games onsite, what kind?***</label></h1>
 		</div>
      </div>
      
      <div class="row">
      	<div id ="games3" class="input-field col s12"><BR><BR><BR>
-			<input id="games3size" type="text">
+			<input id="gamesSize" type="text">
 				<h1><label>Provide the size of the area required for ride or game set-up</label></h1>
 		</div>
      </div>
@@ -835,50 +734,50 @@ Equipment Rental Guidelines apply to portable washrooms.
      
 		<div class="row">
    			<div id="foodTruck1" class="input-field col s12"><BR><BR><BR>
-				<input id="foodTruck1s" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+				<input id="foodTruckNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many food trucks are you bringing onsite?</label></h1>
 			</div>
    		</div>
    		
    		<div class="row">
    			<div id="trailer1" class="input-field col s12"><BR><BR><BR>
-				<input id="trailer1s" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+				<input id="trailerNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many trailers or food storage vehicles are you bringing onsite?</label></h1>
 			</div>
    		</div>
    		
    		<div class="row">
 	     	<div id ="trailer2" class="input-field col s12"><BR><BR><BR>
-					<textarea id="trailer2s" class="materialize-textarea"></textarea>
-						<h1><label for="trailer2s">If bringing trailers or food storage vehicles onsite, provide the dimensions for each</label></h1>
+					<textarea id="trailerDimension" class="materialize-textarea"></textarea>
+						<h1><label for="trailerDimension">If bringing trailers or food storage vehicles onsite, provide the dimensions for each</label></h1>
 			</div>
      </div>
      
      <div class="row">
    			<div id="displayCar1" class="input-field col s12"><BR><BR><BR>
-				<input id="displayCar1s" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+				<input id="displayCarNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many display cars are you bringing onsite?</label></h1>
 			</div>
    		</div>
    		
    		<div class="row">
 	     	<div id ="displayCar2" class="input-field col s12"><BR><BR><BR>
-					<textarea id="displayCar2s" class="materialize-textarea"></textarea>
-						<h1><label for="displayCar2s">If bringing display cars onsite, provide the details for each </label></h1>
+					<textarea id="displayCarDetails" class="materialize-textarea"></textarea>
+						<h1><label for="displayCarDetails">If bringing display cars onsite, provide the details for each </label></h1>
 			</div>
      </div>
      
      <div class="row">
    			<div id="displayTruck1" class="input-field col s12"><BR><BR><BR>
-				<input id="displayTruck1s" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
+				<input id="displayTruckNum" type="number" min="0" step="1" required="" class="validate" placeholder="Enter a number">
 					<h1><label>How many display trucks are you bringing onsite?</label></h1>
 			</div>
    		</div>
    		
    		<div class="row">
 	     	<div id ="displayTruck2" class="input-field col s12"><BR><BR><BR>
-					<textarea id="displayTruck2s" class="materialize-textarea"></textarea>
-						<h1><label for="displayCar2s">If bringing display trucks onsite, provide the details for each</label></h1>
+					<textarea id="displayTruckDetails" class="materialize-textarea"></textarea>
+						<h1><label for="displayTruckDetails">If bringing display trucks onsite, provide the details for each</label></h1>
 			</div>
      </div>
      
@@ -914,7 +813,7 @@ Equipment Rental Guidelines apply to portable washrooms.
 			
     	<div class="row">
 				<div class="input-field col s12"><BR><BR><BR>
-						<input type="number" min="1" step="1" required="" class="validate">
+						<input id="attendeeNum" name="attendeeNum" type="number" min="1" step="1" required="" class="validate">
 					<h1><label>How many attendees do you expect in total?</label></h1>
 				</div>
 		</div>
@@ -922,7 +821,7 @@ Equipment Rental Guidelines apply to portable washrooms.
 		<div class="row">
 		
 				<div class="input-field col s12" required="">
-				    <select required="">
+				    <select id="acknowledge" name="acknowledge" required="">
 				      <option value="" disabled selected>Choose one</option>
 				      <option value="yes">Yes</option>
 				      <option value="no">No</option>

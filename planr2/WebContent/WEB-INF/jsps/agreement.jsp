@@ -1,25 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
 <script src="scripts/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
-<title>Site Layout</title>
-
+<title>Additional Details</title>
 <script>
 	(function($) {
 		$(function() {
@@ -29,7 +21,14 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
-</head>
+<script>
+	
+	$(document).ready(function() {
+		$('select').material_select();
+
+	});
+</script>
+
 <body>
 	<!-- NAV -->
 	<sec:authorize access="hasRole('ROLE_USER')">
@@ -40,8 +39,8 @@
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a><a
-						href="#!email"><span class="white-text email">ben@mail.com</span></a>
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a>
+					<a href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
 			<c:url value="planEvent" var="client" />
 			<li><a href="planEvent" class="waves-effect"><i
@@ -69,46 +68,50 @@
 	</sec:authorize>
 	<!--  END OF NAV -->
 	
-
-	<!-- Body -->
-
 	<div class="container">
-	
-		<h4>Welcome Ankit Shah</h4>
-		<div class="row">
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="createLayout">Create Site Layout</a>
-			</div>
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="manageLayouts">Manage Site Layout</a>
-			</div>
-
-		</div>
-		<div class="row">
-		<!--  
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="viewMap">View Site Map</a>
-			</div>
-			-->
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="electrical">View Electrical Map</a>
-			</div>
-			<div class="col s6">
-				<a class="waves-effect waves-light btn-large" style="display: block"
-					href="guidelines">Guidelines</a>
-			</div>
-
-		</div>
-		<div class="row">
+         <h4 style="text-align: center">Additional Details</h4>
+    
+     <c:url value="additionalDetails" var="url" />
+		<form name="form" method="post" action="${url}"
+			onsubmit="return verify()" class="col s12">
 			
+			
+    	<div class="row">
+				<div class="input-field col s12"><BR><BR><BR>
+						<input id="attendeeNum" name="attendeeNum" type="number" min="1" step="1" required="" class="validate">
+					<h1><label>How many attendees do you expect in total?</label></h1>
+				</div>
 		</div>
-
-	</div>
-	
-
+		
+		<div class="row">
+		
+				<div class="input-field col s12" required="">
+				    <select id="acknowledge" name="acknowledge" required="">
+				      <option value="" disabled selected>Choose one</option>
+				      <option value="yes">Yes</option>
+				      <option value="no">No</option>
+				    </select>
+				    <label>I confirm that I have read and understood the MCS Guidelines</label>
+				    <BR>
+				    <span> Please refer the following link to find a copy of <a href="guidelines" target="_blank">MCS Guidelines</a></span>
+			  </div>
+		</div>	
+			
+		<BR><BR><BR>
+		<div class="row">
+			<div class="col s6">
+				  <a id="btnBack4" class="waves-effect waves-light btn-large" style="display: block"
+					href="vendors" >Back</a> 
+			</div>  
+			<div class="col s6">
+			
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+				<a id="createLayout" type="submit" onclick="verify()" class="waves-effect waves-light btn-large" style="display: block"
+					href="createLayout">Create Layout</a>
+			</div>
+		</div>
+    </form>
+    
+    </div>
 </body>
 </html>

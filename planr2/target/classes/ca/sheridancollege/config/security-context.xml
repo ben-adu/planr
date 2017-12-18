@@ -43,6 +43,11 @@
 		<security:intercept-url pattern="/guidelines" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/electrical" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/planEvent" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/splashPad" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/rentals" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/mcsRentals" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/vendors" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/agreement" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/saveLayout" access="permitAll" />
 		<security:intercept-url pattern="/saveCalendar" access="permitAll" />
 		<security:intercept-url pattern="/calendar" access="permitAll" />

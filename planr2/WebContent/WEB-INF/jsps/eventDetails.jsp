@@ -34,7 +34,7 @@
 }
 </style>
 
-<title>Event Details</title>
+<title>Create New Event</title>
 
 <script>
 	(function($) {
@@ -67,9 +67,7 @@
             return this.optional(element) || /^[a-zA-Z0-9]+$/i.test(value);
         }, "Please enter only alphanumeric characters");
 		
-		jQuery.validator.addMethod("lettersonly", function(value, element) {
-			  return this.optional(element) || /^[a-z]+$/i.test(value);
-			}, "Letters only please");
+		
 		
 		
 		
@@ -89,7 +87,7 @@
 				firstName : {
 					required : true,
 					minlength : 1,
-					lettersonly: true
+					ALPHANUMERICC:"required FIRSTNAME "
 				},
 				eventName : {
 					required : true,
@@ -99,7 +97,7 @@
 				lastName : {
 					required : true,
 					minlength : 1,
-					lettersonly: true
+					ALPHANUMERICC:"required LASTNAME"
 				},
 				contract : {
 					required : true,
@@ -242,8 +240,8 @@ $( document ).ready(function() {
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">ANKIT
-							SHAH</span></a> <a href="#!email"><span class="white-text email">ben@mail.com</span></a>
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> 
+					<a href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
 			<c:url value="planEvent" var="client" />
 			<li><a href="planEvent" class="waves-effect"><i
@@ -276,7 +274,7 @@ $( document ).ready(function() {
 
 	<div class="container">
 
-		<h4 style="text-align: center">Event Details</h4>
+		<h4 style="text-align: center">Create New Event</h4>
 		<BR>
 		<BR>
 		<c:url value="creatingEvent" var="url" />

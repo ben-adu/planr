@@ -98,6 +98,36 @@ public class HomeController
 		return "planEvent";
 	}
 	
+	@RequestMapping(value = "/splashPad", method = RequestMethod.GET)
+	public String splashPad(Model model)
+	{
+		return "splashPad";
+	}
+	
+	@RequestMapping(value = "/rentals", method = RequestMethod.GET)
+	public String rentals(Model model)
+	{
+		return "rentals";
+	}
+	
+	@RequestMapping(value = "/mcsRentals", method = RequestMethod.GET)
+	public String mcsRentals(Model model)
+	{
+		return "mcsRentals";
+	}
+	
+	@RequestMapping(value = "/vendors", method = RequestMethod.GET)
+	public String vendors(Model model)
+	{
+		return "vendors";
+	}
+	
+	@RequestMapping(value = "/agreement", method = RequestMethod.GET)
+	public String agreement(Model model)
+	{
+		return "agreement";
+	}
+	
 	@RequestMapping(value = "/approveSiteLayout", method = RequestMethod.GET)
 	public String approveSiteLayout(Model model)
 	{

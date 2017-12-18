@@ -70,21 +70,27 @@
 					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
-			<c:url value="/clientManagement" var="client" />
-			<li><a href="${client }" class="waves-effect"><i
+					
+			<c:url value="eventDetails" var="siteLayout" />
+			<li><a href="eventDetails" class="waves-effect"><i
+					class="material-icons">map</i>Create New Event</a></li>
+					
+			<c:url value="calendar" var="siteLayout" />
+			<li><a href="calendar" class="waves-effect"><i
+					class="material-icons">event</i>Calendar</a></li>
+					
+			<c:url value="clientManagement" var="client" />
+			<li><a href="clientManagement" class="waves-effect"><i
 					class="material-icons">perm_identity</i>Client Management</a></li>
-			<c:url value="/clientManagement" var="client" />
-			<li><a href="#" class="waves-effect"><i
-					class="material-icons">business</i>Generate Reports</a></li>
-			<c:url value="/inventoryManagement" var="inventory" />
-			<li><a href="${ inventory}" class="waves-effect"><i
-					class="material-icons">devices_other</i>Inventory management</a></li>
-			<c:url value="#" var="siteLayout" />
-			<li><a href="#" class="waves-effect"><i
-					class="material-icons">map</i>Approved Site Layouts</a></li>
-			<c:url value="/inventoryManagement" var="client" />
-			<li><a href="#" class="waves-effect"><i
+			
+			<c:url value="inventoryManagement" var="inventory" />
+			<li><a href="inventoryManagement" class="waves-effect"><i
+					class="material-icons">assessment</i>Inventory management</a></li>
+			
+			<c:url value="secure" var="client" />
+			<li><a href="secure" class="waves-effect"><i
 					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+					
 			<c:url value="/logout" var="logout" />
 			<li><a href="${logout}" class="waves-effect"><i
 					class="material-icons">perm_identity</i>Logout</a></li>
@@ -110,19 +116,24 @@
 				</div></li>
 			<c:url value="planEvent" var="client" />
 			<li><a href="planEvent" class="waves-effect"><i
-					class="material-icons">perm_identity</i>Plan Event</a></li>
+					class="material-icons">map</i>Plan Event</a></li>
+					
 			<c:url value="manageLayout" var="client" />
 			<li><a href="manageLayouts" class="waves-effect"><i
-					class="material-icons">business</i>Manage Site Layouts</a></li>
+					class="material-icons">devices_other</i>Manage Site Layouts</a></li>
+					
 			<c:url value="electrical" var="inventory" />
 			<li><a href="electrical" class="waves-effect"><i
-					class="material-icons">devices_other</i>View Electrical Map</a></li>
+					class="material-icons">business</i>View Electrical Map</a></li>
+					
 			<c:url value="guidelines" var="siteLayout" />
 			<li><a href="guidelines" class="waves-effect"><i
-					class="material-icons">map</i>Planning Guidelines</a></li>
+					class="material-icons">assignment</i>Planning Guidelines</a></li>
+					
 			<c:url value="secure" var="client" />
 			<li><a href="secure" class="waves-effect"><i
 					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+					
 			<c:url value="logout" var="logout" />
 			<li><a href="${logout}" class="waves-effect"><i
 					class="material-icons">perm_identity</i>Logout</a></li>
@@ -143,55 +154,112 @@
 		<!-- View Employees See -->
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<h4>Welcome ${pageContext.request.userPrincipal.name}</h4>
+			<BR>
 			<div class="row">
+				
 				<div class="col s6">
-					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="clientManagement"><i
-						class="material-icons left">perm_identity</i>Client Management</a>
-				</div>
-				<div class="col s6">
-					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="inventoryManagement"><i
-						class="material-icons left">devices_other</i>Inventory Management</a>
-				</div>
+							<a href="eventDetails">
+								<div class="card hoverable teal">
+									<div class="card-content white-text ">
+									<i class="material-icons medium left">map</i>
+										<h4 class="center-align">Create New Event</h4>
+									</div>
+								</div>
+							</a>
+					</div>
+					
+					<div class="col s6">
+							<a href="calendar">
+								<div class="card hoverable teal">
+									<div class="card-content white-text ">
+									<i class="material-icons medium left">event</i>
+										<h4 class="center-align">Calendar</h4>
+									</div>
+								</div>
+							</a>
+					</div>
+				
 			</div>
+			
 			<div class="row">
-				<div class="col s6">
-					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="generateReports"><i class="material-icons left">business</i>Generate
-						Reports</a>
+			
+					<div class="col s6">
+						<a href="clientManagement">
+							<div class="card hoverable teal">
+								<div class="card-content white-text ">
+								<i class="material-icons medium left">perm_identity</i>
+									<h4 class="center-align">Client Management</h4>
+								</div>
+							</div>
+						</a>
 				</div>
+				
 				<div class="col s6">
-					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="createLayout2"><i class="material-icons left">map</i>Create Site Layout</a>
+						<a href="inventoryManagement">
+							<div class="card hoverable teal">
+								<div class="card-content white-text ">
+								<i class="material-icons medium left">assessment</i>
+									<h4 class="center-align">Inventory Management</h4>
+								</div>
+							</div>
+						</a>
 				</div>
+				
 			</div>
+			
 		</sec:authorize>
 
 		<!-- ROLE_USER's view -->
 		<sec:authorize access="hasRole('ROLE_USER')">
 			<h4>Welcome ${pageContext.request.userPrincipal.name}</h4>
+			<BR>
 			<div class="row">
 				<div class="col s6">
-					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="planEvent"><i
-						class="material-icons left">perm_identity</i>Plan Event</a>
-				</div>
-				<div class="col s6">
-					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="manageLayouts"><i
-						class="material-icons left">devices_other</i>Manage Site Layouts</a>
-				</div>
+							<a href="planEvent">
+								<div class="card hoverable teal">
+									<div class="card-content white-text ">
+									<i class="material-icons medium left">map</i>
+										<h4 class="center-align">Plan Event</h4>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<div class="col s6">
+							<a href="manageLayouts">
+								<div class="card hoverable teal">
+									<div class="card-content white-text ">
+									<i class="material-icons medium left">devices_other</i>
+										<h4 class="center-align">Manage Layouts</h4>
+									</div>
+								</div>
+							</a>
+						</div>
+						
 			</div>
+					
 			<div class="row">
-				<div class="col s6">
-					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="electrical"><i class="material-icons left">business</i>View Electrical Map</a>
-				</div>
-				<div class="col s6">
-					<a class="waves-effect waves-light btn-large"
-						style="display: block" href="guidelines"><i class="material-icons left">map</i>View Guidelines</a>
-				</div>
+						<div class="col s6">
+							<a href="electrical">
+								<div class="card hoverable teal">
+									<div class="card-content white-text ">
+									<i class="material-icons medium left">business</i>
+										<h4 class="center-align">View Electrical Map</h4>
+									</div>
+								</div>
+							</a>
+						</div>
+						
+						<div class="col s6">
+							<a href="guidelines">
+								<div class="card hoverable teal">
+									<div class="card-content white-text ">
+									<i class="material-icons medium left">assignment</i>
+										<h4 class="center-align">Planning Guidelines</h4>
+									</div>
+								</div>
+							</a>
+						</div>
 			</div>
 		</sec:authorize>
 	</div>
