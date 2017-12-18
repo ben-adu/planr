@@ -47,4 +47,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:ca/sheridancollege/config/security-context.xml</param-value>
   </context-param>
+  <error-page>
+    <location>/errors</location>
+</error-page>
 </web-app>

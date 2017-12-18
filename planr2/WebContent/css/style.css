@@ -3,16 +3,9 @@
 	margin-left: 2%;
 }
 
-
 .container{
 	padding-top: 5%;
-	font-size: 15px;
 }
-
-.input-field input[type=text]:focus + label {
-     font-size: 20px;
-}
-
 
 .opo {
   width: 100%;
@@ -22,8 +15,7 @@
   padding: 20px;
   border-radius: 2px;
   box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
-  font-family: 'roboto', sans-ser
-  }
+  font-family: 'roboto', sans-ser}
   
   nav{
   background-color:#2196f3;

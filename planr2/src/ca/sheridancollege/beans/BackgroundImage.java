@@ -1,5 +1,6 @@
 package ca.sheridancollege.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -51,7 +52,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 "resizeFilters"
 })
 @Entity
-public class BackgroundImage {
+public class BackgroundImage implements Serializable {
+
 @Id
 @GeneratedValue
 public int id;

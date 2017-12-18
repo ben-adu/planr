@@ -1,6 +1,8 @@
 package ca.sheridancollege.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,9 +29,11 @@ import ca.sheridancollege.beans.Calendar;
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Event;
 import ca.sheridancollege.beans.Inventory;
-import ca.sheridancollege.beans.Map;
+import ca.sheridancollege.beans.Layout;
 import ca.sheridancollege.beans.MyUserDetailsService;
 import ca.sheridancollege.beans.Objects;
+import ca.sheridancollege.beans.One;
+import ca.sheridancollege.beans.Two;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.beans.UserRole;
 import ca.sheridancollege.dao.DAO;
@@ -80,53 +84,12 @@ public class HomeController
 		return "manageLayouts";
 	}
 
-	@RequestMapping(value = "/guidelines", method = RequestMethod.GET)
-	public String guidelines(Model model)
-	{
-		return "guidelines";
-	}
-
-	@RequestMapping(value = "/electrical", method = RequestMethod.GET)
-	public String electrical(Model model)
-	{
-		return "electrical";
-	}
 	
-	@RequestMapping(value = "/planEvent", method = RequestMethod.GET)
-	public String planEvent(Model model)
-	{
-		return "planEvent";
-	}
-	
-	@RequestMapping(value = "/splashPad", method = RequestMethod.GET)
-	public String splashPad(Model model)
-	{
-		return "splashPad";
-	}
-	
-	@RequestMapping(value = "/rentals", method = RequestMethod.GET)
-	public String rentals(Model model)
-	{
-		return "rentals";
-	}
-	
-	@RequestMapping(value = "/mcsRentals", method = RequestMethod.GET)
-	public String mcsRentals(Model model)
-	{
-		return "mcsRentals";
-	}
-	
-	@RequestMapping(value = "/vendors", method = RequestMethod.GET)
-	public String vendors(Model model)
-	{
-		return "vendors";
-	}
-	
-	@RequestMapping(value = "/agreement", method = RequestMethod.GET)
-	public String agreement(Model model)
-	{
-		return "agreement";
-	}
+//	@RequestMapping(value = "/planEvent", method = RequestMethod.GET)
+//	public String planEvent(Model model)
+//	{
+//		return "planEvent";
+//	}
 	
 	@RequestMapping(value = "/approveSiteLayout", method = RequestMethod.GET)
 	public String approveSiteLayout(Model model)
@@ -258,10 +221,7 @@ public class HomeController
 		return "update";
 	}
 
-	@RequestMapping(value = "/modify/{id}", method = RequestMethod.POST) // change
-																			// back
-																			// to
-																			// post
+	@RequestMapping(value = "/modify/{id}", method = RequestMethod.POST) 
 	public String modifyCustomer(Model model, @PathVariable int id, @ModelAttribute Customer customer)
 	{
 		DAO dao = new DAO();
@@ -326,10 +286,7 @@ public class HomeController
 		return "updateItem";
 	}
 
-	@RequestMapping(value = "/modifyItem/{id}", method = RequestMethod.POST) // change
-																				// back
-																				// to
-																				// post
+	@RequestMapping(value = "/modifyItem/{id}", method = RequestMethod.POST) 
 	public String modifyItem(Model model, @PathVariable int id, @ModelAttribute Inventory inventory)
 	{
 		DAO dao = new DAO();
@@ -351,14 +308,14 @@ public class HomeController
 //	}
 
 	@RequestMapping(value="/saveLayout", method=RequestMethod.POST, consumes={"application/json"})
-	public String test(@RequestBody Map map, Model model)
+	public String test(@RequestBody Layout layout, Model model)
 	{
 		Objects objects = new Objects();
 		DAO dao = new DAO();
-		dao.saveMap(map);
+		dao.saveMap(layout);
 		model.addAttribute("map", dao.getMapList());
-		System.out.println(map.getBackgroundImage());
-		System.out.println(map.getObjects());
+		System.out.println(layout.getBackgroundImage());
+		System.out.println(layout.getObjects());
 		System.out.println(objects.getOriginX());
 		System.out.println("test");
 		return "createLayout";
@@ -389,4 +346,105 @@ public class HomeController
 		model.addAttribute("eventist", dao.getEventList());
 		return "secure";
 	}
+	
+	@RequestMapping(value = "/planEvent/{id}", method = RequestMethod.GET)
+	public String planEvent(Model model, @PathVariable int id)
+	{
+		DAO dao = new DAO();
+		Event event = new Event();
+		event = dao.getEventByID(id);
+		model.addAttribute("event", event);
+		return "planEvent";
+	}
+	
+	@RequestMapping(value = "/creatingEvent", method = RequestMethod.GET)
+	public String creatingEvent(Model model)
+	{
+
+		return "creatingEvent";
+	}
+	
+	
+	@RequestMapping(value="/getLayout/{id}", produces="application/json")
+	@ResponseBody
+	public Map<String, Object> getMap(@PathVariable int id)
+	{
+		DAO dao = new DAO();
+		Map<String, Object> data = new HashMap<String, Object>();
+		Layout layout = dao.getLayout(id);
+//		Objects objects = dao.getObjects(id);
+//		data.put("objects", objects);
+		data.put("layout", layout);
+		return data;
+		
+	}
+	@RequestMapping(value = "/eventSummary", method = RequestMethod.GET)
+	public String eventSummary(Model model)
+	{
+
+		DAO dao = new DAO();
+		model.addAttribute("event", dao.getEventList());
+		return "eventSummary";
+	}
+	
+	@RequestMapping(value = "modifyEvent/{id}", method = RequestMethod.POST) 
+	public String modifyEvent(Model model, @PathVariable int id, @ModelAttribute Event event)
+	{
+		DAO dao = new DAO();
+		List<Event> eventList = null;
+		dao.saveEvent(event);
+		eventList = dao.getEventList();
+		model.addAttribute("eventList", eventList);
+
+		return "modifyEvent";
+	}
+		@RequestMapping(value = "/guidelines", method = RequestMethod.GET)
+	public String guidelines(Model model)
+	{
+		return "guidelines";
+	}
+
+	@RequestMapping(value = "/electrical", method = RequestMethod.GET)
+	public String electrical(Model model)
+	{
+		return "electrical";
+	}
+	
+	@RequestMapping(value = "/planEvent", method = RequestMethod.GET)
+	public String planEvent(Model model)
+	{
+		return "planEvent";
+	}
+	
+	@RequestMapping(value = "/splashPad", method = RequestMethod.GET)
+	public String splashPad(Model model)
+	{
+		return "splashPad";
+	}
+	
+	@RequestMapping(value = "/rentals", method = RequestMethod.GET)
+	public String rentals(Model model)
+	{
+		return "rentals";
+	}
+	
+	@RequestMapping(value = "/mcsRentals", method = RequestMethod.GET)
+	public String mcsRentals(Model model)
+	{
+		return "mcsRentals";
+	}
+	
+	@RequestMapping(value = "/vendors", method = RequestMethod.GET)
+	public String vendors(Model model)
+	{
+		return "vendors";
+	}
+	
+	@RequestMapping(value = "/agreement", method = RequestMethod.GET)
+	public String agreement(Model model)
+	{
+		return "agreement";
+	}
+	
+	
 }

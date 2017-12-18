@@ -20,4 +20,13 @@
 	<property name="prefix" value="/WEB-INF/jsps/"></property>
 	<property name="suffix" value=".jsp"></property>
 	</bean>
+	
+	
+	<bean 
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="extractValueFromSingleKeyModel" value="true"></property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	</bean>
 </beans>

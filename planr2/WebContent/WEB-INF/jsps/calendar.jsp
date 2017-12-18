@@ -7,17 +7,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://bootswatch.com/3/readable/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+	
+	<link rel="stylesheet"
+	href="https://bootswatch.com/3/readable/bootstrap.min.css">
 
-<script src="scripts/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
-<script src="scripts/dhtmlxscheduler_serialize.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
- --><link rel="stylesheet" href="css/dhtmlxscheduler.css" type="text/css" charset="utf-8">
+
+
+
+
+
+<script src="scripts/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
-
 <title>Home</title>
 
 <script>
@@ -29,7 +41,6 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
-
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 		$('.preloader-background').delay(1700).fadeOut('slow');
@@ -38,77 +49,8 @@
 	});
 </script>
 
-<style type="text/css" >
-html, body{
-	margin:0px;
-	padding:0px;
-	height:100%;
-	overflow:hidden;
-}	
-.dhx_cal_navline input{
-	width:80px;
-	position:absolute;
-	top:1px;
-	font-family:Tahoma;
-	font-weight:8pt;
-}
-</style>
-
-
-<script type="text/javascript" charset="utf-8">
-function init() {
-	scheduler.config.xml_date="%Y-%m-%d %H:%i";
-	scheduler.config.prevent_cache = true;
-	scheduler.xy.margin_top=30;
-	
-	scheduler.init('scheduler_here',new Date(2018,0,20),"month");
-	//scheduler.parse("data.json","json");
-	scheduler.load("scripts/data.json","json");
-	
-}
-
-function show() {
-	alert(scheduler.toJSON());
-}
-
-
-
-function save() {
-	var json_string = scheduler.toJSON(); //json string
-//     var fs = require("fs");
-//     fs.writeFile("data.json", JSON.stringify(json_string), (err) => {
-// if (err) {
-// console.error(err);
-// return;
-// };
-// console.log("File has been created");
-// });
-	
-	
-       var jsonfile={json:JSON.stringify(scheduler.getEvents)};
-       var token = $("meta[name='_csrf']").attr("content"); 
-	   var header = $("meta[name='_csrf_header']").attr("content");
-$.ajax({
-    type: 'POST',
-    url: "https://localhost:8080/planr/saveCalendar", 
-    data: jsonfile,
-    cache:false,
-    dataType: 'json'
-});
-console.log("hello");
-}
-
-
-function download() {
-	var form = document.forms[0];
-	form.action = "json_download.php";
-	form.elements.data.value = scheduler.toJSON();
-	form.submit();
-}
-</script>
-
 </head>
-<body onload="init();">
+<body>
 
 	<div class="preloader-background">
 		<div class="preloader-wrapper big active">
@@ -135,7 +77,7 @@ function download() {
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
+					<a href="#!name"><span class="white-text name">Ben Adu</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
 			<c:url value="/clientManagement" var="client" />
@@ -206,24 +148,95 @@ function download() {
 
 
 	<!-- Body -->
+	
+
+
+<script src="scripts/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
+<script src="scripts/dhtmlxscheduler_serialize.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="css/dhtmlxscheduler.css" type="text/css" charset="utf-8">
+
+
+<style type="text/css" >
+html, body{
+	margin:0px;
+	padding:0px;
+	height:100%;
+	overflow:hidden;
+}	
+.dhx_cal_navline input{
+	width:80px;
+	position:absolute;
+	top:1px;
+	font-family:Tahoma;
+	font-weight:8pt;
+}
+</style>
+
+
+<script type="text/javascript" charset="utf-8">
+function init() {
+	scheduler.config.xml_date="%Y-%m-%d %H:%i";
+	scheduler.config.prevent_cache = true;
+	scheduler.xy.margin_top=30;
+	
+	scheduler.init('scheduler_here',new Date(2018,0,20),"month");
+	//scheduler.parse("data.json","json");
+	scheduler.load("scripts/data.json","json");
+	
+}
+
+function show() {
+	alert(scheduler.toJSON());
+}
 
 
 
-<div class="row">
+function save() {
+	var json_string = scheduler.toJSON(); //json string
+//     var fs = require("fs");
+//     fs.writeFile("data.json", JSON.stringify(json_string), (err) => {
+// if (err) {
+// console.error(err);
+// return;
+// };
+// console.log("File has been created");
+// });
+	
+	
+       var jsonfile={json:JSON.stringify(scheduler.getEvents)};
+       var token = $("meta[name='_csrf']").attr("content"); 
+	   var header = $("meta[name='_csrf_header']").attr("content");
+$.ajax({
+    type: 'POST',
+    url: "https://localhost:8080/planr/saveCalendar", 
+    data: jsonfile,
+    cache:false,
+    dataType: 'json'
+});
+console.log("hello");
+}
+
+
+function download() {
+	var form = document.forms[0];
+	form.action = "json_download.php";
+	form.elements.data.value = scheduler.toJSON();
+	form.submit();
+}
+</script>
+
+<body onload="init();">
 <div style='height:20px; padding:5px 10px;'>
 	<input type="button" name="download" value="Download" onclick="download()" style="right:500px;" />
 	<input type="button" name="show" value="Show" onclick="show()" style="right:400px;" />
 	<input type="button" name="save" value="Save" onclick="save()" style="right:300px;" />
 	<input type="hidden" value="<% out.println("scriptlet working in js method"); %>" id="chatWindowURL"/>
 </div>
-</div>
-
 <form action="json_writer.php" method="post" target="hidden_frame" accept-charset="utf-8">
 	<input type="hidden" name="data" value="" id="data">
 </form>
-<!-- <iframe src='about:blank' frameborder="0" style="width:0px; height:0px;" id="hidden_frame" name="hidden_frame"></iframe>
- -->
- <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+<iframe src='about:blank' frameborder="0" style="width:0px; height:0px;" id="hidden_frame" name="hidden_frame"></iframe>
+<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
 	<div class="dhx_cal_navline">
 		<div class="dhx_cal_prev_button">&nbsp;</div>
 		<div class="dhx_cal_next_button">&nbsp;</div>

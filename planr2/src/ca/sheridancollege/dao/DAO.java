@@ -12,7 +12,8 @@ import org.hibernate.cfg.Configuration;
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Event;
 import ca.sheridancollege.beans.Inventory;
-import ca.sheridancollege.beans.Map;
+import ca.sheridancollege.beans.Layout;
+import ca.sheridancollege.beans.Objects;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.beans.UserRole;
 
@@ -20,7 +21,7 @@ public class DAO {
 	
 	private ArrayList<Customer>customerList=new ArrayList<Customer>();
 	private ArrayList<Inventory>inventoryList = new ArrayList<Inventory>();
-	private ArrayList<Map> mapList = new ArrayList<Map>();
+	private ArrayList<Layout> mapList = new ArrayList<Layout>();
 
 	SessionFactory sessionFactory = new Configuration()
 			.configure("ca/sheridancollege/config/hibernate.cfg.xml")
@@ -203,26 +204,65 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
-	public void saveMap(Map map)
+	public Event getEventByID(int id)
 	{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		session.saveOrUpdate(map);
+		Event event= (Event) session.getNamedQuery("Event.byId").setParameter("id", id).getResultList().get(0);
+		
+		return event;
+	}
+	
+	public void saveMap(Layout layout)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		session.saveOrUpdate(layout);
 		session.getTransaction().commit();
 		
 		session.close();
 	}
 
-	public ArrayList<Map> getMapList()
+	public ArrayList<Layout> getMapList()
 	{
 		return mapList;
 	}
 
-	public void setMapList(ArrayList<Map> mapList)
+	public void setMapList(ArrayList<Layout> mapList)
 	{
 		this.mapList = mapList;
+	}
+	
+	public Layout getLayout(int id)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Layout layout = (Layout) session.getNamedQuery("Layout.byId")
+				.setParameter("id", id)
+				.getResultList()
+				.get(0);
+		session.getTransaction().commit();
+		session.close();
+		
+		return layout;
+	}
+	
+	public Objects getObjects (int id)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Objects objects = (Objects) session.getNamedQuery("Objects.byId")
+				.setParameter("id", id)
+				.getResultList()
+				.get(0);
+		session.getTransaction().commit();
+		session.close();
+		
+		return objects;
 	}
 	
 

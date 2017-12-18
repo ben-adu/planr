@@ -114,8 +114,8 @@
 					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
-			<c:url value="planEvent" var="client" />
-			<li><a href="planEvent" class="waves-effect"><i
+			<c:url value="eventSummary" var="client" />
+			<li><a href="eventSummary" class="waves-effect"><i
 					class="material-icons">map</i>Plan Event</a></li>
 					
 			<c:url value="manageLayout" var="client" />
@@ -215,7 +215,7 @@
 			<BR>
 			<div class="row">
 				<div class="col s6">
-							<a href="planEvent">
+							<a href="eventSummary">
 								<div class="card hoverable teal">
 									<div class="card-content white-text ">
 									<i class="material-icons medium left">map</i>

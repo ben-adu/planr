@@ -1,27 +1,37 @@
 
 package ca.sheridancollege.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 @Entity
-public class Objects
+@NamedQueries({
+	@NamedQuery(name="Objects.getObjectList", query="from Objects"),
+	@NamedQuery(name="Object.byId", query="from Objects where id = :id")
+})
+public class Objects 
 {
+	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE )
 	private int id;
@@ -62,6 +72,18 @@ public class Objects
 	private String src;
 	private String[] filters;
 	private String[] resizeFilters;
+//	private Layout layout;
+	
+	//getters and setters
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	public Layout getLayout()
+//	{
+//		return layout;
+//	}
+//	public void setLayout(Layout layout)
+//	{
+//		this.layout = layout;
+//	}
 	public String getType()
 	{
 		return type;

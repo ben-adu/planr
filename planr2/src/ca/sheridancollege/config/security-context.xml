@@ -42,15 +42,22 @@
 		<security:intercept-url pattern="/manageLayouts" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/guidelines" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/electrical" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/planEvent/{id}" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/modifyEvent/{id}" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/creatingEvent" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/eventSummary" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/saveLayout" access="permitAll" />
+		<security:intercept-url pattern="/saveCalendar" access="permitAll" />
+		<security:intercept-url pattern="/calendar" access="permitAll" />
+		<security:intercept-url pattern="/getLayout/{id}" access="permitAll" />
+		<security:intercept-url pattern="/guidelines" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/electrical" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/planEvent" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/splashPad" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/rentals" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/mcsRentals" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/vendors" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/agreement" access="hasAnyRole('ROLE_USER')" />
-		<security:intercept-url pattern="/saveLayout" access="permitAll" />
-		<security:intercept-url pattern="/saveCalendar" access="permitAll" />
-		<security:intercept-url pattern="/calendar" access="permitAll" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/scripts/**" access="permitAll" />
