@@ -221,8 +221,7 @@ $( document ).ready(function() {
 			<div class="row">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /> <input type="submit"
-					value="Create Event!" onclick="verify()"
-					class="btn waves-effect waves-light" />
+					value="Create Event!" class="btn waves-effect waves-light" />
 			</div>
 		</form>
 		

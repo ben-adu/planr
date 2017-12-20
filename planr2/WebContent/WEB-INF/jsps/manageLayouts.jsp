@@ -34,6 +34,19 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
+
+<script>
+$(document).ready(function() {
+	 $( "#submit1" ).click(function() {
+		  
+		 $("#submitted").hide();
+		 
+		});
+	
+});
+	  
+</script>
+
 <style>
 .collapsible li.active i {
 	-ms-transform: rotate(180deg); /* IE 9 */
@@ -88,7 +101,7 @@
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
 			<c:url value="planEvent" var="client" />
@@ -121,12 +134,21 @@
 	<div class="container">
 		<h5 style="text-align: center">Manage Site Layouts</h5>
 		<div class="row">
-			<div class="col s12 m5">
-				<div class="card-panel teal">
-					<span class="white-text">MuslimFest 2015 </span>
-					
-				</div>
-			</div>
+		
+		<div class="col s12 m4" id="submitted">
+          <div class="card white darken-1">
+            <div class="card-image ">
+              <img src="images/card_backdrop.jpg" height="250" width="250">
+              <span class="card-title">Saved Layout</span>
+            </div>
+            <div class="card-action">
+              <a href="#">Resume Layout</a>
+              <a href="#" id="submit1">Submit Layout</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 
 			<div class="col s12 m5">
 				<div class="card-panel teal">
 					<span class="white-text">MuslimFest 2016 </span>
@@ -137,7 +159,7 @@
 				<div class="card-panel teal">
 					<span class="white-text">MuslimFest 2017 </span>
 					
-				</div>
+				</div> -->
 			</div>
 		</div>
 

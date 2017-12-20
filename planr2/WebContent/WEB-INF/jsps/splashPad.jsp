@@ -1,6 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,11 +13,12 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 <script src="scripts/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
@@ -28,6 +32,7 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
+
 <script>
 $('select').material_select();
 $(document).ready(function() {
@@ -42,7 +47,6 @@ $(document).ready(function() {
 		$("#q9").hide();
 		$("#q10").hide();
 		$("#q11").hide();
-		
 		
 });
 </script>
@@ -105,8 +109,24 @@ $(document).ready(function() {
 	});
 </script>
 
+<script>
+ $('select').material_select(); 
+
+	$.validator.setDefaults({
+	       ignore: []
+	});
+
+	$("#spForm").validate({
+	        errorClass: "invalid form-error",       
+	        errorElement : 'div',       
+	        errorPlacement: function(error, element) {
+	            error.appendTo( element.parent() );
+	        }
+	});
+</script>
+
 <body>
-<!-- NAV -->
+<!-- ROLE_USER NAV -->
 	<sec:authorize access="hasRole('ROLE_USER')">
 		<nav class="default" role="navigation">
 		<ul id="slide-out" class="side-nav">
@@ -118,21 +138,26 @@ $(document).ready(function() {
 					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
-			<c:url value="planEvent" var="client" />
-			<li><a href="planEvent" class="waves-effect"><i
-					class="material-icons">perm_identity</i>Plan Event</a></li>
+			<c:url value="eventSummary" var="client" />
+			<li><a href="eventSummary" class="waves-effect"><i
+					class="material-icons">map</i>Plan Event</a></li>
+					
 			<c:url value="manageLayout" var="client" />
 			<li><a href="manageLayouts" class="waves-effect"><i
-					class="material-icons">business</i>Manage Site Layouts</a></li>
+					class="material-icons">devices_other</i>Manage Site Layouts</a></li>
+					
 			<c:url value="electrical" var="inventory" />
 			<li><a href="electrical" class="waves-effect"><i
-					class="material-icons">devices_other</i>View Electrical Map</a></li>
+					class="material-icons">business</i>View Electrical Map</a></li>
+					
 			<c:url value="guidelines" var="siteLayout" />
 			<li><a href="guidelines" class="waves-effect"><i
-					class="material-icons">map</i>Planning Guidelines</a></li>
+					class="material-icons">assignment</i>Planning Guidelines</a></li>
+					
 			<c:url value="secure" var="client" />
 			<li><a href="secure" class="waves-effect"><i
 					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+					
 			<c:url value="logout" var="logout" />
 			<li><a href="${logout}" class="waves-effect"><i
 					class="material-icons">perm_identity</i>Logout</a></li>
@@ -142,19 +167,20 @@ $(document).ready(function() {
 		<a href="secure" class="brand-logo center"><img
 			src="images/mcs.png" height="80"></a> </nav>
 	</sec:authorize>
-	<!--  END OF NAV -->
+	<!-- End of ROLE_USER Nav -->
 	
 	
 	<div class="container">
     	<h4 style="text-align: center">Splash Pad Configuration</h4>
     <c:url value="splashPadSetup" var="url" />
-	<form name="form" method="post" action="${url}" 
+	
+	<form name="spForm" method="post" action="${url}" 
 			onsubmit="return verify()" class="col s12">
 		
     	<div class="row">
 				<div class="input-field col s8" id="q1s"><BR><BR><BR>
-					<select id="splashPadNo" name="splashPadNo" required="">
-						<option value="none" selected>Choose one</option>
+					<select id="splashPadNo" name="splashPadNo" required="" class="validate" aria-required="true">
+						<option value="default" selected>Choose one</option>
 						<option value="two">2</option>
 						<option value="three">3</option>
 						<option value="four">4</option>
@@ -280,10 +306,9 @@ $(document).ready(function() {
 				  
 			</div>  
 			<div class="col s6">
-			
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-				<a id="btnContinue1" type="submit" onclick="verify()" class="waves-effect waves-light btn-large" style="display: block"
-					href="rentals">Next</a>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<button type="submit" onclick="$("#spForm").valid()" value="Next" class="waves-effect waves-light btn-large" 
+				style="display: block" href="rentals"> Next </button>
 			</div>
 		</div>
     </div>

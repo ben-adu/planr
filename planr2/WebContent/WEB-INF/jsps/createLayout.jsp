@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,12 +19,16 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.19/fabric.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.20/fabric.js"></script>
 <script src="scripts/sweetalert.min.js"></script>
+<script src="scripts/intro.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/introjs.css">
+<link rel="stylesheet" type="text/css" href="css/introjs-modern.css">
 <title>Home</title>
+
 <script>
 	(function($) {
 		$(function() {
@@ -32,6 +38,7 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
+
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 		$('.preloader-background').delay(1700).fadeOut('slow');
@@ -39,36 +46,104 @@
 		$('.preloader-wrapper').delay(1700).fadeOut();
 	});
 </script>
+
+<script> /* to toggle backdrops  */
+
+$(document).ready(function(){
+	  $( "#header1" ).click(function() {
+		  
+			  var clicks1 = $("#header1").data('clicks1');
+			  if (clicks1) {
+				  changeView(1);
+			  } else {
+				  changeView(10);
+			  }
+			  $("#header1").data("clicks1", !clicks1);
+			});
+		  
+	  $( "#header2" ).click(function() {
+		  
+		  var clicks2 = $(this).data('clicks2');
+		  if (clicks2) {
+			  changeView(1);
+		  } else {
+			  changeView(9);
+		  }
+		  $(this).data("clicks2", !clicks2);
+		});
+	  
+ 	  $( "#header3" ).click(function() {
+		  
+		  var clicks3 = $(this).data('clicks3');
+		  if (clicks3) {
+			  changeView(1);
+		  } else {
+			  changeView(16);
+		  }
+		  $(this).data("clicks3", !clicks3);
+		});
+		
+ 	 $( "#header4" ).click(function() {
+		  
+		  var clicks4 = $(this).data('clicks4');
+		  if (clicks4) {
+			  changeView(1);
+		  } else {
+			  changeView(15);
+		  }
+		  $(this).data("clicks4", !clicks4);
+		});
+ 	 
+ 	 $( "#header5" ).click(function() {
+		  
+		  var clicks5 = $(this).data('clicks5');
+		  if (clicks5) {
+			  changeView(1);
+		  } else {
+			  changeView(13);
+		  }
+		  $(this).data("clicks5", !clicks5);
+		});
+ 	 
+	});
+</script>
+
 </head>
-<body>
-	<!-- NAV -->
-	<sec:authorize access="hasRole('ROLE_USER')">
+<body style="background-color:#eeeeee;">
+<!-- ROLE_ADMIN NAV -->
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<nav class="default" role="navigation">
-		<ul id="slide-out" class="side-nav">
+		<ul id="slide-out" class="side-nav" >
 			<li><div class="userView">
 					<div class="background">
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
 						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
-			<c:url value="planEvent" var="client" />
-			<li><a href="planEvent" class="waves-effect"><i
-					class="material-icons">perm_identity</i>Plan Event</a></li>
-			<c:url value="manageLayout" var="client" />
-			<li><a href="manageLayouts" class="waves-effect"><i
-					class="material-icons">business</i>Manage Site Layouts</a></li>
-			<c:url value="electrical" var="inventory" />
-			<li><a href="electrical" class="waves-effect"><i
-					class="material-icons">devices_other</i>View Electrical Map</a></li>
-			<c:url value="guidelines" var="siteLayout" />
-			<li><a href="guidelines" class="waves-effect"><i
-					class="material-icons">map</i>Planning Guidelines</a></li>
+					
+			<c:url value="eventDetails" var="siteLayout" />
+			<li><a href="eventDetails" class="waves-effect"><i
+					class="material-icons">map</i>Create New Event</a></li>
+					
+			<c:url value="calendar" var="siteLayout" />
+			<li><a href="calendar" class="waves-effect"><i
+					class="material-icons">event</i>Calendar</a></li>
+					
+			<c:url value="clientManagement" var="client" />
+			<li><a href="clientManagement" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Client Management</a></li>
+			
+			<c:url value="inventoryManagement" var="inventory" />
+			<li><a href="inventoryManagement" class="waves-effect"><i
+					class="material-icons">assessment</i>Inventory management</a></li>
+			
 			<c:url value="secure" var="client" />
 			<li><a href="secure" class="waves-effect"><i
 					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-			<c:url value="logout" var="logout" />
+					
+			<c:url value="/logout" var="logout" />
 			<li><a href="${logout}" class="waves-effect"><i
 					class="material-icons">perm_identity</i>Logout</a></li>
 		</ul>
@@ -78,16 +153,65 @@
 			src="images/mcs.png" height="80"></a> </nav>
 	</sec:authorize>
 	<!--  END OF NAV -->
+
+
+	<!-- ROLE_USER NAV -->
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<nav class="default" role="navigation">
+		<ul id="slide-out" class="side-nav">
+			<li><div class="userView">
+					<div class="background">
+						<img src="images/lake.jpg">
+					</div>
+					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
+						href="#!email"><span class="white-text email">ben@mail.com</span></a>
+				</div></li>
+			<c:url value="eventSummary" var="client" />
+			<li><a href="eventSummary" class="waves-effect"><i
+					class="material-icons">map</i>Plan Event</a></li>
+					
+			<c:url value="manageLayout" var="client" />
+			<li><a href="manageLayouts" class="waves-effect"><i
+					class="material-icons">devices_other</i>Manage Site Layouts</a></li>
+					
+			<c:url value="electrical" var="inventory" />
+			<li><a href="electrical" class="waves-effect"><i
+					class="material-icons">business</i>View Electrical Map</a></li>
+					
+			<c:url value="guidelines" var="siteLayout" />
+			<li><a href="guidelines" class="waves-effect"><i
+					class="material-icons">assignment</i>Planning Guidelines</a></li>
+					
+			<c:url value="secure" var="client" />
+			<li><a href="secure" class="waves-effect"><i
+					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+					
+			<c:url value="logout" var="logout" />
+			<li><a href="${logout}" class="waves-effect"><i
+					class="material-icons">perm_identity</i>Logout</a></li>
+		</ul>
+		<a href="#" data-activates="slide-out"
+			class="button-collapse show-on-large" data-step="1" data-intro="Click to open Navigation Pane"><i class="material-icons">menu</i></a>
+		<a href="secure" class="brand-logo center"><img
+			src="images/mcs.png" height="80"></a> </nav>
+	</sec:authorize>
+	<!-- End of ROLE_USER Nav -->
 	<!-- Breadcrumb -->
 	
-
+<div class="fixed-action-btn" data-step="5" data-intro="Click this button at any time to re-run the tutorial.">
+    <a class="btn-floating btn-large red" href="javascript:void(0)" onclick="javascript:introJs().start();">
+      <i class="large material-icons" data-position="left">info_outline</i>
+    </a>
+  </div>
 
 
 
 	<!-- Body -->
-
-	<div class="row">
-	<button onclick="changeView(1);">Default</button>
+	<h4 style="text-align: center">Create Layout</h4>
+	<!-- <div class="row"> -->
+	
+	<!-- <button onclick="changeView(1);">Default</button>
 	<button onclick="changeView(2);">Benches</button>
 	<button onclick="changeView(3);">Bistro Table/Chair</button>
 	<button onclick="changeView(4);">Crowd Control Barricades</button>
@@ -97,17 +221,25 @@
 	<button onclick="changeView(8);">First-Aid Tent</button>
 	<button onclick="changeView(9);">Food Vendor w/ Electrical</button>
 	<button onclick="changeView(10);">Food Vendor w/o Electrical</button>
-	</div>
+	<button onclick="changeView(11);">Inflatables - Bouncy</button>
+	<button onclick="changeView(12);">Inflatables - Sport</button>
+	<button onclick="changeView(13);">Portables</button>
+	<button onclick="changeView(14);">Umbrella</button>
+	<button onclick="changeView(15);">Vendors w Electrical</button>
+	<button onclick="changeView(16);">Vendors w/o Electrical</button>
+	<button onclick="changeView(17);">Waterfilling Station</button>
+	<button onclick="changeView(18);">White Picket Fences</button>
+	</div> -->
 	
 	<div class="row">
 	
-		<div class="col s0">
+		<div class="col s1">
 
-			<div id="left-panel">
+			<div id="left-panel" data-step="1" data-intro="This is your toolbar.<BR>Choose a tool to use or<BR>hover over a tool to learn what it does.">
 				<ul class="list-inline" id="toolbar">
 					<li><a
 						class="btn-floating btn tooltipped btn-large waves-effect waves-light red" data-position="right" data-delay="50" data-tooltip="Enable Pencil"><i
-							class="material-icons" value="start drawing"
+							class="material-icons" value="start_drawing"
 							onclick="onStartDrawing();">edit</i></a></li>
 
 					<li><a
@@ -151,8 +283,8 @@
 
 		<div class="col s9">
 
-			<div class="canvas-container">
-				<canvas id="canvas1" style="border:1px solid #ccc"></canvas>
+			<div class="canvas-container" >
+				<canvas id="canvas1" style="border:1px solid #ccc" data-step="3" data-intro="This is your canvas.<BR>Tools from the toolbar on the left can be used here and items from the right can be dragged onto the canvas to plan your event"></canvas>
 				<canvas id="canvas2" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas3" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas4" style="border:1px solid #ccc"></canvas>
@@ -162,133 +294,138 @@
 				<canvas id="canvas8" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas9" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas10" style="border:1px solid #ccc"></canvas>
-				<%-- <canvas id="canvas11" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas11" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas12" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas13" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas14" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas15" style="border:1px solid #ccc"></canvas>
 				<canvas id="canvas16" style="border:1px solid #ccc"></canvas>
-				<canvas id="canvas17" style="border:1px solid #ccc"></canvas> --%>
+				<canvas id="canvas17" style="border:1px solid #ccc"></canvas>
+				<canvas id="canvas18" style="border:1px solid #ccc"></canvas>
 			</div>
 		</div>
 
 		<div class="col s2">
-			<div class="furniture">
+			<div class="furniture" data-step="2" data-intro="This bar contains draggable items.<BR>Click on a title to expand.<BR>Click again to close<BR>">
 				<ul class="collapsible" data-collapsible="accordion" id="image-list">
 				
 					<li>
-					<div class="collapsible-header" id="group1">Food vendor w/o electrical</div>
+					<div class="collapsible-header" id="header1" data-step="6" data-intro="Expand this and drag an item over the canvas to begin">Food vendor w/o electrical</div>
 					<div class="collapsible-body">
 						<span>
-							<img draggable="true" src="images/Food without electric/10x10.png" height="40">
+							<img draggable="true" src="images/foodWithoutElectric/10x10.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food without electric/10x15.png" height="40">
+							<img draggable="true" src="images/foodWithoutElectric/10x15.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food without electric/15x15.png" height="40">
+							<img draggable="true" src="images/foodWithoutElectric/15x15.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food without electric/10x20.png" height="40">
+							<img draggable="true" src="images/foodWithoutElectric/10x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food without electric/20x20.png" height="40">
+							<img draggable="true" src="images/foodWithoutElectric/20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food without electric/g20x20.png" height="40">
+							<img draggable="true" src="images/foodWithoutElectric/g20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food without electric/g20x30.png" height="40">
+							<img draggable="true" src="images/foodWithoutElectric/g20x30.png" height="40">
 						</span>
 					</div>
 					</li>
 					
 					<li>
-					<div class="collapsible-header">Food vendor with electrical</div>
+					<div class="collapsible-header" id="header2">Food vendor with electrical</div>
 					<div class="collapsible-body">
 						<span>
-							<img draggable="true" src="images/Food with electric/10x10.png" height="40">
+							<img draggable="true" src="images/foodWithElectric/10x10.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food with electric/10x15.png" height="40">
+							<img draggable="true" src="images/foodWithElectric/10x15.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food with electric/15x15.png" height="40">
+							<img draggable="true" src="images/foodWithElectric/15x15.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food with electric/10x20.png" height="40">
+							<img draggable="true" src="images/foodWithElectric/10x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food with electric/20x20.png" height="40">
+							<img draggable="true" src="images/foodWithElectric/20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food with electric/g20x20.png" height="40">
+							<img draggable="true" src="images/foodWithElectric/g20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Food with electric/g20x30.png" height="40">
+							<img draggable="true" src="images/foodWithElectric/g20x30.png" height="40">
 						</span>
 					</div>
 					</li>
 					
 					<li>
-					<div class="collapsible-header">Vendor without electrical</div>
+					<div class="collapsible-header" id="header3">Vendor without electrical</div>
 					<div class="collapsible-body">
 						<span>
-							<img draggable="true" src="images/Vendor without electric/10x10.png" height="40">
+							<img draggable="true" src="images/vendorWithoutElectric/10x10.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor without electric/10x15.png" height="40">
+							<img draggable="true" src="images/vendorWithoutElectric/10x15.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor without electric/15x15.png" height="40">
+							<img draggable="true" src="images/vendorWithoutElectric/15x15.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor without electric/10x20.png" height="40">
+							<img draggable="true" src="images/vendorWithoutElectric/10x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor without electric/20x20.png" height="40">
+							<img draggable="true" src="images/vendorWithoutElectric/20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor without electric/g20x20.png" height="40">
+							<img draggable="true" src="images/vendorWithoutElectric/g20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor without electric/g20x30.png" height="40">
+							<img draggable="true" src="images/vendorWithoutElectric/g20x30.png" height="40">
 						</span>
 					</div>
 					</li>
 					
 					<li>
-					<div class="collapsible-header">Vendor with electrical</div>
+					<div class="collapsible-header" id="header4">Vendor with electrical</div>
 					<div class="collapsible-body">
 						<span>
-							<img draggable="true" src="images/Vendor with electric/10x10.png" height="40">
+							<img draggable="true" src="images/vendorWithElectric/10x10.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor with electric/10x15.png" height="40">
+							<img draggable="true" src="images/vendorWithElectric/10x15.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor with electric/15x15.png" height="40">
+							<img draggable="true" src="images/vendorWithElectric/15x15.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor with electric/10x20.png" height="40">
+							<img draggable="true" src="images/vendorWithElectric/10x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor with electric/20x20.png" height="40">
+							<img draggable="true" src="images/vendorWithElectric/20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor with electric/g20x20.png" height="40">
+							<img draggable="true" src="images/vendorWithElectric/g20x20.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Vendor with electric/g20x30.png" height="40">
+							<img draggable="true" src="images/vendorWithElectric/g20x30.png" height="40">
 						</span>
 					</div>
 					</li>
 					
 					<li>
-					<div class="collapsible-header">Portables</div>
+					<div class="collapsible-header" id="header5">Portables</div>
 					<div class="collapsible-body">
 						<span>
-							<img draggable="true" src="images/Portables/portolet.png" height="40">
+							<img draggable="true" src="images/portables/handwashstation.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Portables/handwashstation.png" height="40">
+							<img draggable="true" src="images/portables/portolet.png" height="40">
 						<BR>
-							<img draggable="true" src="images/Portables/waterStation.png" height="40">
-						<BR>
+							<img draggable="true" src="images/portables/waterStation.png" height="40">
 						</span>
 					</div>
 					</li>
+					
+					
+				</ul>
+				<ul>
+				<li>
+						
 					
 				</ul>
 			</div>
+					<a class="Save waves-effect waves-light btn" id="Save" data-step="4" data-intro="This is your Save button.<BR> Use this to frequently save your progress">
+							<i class="material-icons left">save</i>Save</a>
+					<BR>
+					<BR>	
+						<a class="Load waves-effect waves-light btn" id="Load">
+							<i class="material-icons left">cloud_download</i>Load</a>
+					<BR> 
+					 
+						<a class="waves-effect waves-light btn" id="demo" onclick="myFunction()">
+							<i class="material-icons left">code</i>JSON.log</a>
+					
 		</div>
-	</div>
-	
-	<div id="JSON">
-		<button id="Save" class="Save" style="background-color: black; color: yellow;">Save Test</button>
-		
-		<button id="Load" class="Load"	style="background-color: black; color: yellow;">Load Test</button>
-		
-		<button id="demo" onclick="myFunction()"
-			style="background-color: black; color: yellow;">Show JSON in
-			console.</button>
-
-		<a></a>
 	</div>
 </body>
 
@@ -304,35 +441,40 @@ $(document).ready(function() {
 	var canvasScale = 1;
 	var SCALE_FACTOR = 1.1;
 	var zoomMax = 2.3;
+	var activeCanvas;
+	
+	$('select').material_select();
 
+	
 	function initCanvas() {
 
 		$('.canvas-container')
 				.each(
 						function(index) {
 							
-							var activeCanvas;
+							
 							var canvasContainer = $(this)[0];
 							
 							var canvas1 = $("canvas", this)[0];
 							
 							var canvasOne = window._canvas = new fabric.Canvas(canvas1);
-							var canvasTwo = new fabric.Canvas(canvas2);
-							var canvasThree = new fabric.Canvas(canvas3);
-							var canvasFour = new fabric.Canvas(canvas4);
-							var canvasFive = new fabric.Canvas(canvas5);
-							var canvasSix = new fabric.Canvas(canvas6);
-							var canvasSeven = new fabric.Canvas(canvas7);
-							var canvasEight = new fabric.Canvas(canvas8);
-							var canvasNine = new fabric.Canvas(canvas9);
-							var canvasTen = new fabric.Canvas(canvas10);
-							/* var canvasEleven = new fabric.Canvas(canvas11);
-							var canvasTwelve = new fabric.Canvas(canvas12);
-							var canvasThirteen = new fabric.Canvas(canvas13);
-							var canvasFourteen = new fabric.Canvas(canvas14);
-							var canvasFifteen = new fabric.Canvas(canvas15);
-							var canvasSixteen = new fabric.Canvas(canvas16);
-							var canvasSeventeen = new fabric.Canvas(canvas17); */
+							var canvasTwo = window._canvas2 = new fabric.Canvas(canvas2);
+							var canvasThree = window._canvas3 = new fabric.Canvas(canvas3);
+							var canvasFour = window._canvas4 = new fabric.Canvas(canvas4);
+							var canvasFive = window._canvas5 = new fabric.Canvas(canvas5);
+							var canvasSix = window._canvas6 = new fabric.Canvas(canvas6);
+							var canvasSeven = window._canvas7 = new fabric.Canvas(canvas7);
+							var canvasEight = window._canvas8 = new fabric.Canvas(canvas8);
+							var canvasNine = window._canvas9 = new fabric.Canvas(canvas9);
+							var canvasTen = window._canvas10 = new fabric.Canvas(canvas10);
+							var canvasEleven = window._canvas11 = new fabric.Canvas(canvas11);
+							var canvasTwelve = window._canvas12 = new fabric.Canvas(canvas12);
+							var canvasThirteen = window._canvas13 = new fabric.Canvas(canvas13);
+							var canvasFourteen = window._canvas14 = new fabric.Canvas(canvas14);
+							var canvasFifteen = window._canvas15 = new fabric.Canvas(canvas15);
+							var canvasSixteen = window._canvas16 = new fabric.Canvas(canvas16);
+							var canvasSeventeen = window._canvas17 = new fabric.Canvas(canvas17);
+							var canvasEighteen = window._canvas18 = new fabric.Canvas(canvas18);
 							
 							
 							var img = new Image();
@@ -485,18 +627,139 @@ $(document).ready(function() {
 								canvasWidth10, canvasHeight10;
 							};
 							
+							var img11= new Image();
+							img11.src ="images/BackgroundImages/backdrop_inflatables_Bouncy.bmp";
+							img11.onload = function(){
+								canvasEleven.setBackgroundImage(img11.src,
+										canvasEleven.renderAll.bind(canvasEleven), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight11 = canvasEleven.setHeight(img.height);
+								var canvasWidth11 = canvasEleven.setWidth(img.width);
+								canvasWidth11, canvasHeight11;
+							};
+							
+							var img12= new Image();
+							img12.src ="images/BackgroundImages/backdrop_inflatables_Sport.bmp";
+							img12.onload = function(){
+								canvasTwelve.setBackgroundImage(img12.src,
+										canvasTwelve.renderAll.bind(canvasTwelve), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight12 = canvasTwelve.setHeight(img.height);
+								var canvasWidth12 = canvasTwelve.setWidth(img.width);
+								canvasWidth12, canvasHeight12;
+							};
+							
+							var img13= new Image();
+							img13.src ="images/BackgroundImages/backdrop_portables.bmp";
+							img13.onload = function(){
+								canvasThirteen.setBackgroundImage(img13.src,
+										canvasThirteen.renderAll.bind(canvasThirteen), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight13 = canvasThirteen.setHeight(img.height);
+								var canvasWidth13 = canvasThirteen.setWidth(img.width);
+								canvasWidth13, canvasHeight13;
+							};
+							
+							var img14= new Image();
+							img14.src ="images/BackgroundImages/backdrop_umbrella.bmp";
+							img14.onload = function(){
+								canvasFourteen.setBackgroundImage(img14.src,
+										canvasFourteen.renderAll.bind(canvasFourteen), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight14 = canvasFourteen.setHeight(img.height);
+								var canvasWidth14 = canvasFourteen.setWidth(img.width);
+								canvasWidth14, canvasHeight14;
+							};
+							
+							var img15= new Image();
+							img15.src ="images/BackgroundImages/backdrop_vendorsWElectrical.bmp";
+							img15.onload = function(){
+								canvasFifteen.setBackgroundImage(img15.src,
+										canvasFifteen.renderAll.bind(canvasFifteen), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight15 = canvasFifteen.setHeight(img.height);
+								var canvasWidth15 = canvasFifteen.setWidth(img.width);
+								canvasWidth15, canvasHeight15;
+							};
+							
+							var img16= new Image();
+							img16.src ="images/BackgroundImages/backdrop_vendorsWoElectrical.bmp";
+							img16.onload = function(){
+								canvasSixteen.setBackgroundImage(img16.src,
+										canvasSixteen.renderAll.bind(canvasSixteen), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight16 = canvasSixteen.setHeight(img.height);
+								var canvasWidth16 = canvasSixteen.setWidth(img.width);
+								canvasWidth16, canvasHeight16;
+							};
+							
+							var img17= new Image();
+							img17.src ="images/BackgroundImages/backdrop_waterfilling.bmp";
+							img17.onload = function(){
+								canvasSeventeen.setBackgroundImage(img17.src,
+										canvasSeventeen.renderAll.bind(canvasSeventeen), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight17 = canvasSeventeen.setHeight(img.height);
+								var canvasWidth17 = canvasSeventeen.setWidth(img.width);
+								canvasWidth17, canvasHeight17;
+							};
+							
+							var img18= new Image();
+							img18.src ="images/BackgroundImages/backdrop_whitePicket.bmp";
+							img18.onload = function(){
+								canvasEighteen.setBackgroundImage(img18.src,
+										canvasEighteen.renderAll.bind(canvasEighteen), {
+											originX : 'left',
+											originY : 'top',
+											left : 0,
+											top : 0
+										});
+								var canvasHeight18 = canvasEighteen.setHeight(img.height);
+								var canvasWidth18 = canvasEighteen.setWidth(img.width);
+								canvasWidth18, canvasHeight18;
+							};
 							
 							var imageOffsetX, imageOffsetY;
-
+							
+							
 							function handleDragStart(e) {
 								[].forEach.call(images, function(img) {
 									img.classList.remove('img_dragging');
 								});
 								this.classList.add('img_dragging');
-
+								
 								var imageOffset = $(this).offset();
 								imageOffsetX = e.clientX - imageOffset.left;
 								imageOffsetY = e.clientY - imageOffset.top;
+								
 							}
 
 							function handleDragOver(e) {
@@ -505,14 +768,17 @@ $(document).ready(function() {
 								}
 								e.dataTransfer.dropEffect = 'copy';
 								return false;
+								console.log('event: ', e);
 							}
 
 							function handleDragEnter(e) {
 								this.classList.add('over');
+								console.log('event: ', e);
 							}
 
 							function handleDragLeave(e) {
 								this.classList.remove('over');
+								console.log('event: ', e);
 							}
 
 							function handleDrop(e) {
@@ -527,10 +793,132 @@ $(document).ready(function() {
 										.querySelector('.furniture img.img_dragging');
 								console.log('event: ', e);
 
-								var offset = $(canvas1).offset();
-								var y = e.clientY - (offset.top + imageOffsetY);
-								var x = e.clientX - (offset.left + imageOffsetX);
 
+								if (activeCanvas == canvas1){
+									var offset = $(canvas1).offset();
+									var y = e.clientY - (offset.top + imageOffsetY);
+									var x = e.clientX - (offset.left + imageOffsetX);
+								}
+								
+								if (activeCanvas == canvas2){
+									var offset2 = $(canvas2).offset();
+									var y = e.clientY - (offset2.top + imageOffsetY);
+									var x = e.clientX - (offset2.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas3){
+									var offset3 = $(canvas3).offset();
+									var y = e.clientY - (offset3.top + imageOffsetY);
+									var x = e.clientX - (offset3.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas4){
+									var offset4 = $(canvas4).offset();
+									var y = e.clientY - (offset4.top + imageOffsetY);
+									var x = e.clientX - (offset4.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas5){
+									var offset5 = $(canvas5).offset();
+									var y = e.clientY - (offset5.top + imageOffsetY);
+									var x = e.clientX - (offset5.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas6){
+									var offset6 = $(canvas6).offset();
+									var y = e.clientY - (offset6.top + imageOffsetY);
+									var x = e.clientX - (offset6.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas7){
+									var offset7 = $(canvas7).offset();
+									var y = e.clientY - (offset7.top + imageOffsetY);
+									var x = e.clientX - (offset7.left + imageOffsetX);
+									
+								}
+		
+								if (activeCanvas == canvas8){
+									var offset8 = $(canvas8).offset();
+									var y = e.clientY - (offset8.top + imageOffsetY);
+									var x = e.clientX - (offset8.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas9){
+									var offset9 = $(canvas9).offset();
+									var y = e.clientY - (offset9.top + imageOffsetY);
+									var x = e.clientX - (offset9.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas10){
+									var offset10 = $(canvas10).offset();
+									var y = e.clientY - (offset10.top + imageOffsetY);
+									var x = e.clientX - (offset10.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas11){
+									var offset11 = $(canvas11).offset();
+									var y = e.clientY - (offset11.top + imageOffsetY);
+									var x = e.clientX - (offset11.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas12){
+									var offset12 = $(canvas12).offset();
+									var y = e.clientY - (offset12.top + imageOffsetY);
+									var x = e.clientX - (offset12.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas13){
+									var offset13 = $(canvas13).offset();
+									var y = e.clientY - (offset13.top + imageOffsetY);
+									var x = e.clientX - (offset13.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas14){
+									var offset14 = $(canvas14).offset();
+									var y = e.clientY - (offset14.top + imageOffsetY);
+									var x = e.clientX - (offset14.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas15){
+									var offset15 = $(canvas15).offset();
+									var y = e.clientY - (offset15.top + imageOffsetY);
+									var x = e.clientX - (offset15.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas16){
+									var offset16 = $(canvas16).offset();
+									var y = e.clientY - (offset16.top + imageOffsetY);
+									var x = e.clientX - (offset16.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas17){
+									var offset17 = $(canvas17).offset();
+									var y = e.clientY - (offset17.top + imageOffsetY);
+									var x = e.clientX - (offset17.left + imageOffsetX);
+									
+								}
+								
+								if (activeCanvas == canvas18){
+									var offset18 = $(canvas18).offset();
+									var y = e.clientY - (offset18.top + imageOffsetY);
+									var x = e.clientX - (offset18.left + imageOffsetX);
+									
+								}
+								
 								var newImage = new fabric.Image(img, {
 									width : img.width,
 									height : img.height,
@@ -538,10 +926,25 @@ $(document).ready(function() {
 									top : y,
 									hasControls : false
 								});
+								
 								canvasOne.add(newImage);
-								
-								
-								
+								canvasTwo.add(newImage);
+								canvasThree.add(newImage);
+								canvasFour.add(newImage);
+								canvasFive.add(newImage);
+								canvasSix.add(newImage);
+								canvasSeven.add(newImage);
+								canvasEight.add(newImage);
+								canvasNine.add(newImage);
+								canvasTen.add(newImage);
+								canvasEleven.add(newImage);
+								canvasTwelve.add(newImage);
+								canvasThirteen.add(newImage);
+								canvasFourteen.add(newImage);
+								canvasFifteen.add(newImage);
+								canvasSixteen.add(newImage);
+								canvasSeventeen.add(newImage);
+								canvasEighteen.add(newImage);
 								return false;
 							}
 
@@ -549,6 +952,7 @@ $(document).ready(function() {
 								[].forEach.call(images, function(img) {
 									img.classList.remove('img_dragging');
 								});
+								console.log('event: ', e);
 							}
 
 							var images = document
@@ -558,6 +962,7 @@ $(document).ready(function() {
 										handleDragStart, true);
 								img.addEventListener('dragend', handleDragEnd,
 										true);
+								
 							});
 							canvasContainer.addEventListener('dragenter',
 									handleDragEnter, false);
@@ -568,9 +973,11 @@ $(document).ready(function() {
 							canvasContainer.addEventListener('drop',
 									handleDrop, false);
 						});
+
 	}
 	initCanvas();
-/* 
+	
+ 
 	var getFabricCanvases = (function() {
 		var fabricCanvasCollection;
 		return function getCanvases() {
@@ -583,11 +990,11 @@ $(document).ready(function() {
 			}
 			return fabricCanvasCollection;
 		}
-	})(); */
+	})();
 
 	
-	function changeView(value) {
-	    if (value == 1) {
+	function changeView(option) {
+	    if (option == 1) {
 	        activeCanvas = canvas1;
 	        
 	        $('#canvas1').parent().css('display', 'block');
@@ -600,9 +1007,18 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+			window._canvas.renderAll();
 	    }
 
-	    if (value == 2) {
+	    if (option == 2) {
 	        activeCanvas = canvas2;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -615,9 +1031,18 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas2.renderAll();
 	    }
 	    
-	    if (value == 3) {
+	    if (option == 3) {
 	        activeCanvas = canvas3;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -630,9 +1055,18 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas3.renderAll();
 	    }
 	    
-	    if (value == 4) {
+	    if (option == 4) {
 	        activeCanvas = canvas4;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -645,9 +1079,18 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas4.renderAll();
 	    }
 	    
-	    if (value == 5) {
+	    if (option == 5) {
 	        activeCanvas = canvas5;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -660,9 +1103,18 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas5.renderAll();
 	    }
 	    
-	    if (value == 6) {
+	    if (option == 6) {
 	        activeCanvas = canvas6;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -675,9 +1127,18 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas6.renderAll();
 	    }
 	    
-	    if (value == 7) {
+	    if (option == 7) {
 	        activeCanvas = canvas7;
 	        
 	        $('#canvas1').parent().css('display', 'none');
@@ -690,10 +1151,19 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas7.renderAll();
 	    }
 	    
-	    if (value == 8) {
-	        activeCanvas = canvas7;
+	    if (option == 8) {
+	        activeCanvas = canvas8;
 	        
 	        $('#canvas1').parent().css('display', 'none');
 	        $('#canvas2').parent().css('display', 'none');
@@ -705,10 +1175,19 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'block');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas8.renderAll();
 	    }
 	    
-	    if (value == 9) {
-	        activeCanvas = canvas7;
+	    if (option == 9) {
+	        activeCanvas = canvas9;
 	        
 	        $('#canvas1').parent().css('display', 'none');
 	        $('#canvas2').parent().css('display', 'none');
@@ -720,10 +1199,19 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'block');
 	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas9.renderAll();
 	    }
 	    
-	    if (value == 10) {
-	        activeCanvas = canvas7;
+	    if (option == 10) {
+	        activeCanvas = canvas10;
 	        
 	        $('#canvas1').parent().css('display', 'none');
 	        $('#canvas2').parent().css('display', 'none');
@@ -735,6 +1223,207 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'block');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas10.renderAll();
+	    }
+	    
+	    if (option == 11) {
+	        activeCanvas = canvas11;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'block');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas11.renderAll();
+	    }
+	    
+	    if (option == 12) {
+	        activeCanvas = canvas12;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'block');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas12.renderAll();
+	    }
+	    
+	    if (option == 13) {
+	        activeCanvas = canvas13;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'block');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas13.renderAll();
+	    }
+	    
+	    if (option == 14) {
+	        activeCanvas = canvas14;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'block');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas14.renderAll();
+	    }
+	    
+	    if (option == 15) {
+	        activeCanvas = canvas15;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'block');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas15.renderAll();
+	    }
+	    
+	    if (option == 16) {
+	        activeCanvas = canvas16;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'block');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas16.renderAll();
+	    }
+	    
+	    if (option == 17) {
+	        activeCanvas = canvas17;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'block');
+	        $('#canvas18').parent().css('display', 'none');
+	        window._canvas17.renderAll();
+	    }
+	    
+	    if (option == 18) {
+	        activeCanvas = canvas18;
+	        
+	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas2').parent().css('display', 'none');
+	        $('#canvas3').parent().css('display', 'none');
+	        $('#canvas4').parent().css('display', 'none');
+	        $('#canvas5').parent().css('display', 'none');
+	        $('#canvas6').parent().css('display', 'none');
+	        $('#canvas7').parent().css('display', 'none');
+	        $('#canvas8').parent().css('display', 'none');
+	        $('#canvas9').parent().css('display', 'none');
+	        $('#canvas10').parent().css('display', 'none');
+	        $('#canvas11').parent().css('display', 'none');
+	        $('#canvas12').parent().css('display', 'none');
+	        $('#canvas13').parent().css('display', 'none');
+	        $('#canvas14').parent().css('display', 'none');
+	        $('#canvas15').parent().css('display', 'none');
+	        $('#canvas16').parent().css('display', 'none');
+	        $('#canvas17').parent().css('display', 'none');
+	        $('#canvas18').parent().css('display', 'block');
+	        window._canvas18.renderAll();
 	    }
 	} 
 	
@@ -755,6 +1444,23 @@ $(document).ready(function() {
 		});
 
 		window._canvas.add(text_obj);
+		window._canvas2.add(text_obj);
+		window._canvas3.add(text_obj);
+		window._canvas4.add(text_obj);
+		window._canvas5.add(text_obj);
+		window._canvas6.add(text_obj);
+		window._canvas7.add(text_obj);
+		window._canvas8.add(text_obj);
+		window._canvas9.add(text_obj);
+		window._canvas10.add(text_obj);
+		window._canvas11.add(text_obj);
+		window._canvas12.add(text_obj);
+		window._canvas13.add(text_obj);
+		window._canvas14.add(text_obj);
+		window._canvas15.add(text_obj);
+		window._canvas16.add(text_obj);
+		window._canvas17.add(text_obj);
+		window._canvas18.add(text_obj);
 	};
 
 	$("#delete").click(function() {
@@ -834,6 +1540,27 @@ $(document).ready(function() {
 		window._canvas.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
 		window._canvas.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
 		window._canvas.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
+		
+		window._canvas9.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
+		window._canvas9.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
+		window._canvas9.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
+		
+		window._canvas10.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
+		window._canvas10.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
+		window._canvas10.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
+		
+		window._canvas15.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
+		window._canvas15.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
+		window._canvas15.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
+		
+		window._canvas16.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
+		window._canvas16.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
+		window._canvas16.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
+		
+		window._canvas13.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
+		window._canvas13.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
+		window._canvas13.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
+		
 		window._canvas.renderAll();
 	}
 
@@ -847,18 +1574,57 @@ $(document).ready(function() {
 		window._canvas.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
 		window._canvas.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
 		window._canvas.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
+		
+		window._canvas9.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
+		window._canvas9.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
+		window._canvas9.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
+		
+		window._canvas10.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
+		window._canvas10.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
+		window._canvas10.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
+		
+		window._canvas15.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
+		window._canvas15.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
+		window._canvas15.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
+		
+		window._canvas16.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
+		window._canvas16.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
+		window._canvas16.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
+		
+		window._canvas13.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
+		window._canvas13.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
+		window._canvas13.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
+		
 		window._canvas.renderAll();
 	}
 
 	// Reset Zoom
 	function resetZoom() {
 
-		window._canvas.setHeight(window._canvas.getHeight()
-				/ window._canvas.getZoom());
-		window._canvas.setWidth(window._canvas.getWidth()
-				/ window._canvas.getZoom());
+		window._canvas.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
+		window._canvas.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
 		window._canvas.setZoom(1);
 
+		window._canvas9.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
+		window._canvas9.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
+		window._canvas9.setZoom(1);
+		
+		window._canvas10.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
+		window._canvas10.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
+		window._canvas10.setZoom(1);
+		
+		window._canvas13.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
+		window._canvas13.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
+		window._canvas13.setZoom(1);
+		
+		window._canvas15.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
+		window._canvas15.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
+		window._canvas15.setZoom(1);
+		
+		window._canvas16.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
+		window._canvas16.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
+		window._canvas16.setZoom(1);
+		
 		window._canvas.renderAll();
 
 		getFabricCanvases().forEach(function(item) {
@@ -959,7 +1725,7 @@ $(document).ready(function() {
 	
 	// To paste from clipboard a copy of the activeObject
 	function Paste() {
-		// clone again, so you can do multiple copies.
+		// clone again to allow multiple copies.
 		_clipboard.clone(function(clonedObj) {
 			window._canvas.discardActiveObject();
 			clonedObj.set({
@@ -973,10 +1739,20 @@ $(document).ready(function() {
 				clonedObj.canvas = window._canvas;
 				clonedObj.forEachObject(function(obj) {
 					window._canvas.add(obj);
+					window._canvas9.add(obj);
+					window._canvas10.add(obj);
+					window._canvas13.add(obj);
+					window._canvas15.add(obj);
+					window._canvas16.add(obj);
 				});
 				clonedObj.setCoords();
 			} else {
 				window._canvas.add(clonedObj);
+				window._canvas9.add(clonedObj);
+				window._canvas10.add(clonedObj);
+				window._canvas13.add(clonedObj);
+				window._canvas15.add(clonedObj);
+				window._canvas16.add(clonedObj);
 			}
 			_clipboard.top += 15;
 			_clipboard.left += 15;
@@ -1017,6 +1793,25 @@ $(document).ready(function() {
 		    });
 		
 	});
+	
+
+	
+	$('.Load').click(function() {
+
+		 var url = "http://localhost:8080/planr/getLayout/26";
+	        var data1;
+	        $.getJSON(url, function (data) {
+	            console.log(JSON.stringify(data))
+	            data1 = data
+	            
+	            window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(window._canvas))
+	        });
+	        //data1 = JSON.parse(data1);
+	        
+	        //window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(canvas)); 
+	});
+	
+	
 	
 </script>
 

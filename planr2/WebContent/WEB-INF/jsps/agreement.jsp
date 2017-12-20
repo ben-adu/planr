@@ -1,4 +1,9 @@
-<script
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script
@@ -30,7 +35,7 @@
 </script>
 
 <body>
-	<!-- NAV -->
+	<!-- ROLE_USER NAV -->
 	<sec:authorize access="hasRole('ROLE_USER')">
 		<nav class="default" role="navigation">
 		<ul id="slide-out" class="side-nav">
@@ -39,24 +44,29 @@
 						<img src="images/lake.jpg">
 					</div>
 					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a>
-					<a href="#!email"><span class="white-text email">ben@mail.com</span></a>
+					<a href="#!name"><span class="white-text name">${pageContext.request.userPrincipal.name}</span></a> <a
+						href="#!email"><span class="white-text email">ben@mail.com</span></a>
 				</div></li>
-			<c:url value="planEvent" var="client" />
-			<li><a href="planEvent" class="waves-effect"><i
-					class="material-icons">perm_identity</i>Plan Event</a></li>
+			<c:url value="eventSummary" var="client" />
+			<li><a href="eventSummary" class="waves-effect"><i
+					class="material-icons">map</i>Plan Event</a></li>
+					
 			<c:url value="manageLayout" var="client" />
 			<li><a href="manageLayouts" class="waves-effect"><i
-					class="material-icons">business</i>Manage Site Layouts</a></li>
+					class="material-icons">devices_other</i>Manage Site Layouts</a></li>
+					
 			<c:url value="electrical" var="inventory" />
 			<li><a href="electrical" class="waves-effect"><i
-					class="material-icons">devices_other</i>View Electrical Map</a></li>
+					class="material-icons">business</i>View Electrical Map</a></li>
+					
 			<c:url value="guidelines" var="siteLayout" />
 			<li><a href="guidelines" class="waves-effect"><i
-					class="material-icons">map</i>Planning Guidelines</a></li>
+					class="material-icons">assignment</i>Planning Guidelines</a></li>
+					
 			<c:url value="secure" var="client" />
 			<li><a href="secure" class="waves-effect"><i
 					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
+					
 			<c:url value="logout" var="logout" />
 			<li><a href="${logout}" class="waves-effect"><i
 					class="material-icons">perm_identity</i>Logout</a></li>
@@ -66,7 +76,7 @@
 		<a href="secure" class="brand-logo center"><img
 			src="images/mcs.png" height="80"></a> </nav>
 	</sec:authorize>
-	<!--  END OF NAV -->
+	<!-- End of ROLE_USER Nav -->
 	
 	<div class="container">
          <h4 style="text-align: center">Additional Details</h4>

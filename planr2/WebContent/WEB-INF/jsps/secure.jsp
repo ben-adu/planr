@@ -18,8 +18,11 @@
 	rel="stylesheet">
 
 <script src="scripts/sweetalert.min.js"></script>
+<script src="scripts/intro.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/introjs.css">
+<link rel="stylesheet" type="text/css" href="css/introjs-modern.css">
 <title>Home</title>
 
 <script>
@@ -61,7 +64,7 @@
 	<!-- ROLE_ADMIN NAV -->
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<nav class="default" role="navigation">
-		<ul id="slide-out" class="side-nav">
+		<ul id="slide-out" class="side-nav" >
 			<li><div class="userView">
 					<div class="background">
 						<img src="images/lake.jpg">
@@ -85,7 +88,7 @@
 			
 			<c:url value="inventoryManagement" var="inventory" />
 			<li><a href="inventoryManagement" class="waves-effect"><i
-					class="material-icons">assessment</i>Inventory management</a></li>
+					class="material-icons">assessment</i>Inventory</a></li>
 			
 			<c:url value="secure" var="client" />
 			<li><a href="secure" class="waves-effect"><i
@@ -139,18 +142,25 @@
 					class="material-icons">perm_identity</i>Logout</a></li>
 		</ul>
 		<a href="#" data-activates="slide-out"
-			class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+			class="button-collapse show-on-large" data-step="1" data-intro="Click to open Navigation Pane"><i class="material-icons">menu</i></a>
 		<a href="secure" class="brand-logo center"><img
 			src="images/mcs.png" height="80"></a> </nav>
 	</sec:authorize>
 	<!-- End of ROLE_USER Nav -->
 
-
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red" href="javascript:void(0)" onclick="javascript:introJs().start();">
+      <i class="large material-icons">info_outline</i>
+    </a>
+  </div>
 
 
 	<!-- Body -->
 
-	<div class="container">
+	<div class="container"><!-- 
+		<div class="row">
+					<a href="javascript:void(0)" onclick="javascript:introJs().start();" class="page-scroll btn btn-xl">Start</a>
+		</div> -->
 		<!-- View Employees See -->
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<h4>Welcome ${pageContext.request.userPrincipal.name}</h4>
@@ -199,7 +209,7 @@
 							<div class="card hoverable teal">
 								<div class="card-content white-text ">
 								<i class="material-icons medium left">assessment</i>
-									<h4 class="center-align">Inventory Management</h4>
+									<h4 class="center-align">Inventory</h4>
 								</div>
 							</div>
 						</a>
@@ -214,7 +224,7 @@
 			<h4>Welcome ${pageContext.request.userPrincipal.name}</h4>
 			<BR>
 			<div class="row">
-				<div class="col s6">
+				<div class="col s6" data-step="2" data-intro="Click here to Plan a new Event">
 							<a href="eventSummary">
 								<div class="card hoverable teal">
 									<div class="card-content white-text ">
@@ -225,7 +235,7 @@
 							</a>
 						</div>
 
-						<div class="col s6">
+						<div class="col s6" data-step="3" data-intro="Click here to Manage Layouts">
 							<a href="manageLayouts">
 								<div class="card hoverable teal">
 									<div class="card-content white-text ">
@@ -239,7 +249,7 @@
 			</div>
 					
 			<div class="row">
-						<div class="col s6">
+						<div class="col s6" data-step="4" data-intro="Click here to View Electrical Map">
 							<a href="electrical">
 								<div class="card hoverable teal">
 									<div class="card-content white-text ">
@@ -250,7 +260,7 @@
 							</a>
 						</div>
 						
-						<div class="col s6">
+						<div class="col s6" data-step="5" data-intro="Click here to View Planning Guidelines">
 							<a href="guidelines">
 								<div class="card hoverable teal">
 									<div class="card-content white-text ">

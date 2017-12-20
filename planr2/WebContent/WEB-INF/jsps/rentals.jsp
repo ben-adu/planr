@@ -16,8 +16,14 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+	
+	<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 
 <script src="scripts/sweetalert.min.js"></script>
+<script src="scripts/jquery.formautofill.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
 <title>Rentals</title>
@@ -34,9 +40,102 @@
 	
 	$(document).ready(function() {
 		$('select').material_select();
+		
+		$.validator.addMethod("ALPHANUMERICC", function(value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9]+$/i.test(value);
+        }, "Please enter only alphanumeric characters");
+		
+		jQuery.validator.addMethod("lettersonly", function(value, element) {
+			  return this.optional(element) || /^[a-z]+$/i.test(value);
+			}, "Letters only please");
+		
+		
+		
+		$("#rForm").validate({
+			errorClass: "my-error-class",
+		    validClass: "my-valid-class",
+			rules : {
+				
+				chairNum : {
+					required : true,
+					minlength : 1,
+					digits:"true"
+				},
+				fenceNum : {
+					required : true,
+					minlength : 1,
+					digits:"true"
+				},
+				barricadeNum : {
+					required : true,
+					minlength : 1,
+					digits:"true"
+				},
+				shitterNum : {
+					required : true,
+					minlength : 1,
+					digits:"true"
+				},
+				handWashNum : {
+					required : true,
+					minlength : 1,
+					ALPHANUMERICC:"required COTRACT"
+				},
+				
+
+				eStartDate : "required",
+				eStartTime : "required",
+				eEndDate : "required",
+				eEndTime : "required",
+				eSetupDate : "required",
+				eSetupTime : "required",
+				eCleanupDate : "required",
+				eCleanupTime : "required",
+			},
+			messages : {
+				eventIdentifier : {
+					required : "Please enter the name of the equipment"
+				},
+				price : {
+					required : "Please enter the price of the equipment",
+					number : "Please enter a price starting from $0.01"
+				}
+			},
+			errorElement : 'div',
+			errorPlacement : function(error, element) {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
+		});
 
 	});
 </script>
+
+<script>
+$(document).ready(function() {
+var data = {
+    "chairNum": "1",
+    "fenceNum": "1",
+    "barricadeNum": "1",
+    "shitterNum": "1",
+    "handWashNum": "1",
+    "footWashNum": "1",
+    "picnicNum": "1",
+    "waterStationNum": "1"
+    
+}
+$("#rForm .btn").bind("click", function() {
+    $("#rForm").autofill(data, {
+        findbyname: false
+    });
+});
+});
+</script>
+
 <body>
 	<!-- NAV -->
 	<sec:authorize access="hasRole('ROLE_USER')">
@@ -79,7 +178,7 @@
 	<div class="container">
 		<h4 style="text-align: center">Equipment Rentals</h4>
 		<c:url value="equipmentRentals" var="url" />
-		<form name="form" method="post" action="${url}"
+		<form name="rForm" id="rForm" class="rForm"  method="post" action="${url}"
 			onsubmit="return verify()" class="col s12">
 
 			<div class="row">
@@ -185,71 +284,21 @@
 			<BR>
 			<BR>
 			<BR>
+			<input type="button" class="btn btn-info clickaction" value="autofill by id">
 			<div class="row">
 				<div class="col s6">
 					<a id="btnBack1" class="waves-effect waves-light btn-large"
 						style="display: block" href="splashPad">Back</a>
 				</div>
 				<div class="col s6">
-
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" /> <a id="btnContinue2" type="submit"
-						onclick="verify()" class="waves-effect waves-light btn-large"
-						style="display: block" href="mcsRentals">Next</a>
-				</div>
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /><a> <button type="submit"
+					value="Next" onclick="valid()"
+					class="waves-effect waves-light btn-large" style="display: block" href="mcsRentals"> Next </button></a>
 			</div>
+			</div>
+			
 		</form>
-
-
-
-
-
-
-		<!--  <footer class="page-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col s12">
-                <h5 class="white-text">Footnotes</h5>
-                <p class="grey-text text-lighten-4">
-*EQUIPMENT RENTAL: Rental companies that will be onsite at MCS to drop off or pick up equipment outside of permit hours listed in a Facility Rental contract must have prior approval from MCS. 
-	Event organizers must submit a request for equipment to be onsite outside of permit hours to MCS thirty (30) days prior to event for consideration. Proposed drop-off and pick-up times must be included with this request. 
-	If approved, the event organizer must submit the following to MCS by seven (7) days prior to event on behalf of any company providing equipment rentals:<BR>
-		- A copy of the service provider’s business license<BR>
-		- $2 million liability insurance naming the City as an additional insured on the City’s template.<BR>
-	Additional documentation including WSIB clearance may be required depending on the type of equipment being rented and the work being performed.<BR>
-<p>
-** For set up costs, see the Celebration Square Fees in the Event Planning Toolkit section of the Celebration Square website
-
-*** INFLATABLES: All inflatables are subject to approval by MCS. A maximum of three (3) inflatable bouncers are allowed onsite at any one time. <BR>
-Inflatable bouncers are restricted to the lawn area of the Lower Square; they must be secured with sand bags or water barrels and continuously supervised by qualified staff. <BR>
-Event organizers must submit all technical specifications (dimensions, electrical requirements, image or photo) and proposed location(s) to MCS thirty (30) days prior <BR>
-to event for consideration. If approved, the event organizer must submit the following to MCS seven (7) days prior to event on behalf of any company providing inflatables or any other high-risk activities:<BR>
-- TSSA permit & operator license for inflatable bouncers<BR>
-- A copy of the service provider’s business license<BR>
-- $5 million liability insurance naming the City as an additional insured on the City’s Template<BR>
-
-****WASHROOMS: Events with expected attendance of less than 5,000 can be accommodated by the existing indoor washroom <BR>
-facilities located on the Upper Square, in City Hall, and in the Central Library. Custodial staff charges for indoor <BR>
-washrooms cleaning are mandatory for all Large Events. Events with expected attendance over 5,000 must arrange for portable <BR>
-washroom facilities, including accessible facilities and hand washing stations. The minimum MCS requirements are: <BR>
-- Attendance 5,000–10,000: 2 regular washrooms, 1 accessible washroom, 1 hand washing station<BR>
-- Attendance 10,000–15,000: 4 regular washrooms, 2 accessible washrooms, 2 hand washing stations<BR>
-- Attendance 15,000–20,000: 6 regular washrooms, 3 accessible washrooms, 3 hand washing stations<BR>
-- Attendance 20,000+: 8 regular washrooms, 4 accessible washrooms, 4 hand washing stations<BR>
-Equipment Rental Guidelines apply to portable washrooms.
-
-      </div>
-      
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-    © 2017 Copyright 
-    </div>
-  </div>
-</footer> -->
-
-
-	</div>
+</div>
 </body>
 </html>

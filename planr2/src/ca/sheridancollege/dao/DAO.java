@@ -250,6 +250,7 @@ public class DAO {
 		return layout;
 	}
 	
+	
 	public Objects getObjects (int id)
 	{
 		Session session = sessionFactory.openSession();

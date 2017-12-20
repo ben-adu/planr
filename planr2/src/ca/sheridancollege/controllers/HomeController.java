@@ -1,5 +1,6 @@
 package ca.sheridancollege.controllers;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import ca.sheridancollege.beans.Calendar;
 import ca.sheridancollege.beans.Customer;
@@ -84,7 +90,11 @@ public class HomeController
 		return "manageLayouts";
 	}
 
-	
+	@RequestMapping(value = "/testEvent", method = RequestMethod.GET)
+	public String testEvent(Model model)
+	{
+		return "testEvent";
+	}
 //	@RequestMapping(value = "/planEvent", method = RequestMethod.GET)
 //	public String planEvent(Model model)
 //	{
@@ -343,41 +353,48 @@ public class HomeController
 	{
 		DAO dao = new DAO();
 		dao.saveEvent(event);
-		model.addAttribute("eventist", dao.getEventList());
+		model.addAttribute("eventList", dao.getEventList());
+
 		return "secure";
 	}
 	
-	@RequestMapping(value = "/planEvent/{id}", method = RequestMethod.GET)
-	public String planEvent(Model model, @PathVariable int id)
-	{
-		DAO dao = new DAO();
-		Event event = new Event();
-		event = dao.getEventByID(id);
-		model.addAttribute("event", event);
-		return "planEvent";
-	}
-	
-	@RequestMapping(value = "/creatingEvent", method = RequestMethod.GET)
-	public String creatingEvent(Model model)
-	{
-
-		return "creatingEvent";
-	}
+//	@RequestMapping(value = "/planEvent/{id}", method = RequestMethod.GET)
+//	public String planEvent(Model model, @PathVariable int id)
+//	{
+//		DAO dao = new DAO();
+//		Event event = new Event();
+//		event = dao.getEventByID(id);
+//		model.addAttribute("event", event);
+//		return "planEvent";
+//	}
 	
 	
-	@RequestMapping(value="/getLayout/{id}", produces="application/json")
+	@RequestMapping(value="/getLayouts/{id}", produces="application/json")
 	@ResponseBody
-	public Map<String, Object> getMap(@PathVariable int id)
+	
+	public Map<String, Object> getMap(@PathVariable int id) 
 	{
 		DAO dao = new DAO();
 		Map<String, Object> data = new HashMap<String, Object>();
 		Layout layout = dao.getLayout(id);
 //		Objects objects = dao.getObjects(id);
 //		data.put("objects", objects);
-		data.put("layout", layout);
+		data.put(null, layout);
+		
 		return data;
 		
 	}
+	
+	@RequestMapping(value="/getLayout/{id}", method=RequestMethod.GET, produces="application/json")
+	public @ResponseBody Layout getById(@PathVariable (value="id") int id) {
+	    DAO dao = new DAO ();
+	    Layout layout = dao.getLayout(id);
+		return layout;
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/eventSummary", method = RequestMethod.GET)
 	public String eventSummary(Model model)
 	{
@@ -445,6 +462,7 @@ public class HomeController
 	{
 		return "agreement";
 	}
+	
 	
 	
 }
