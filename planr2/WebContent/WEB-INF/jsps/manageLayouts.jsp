@@ -9,8 +9,6 @@
 <title>Display accounts</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
@@ -139,11 +137,15 @@ $(document).ready(function() {
           <div class="card white darken-1">
             <div class="card-image ">
               <img src="images/card_backdrop.jpg" height="250" width="250">
-              <span class="card-title">Saved Layout</span>
+              <span class="card-title">Canada Day</span>
             </div>
             <div class="card-action">
-              <a href="#">Resume Layout</a>
-              <a href="#" id="submit1">Submit Layout</a>
+              &nbsp&nbsp
+              <a href="reviewLayout">Resume</a>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp
+              <a href="#" id="submit1">Submit</a>
             </div>
           </div>
         </div>
@@ -164,6 +166,5 @@ $(document).ready(function() {
 		</div>
 
 
-	</div>
 </body>
 </html>

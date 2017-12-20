@@ -112,7 +112,7 @@
 					href="" >Back</a>  -->
 			</div>  
 			<div class="col s6">
-				<a id="btnContinue"class="waves-effect waves-light btn-large" style="display: block"  href="planEvent/${event.id }" > Plan Your Event</a>
+				<a id="btnContinue"class="waves-effect waves-light btn-large" style="display: block"   href="testEvent" > Plan Your Event</a>
 			</div>
 		</div>
 		</c:forEach>

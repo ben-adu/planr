@@ -34,20 +34,20 @@
 
 <title>Plan your event</title>
 <script>
-$(document).ready(function(){
-      $('.stepper').activateStepper();
-      $('select').material_select();
-      $("#spForm").materialvalidation();
-      
-      $("#spForm").submit(function(){
-    	    if($(this).data().materialvalidation.methods.validate()){
-    	        // your code
-    	    }
-    	    return false;
-    	});
-      
-   });
-   </script>
+	$(document).ready(function() {
+		$('.stepper').activateStepper();
+		$('select').material_select();
+		$("#spForm").materialvalidation();
+
+		$("#spForm").submit(function() {
+			if ($(this).data().materialvalidation.methods.validate()) {
+				// your code
+			}
+			return false;
+		});
+
+	});
+</script>
 
 <script>
 	$(document).ready(function() {
@@ -127,7 +127,7 @@ $(document).ready(function(){
 
 		});
 
-		 $("#splashPadOne").change(function() {
+		$("#splashPadOne").change(function() {
 
 			if ($("#splashPadOne").val() == "North") {
 				$("#splashPadTwo option[value='North']").remove();
@@ -141,7 +141,7 @@ $(document).ready(function(){
 		});
 
 		/* trickery for vendors */
-		 $("#inflate1").change(function() {
+		$("#inflate1").change(function() {
 			if ($("#inflateOne").val() != 0) {
 				$("#size1").show();
 				$("#size1").attr('required');
@@ -199,56 +199,52 @@ $(document).ready(function(){
 			} else {
 				$("#displayTruck2").hide();
 			}
-		}); 
+		});
 
 	});
 </script>
 <script>
-	
 	$(document).ready(function() {
 		$('select').material_select();
-		
+
 		$.validator.addMethod("ALPHANUMERICC", function(value, element) {
-            return this.optional(element) || /^[a-zA-Z0-9]+$/i.test(value);
-        }, "Please enter only alphanumeric characters");
-		
+			return this.optional(element) || /^[a-zA-Z0-9]+$/i.test(value);
+		}, "Please enter only alphanumeric characters");
+
 		jQuery.validator.addMethod("lettersonly", function(value, element) {
-			  return this.optional(element) || /^[a-z]+$/i.test(value);
-			}, "Letters only please");
-		
-		
-		
+			return this.optional(element) || /^[a-z]+$/i.test(value);
+		}, "Letters only please");
+
 		$("#rForm").validate({
-			errorClass: "my-error-class",
-		    validClass: "my-valid-class",
+			errorClass : "my-error-class",
+			validClass : "my-valid-class",
 			rules : {
-				
+
 				chairNum : {
 					required : true,
 					minlength : 1,
-					digits:"true"
+					digits : "true"
 				},
 				fenceNum : {
 					required : true,
 					minlength : 1,
-					digits:"true"
+					digits : "true"
 				},
 				barricadeNum : {
 					required : true,
 					minlength : 1,
-					digits:"true"
+					digits : "true"
 				},
 				shitterNum : {
 					required : true,
 					minlength : 1,
-					digits:"true"
+					digits : "true"
 				},
 				handWashNum : {
 					required : true,
 					minlength : 1,
-					ALPHANUMERICC:"required COTRACT"
+					ALPHANUMERICC : "required COTRACT"
 				},
-				
 
 				eStartDate : "required",
 				eStartTime : "required",
@@ -346,24 +342,24 @@ $("#spForm .btn").bind("click", function() {
 });
 </script> -->
 <script>
-$(document).ready(function() {
-var data = {
-    "chairNum": "1",
-    "fenceNum": "1",
-    "barricadeNum": "1",
-    "shitterNum": "1",
-    "handWashNum": "1",
-    "footWashNum": "1",
-    "picnicNum": "1",
-    "waterStationNum": "1"
-    
-}
-$("#rForm .btn").bind("click", function() {
-    $("#rForm").autofill(data, {
-        findbyname: false
-    });
-});
-});
+	$(document).ready(function() {
+		var data = {
+			"chairNum" : "1",
+			"fenceNum" : "1",
+			"barricadeNum" : "1",
+			"shitterNum" : "1",
+			"handWashNum" : "1",
+			"footWashNum" : "1",
+			"picnicNum" : "1",
+			"waterStationNum" : "1"
+
+		}
+		$("#rForm .btn").bind("click", function() {
+			$("#rForm").autofill(data, {
+				findbyname : false
+			});
+		});
+	});
 </script>
 
 
@@ -406,128 +402,124 @@ $("#rForm .btn").bind("click", function() {
 	</sec:authorize>
 	<!--  END OF NAV -->
 
-	<div class="col s12">
-				<ul class="stepper horizontal" id="horizontal">
+	<div class="container">
+		<h3>Plan your event</h3>
+		<c:url value="/splash" var="url" />
+		<%-- 		<c:url value="/modify/${customer.id }" var="url" />
+ --%>
+		<form:form commandName="inventory" method="post" action="${url}"
+			id="inventory" class="inventory">
+			<div class="card">
+				<div class="card-content">
+					<ul class="stepper horizontal">
 
-					<li class="step active">
-						<div data-step-label="Configuration"
-							class="step-title waves-effect waves-dark">Splash Pad</div>
-
-						<div class="step-content">
-							<form name="spForm" id="spForm" class="spForm" class="col s12"
-								novalidate>
+						<!-- NEXT STEP SPLASHPAD-->
+						<li class="step active">
+							<div data-step-label="required"
+								class="step-title waves-effect waves-dark">Splashpad</div>
+							<div class="step-content">
+								<!-- FORM -->
 								<div class="row">
-									<div class="container">
-										<div class="row">
-											<div class="input-field col s8" id="q1s">
-												<br> <br> <br> <select id="splashPadNo"
-													name="splashPadNo" data-validation="select"
-													data-content="Name field is empty">
-													<option value="" selected>Choose one</option>
-													<option value="two">2</option>
-													<option value="three">3</option>
-													<option value="four">4</option>
-												</select>
-												<h1>
-													<label>How many Splash Pad jets do you need on?</label>
-												</h1>
-											</div>
+									<div class="input-field col s8" id="q1s">
+										<input type="hidden" name="eventID"
+											value="${splashPad.eventID}" /> <br> <br> <br>
+										<select id="splashPadNo" name="splashPadNo" required="">
+											<option value="none" selected>Choose one</option>
+											<option value="two">2</option>
+											<option value="three">3</option>
+											<option value="four">4</option>
+										</select>
+										<h1>
+											<label>How many Splash Pad jets do you need on?</label>
+										</h1>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s8" id="q2">
+										<BR> <BR> <BR> <select id="splashPadOne"
+											name="splashPadOne">
+											<option value="" selected>Choose one</option>
+											<option value="north">North</option>
+											<option value="south">South</option>
+											<option value="east">East</option>
+											<option value="west">West</option>
+										</select>
+										<h1>
+											<label>Which side of the Splash Pad would you like to
+												turn off?</label>
+										</h1>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s8" id="q3">
+										<BR> <BR> <BR> <select id="splashPadTwo"
+											name="splashPadTwo">
+											<option value="" selected>Choose one</option>
+											<option value="north">North</option>
+											<option value="south">South</option>
+											<option value="east">East</option>
+											<option value="west">West</option>
+										</select>
+										<h1>
+											<label>Which side of the Splash Pad would you like to
+												turn off?</label>
+										</h1>
+									</div>
+									<div class="row">
+										<div class="input-field col s8" id="q4">
+											<BR> <BR> <BR> <select id="pressureOne"
+												name="pressureOne">
+												<option value="" selected>Choose one</option>
+												<option value="north">North</option>
+												<option value="south">South</option>
+												<option value="east">East</option>
+												<option value="west">West</option>
+											</select>
+											<h1>
+												<label>Please choose a side to adjust pressure</label>
+											</h1>
+										</div>
+										<div class="input-field col s4" id="q5">
+											<BR> <BR> <BR> <select id="pressureLevelOne"
+												name="pressureLevelOne">
+												<option value="" selected>Choose one</option>
+												<option value="55">55%</option>
+												<option value="75">75%</option>
+												<option value="100">100%</option>
+											</select>
+											<h1>
+												<label>Pressure Level?</label>
+											</h1>
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s8" id="q6">
+											<BR> <BR> <BR> <select id="pressureTwo"
+												name="pressureTwo">
+												<option value="" selected>Choose one</option>
+												<option value="north">North</option>
+												<option value="south">South</option>
+												<option value="east">East</option>
+												<option value="west">West</option>
+											</select>
+											<h1>
+												<label>Please choose a side to adjust pressure</label>
+											</h1>
 										</div>
 
-										<div class="row">
-											<div class="input-field col s8" id="q2">
-												<BR> <BR> <BR> <select id="splashPadOne"
-													name="splashPadOne">
-													<option value="" selected>Choose one</option>
-													<option value="north">North</option>
-													<option value="south">South</option>
-													<option value="east">East</option>
-													<option value="west">West</option>
-												</select>
-												<h1>
-													<label>Which side of the Splash Pad would you like
-														to turn off?</label>
-												</h1>
-											</div>
+
+										<div class="input-field col s4" id="q7">
+											<BR> <BR> <BR> <select id="pressureLevelTwo"
+												name="pressureLevelTwo">
+												<option value="" selected>Choose one</option>
+												<option value="55">55%</option>
+												<option value="75">75%</option>
+												<option value="100">100%</option>
+											</select>
+											<h1>
+												<label>Pressure Level?</label>
+											</h1>
 										</div>
-
-										<div class="row">
-											<div class="input-field col s8" id="q3">
-												<BR> <BR> <BR> <select id="splashPadTwo"
-													name="splashPadTwo">
-													<option value="" selected>Choose one</option>
-													<option value="north">North</option>
-													<option value="south">South</option>
-													<option value="east">East</option>
-													<option value="west">West</option>
-												</select>
-												<h1>
-													<label>Which side of the Splash Pad would you like
-														to turn off?</label>
-												</h1>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="input-field col s8" id="q4">
-												<BR> <BR> <BR> <select id="pressureOne"
-													name="pressureOne">
-													<option value="" selected>Choose one</option>
-													<option value="north">North</option>
-													<option value="south">South</option>
-													<option value="east">East</option>
-													<option value="west">West</option>
-												</select>
-												<h1>
-													<label>Please choose a side to adjust pressure</label>
-												</h1>
-											</div>
-
-
-											<div class="input-field col s4" id="q5">
-												<BR> <BR> <BR> <select id="pressureLevelOne"
-													name="pressureLevelOne">
-													<option value="" selected>Choose one</option>
-													<option value="55">55%</option>
-													<option value="75">75%</option>
-													<option value="100">100%</option>
-												</select>
-												<h1>
-													<label>Pressure Level?</label>
-												</h1>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="input-field col s8" id="q6">
-												<BR> <BR> <BR> <select id="pressureTwo"
-													name="pressureTwo">
-													<option value="" selected>Choose one</option>
-													<option value="north">North</option>
-													<option value="south">South</option>
-													<option value="east">East</option>
-													<option value="west">West</option>
-												</select>
-												<h1>
-													<label>Please choose a side to adjust pressure</label>
-												</h1>
-											</div>
-
-
-											<div class="input-field col s4" id="q7">
-												<BR> <BR> <BR> <select id="pressureLevelTwo"
-													name="pressureLevelTwo">
-													<option value="" selected>Choose one</option>
-													<option value="55">55%</option>
-													<option value="75">75%</option>
-													<option value="100">100%</option>
-												</select>
-												<h1>
-													<label>Pressure Level?</label>
-												</h1>
-											</div>
-										</div>
-
 										<div class="row">
 											<div class="input-field col s8" id="q8">
 												<BR> <BR> <BR> <select id="pressureThree"
@@ -557,176 +549,433 @@ $("#rForm .btn").bind("click", function() {
 												</h1>
 											</div>
 										</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s8" id="q10">
+											<BR> <BR> <BR> <select id="pressureFour"
+												name="pressureFour">
+												<option value="" selected>Choose one</option>
+												<option value="north">North</option>
+												<option value="south">South</option>
+												<option value="east">East</option>
+												<option value="west">West</option>
+											</select>
+											<h1>
+												<label>Please choose a side to adjust pressure</label>
+											</h1>
+										</div>
 
-										<div class="row">
-											<div class="input-field col s8" id="q10">
-												<BR> <BR> <BR> <select id="pressureFour"
-													name="pressureFour">
-													<option value="" selected>Choose one</option>
-													<option value="north">North</option>
-													<option value="south">South</option>
-													<option value="east">East</option>
-													<option value="west">West</option>
-												</select>
-												<h1>
-													<label>Please choose a side to adjust pressure</label>
-												</h1>
-											</div>
 
-
-											<div class="input-field col s4" id="q11">
-												<br> <br> <br> <select id="pressureLevelFour"
-													name="pressureLevelFour">
-													<option value="" selected>Choose one</option>
-													<option value="55">55%</option>
-													<option value="75">75%</option>
-													<option value="100">100%</option>
-												</select>
-												<h1>
-													<label>Pressure Level?</label>
-												</h1>
-											</div>
+										<div class="input-field col s4" id="q11">
+											<br> <br> <br> <select id="pressureLevelFour"
+												name="pressureLevelFour">
+												<option value="" selected>Choose one</option>
+												<option value="55">55%</option>
+												<option value="75">75%</option>
+												<option value="100">100%</option>
+											</select>
+											<h1>
+												<label>Pressure Level?</label>
+											</h1>
 										</div>
 									</div>
+
 								</div>
-							</form>
-						</div>
-
-						<div class="row">
-							<div class="step-actions">
-
-								<button class="waves-effect waves-dark btn blue next-step"
-									type="submit">SUBMIT</button>
+								<div class="step-actions">
+									<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+								</div>
 							</div>
-						</div>
-					</li>
-
-					<li class="step">
-						<div class="step-title waves-effect waves-dark">Step 2</div>
-
-						<div class="step-content">
-							<div class="row">
-
-								<div class="container">
-									<h4 style="text-align: center">Equipment Rentals</h4>
-
-									<form name="rForm" id="rForm" class="rForm" class="col s12">
-
-										<div class="row">
-
-											<span> All questions are mandatory. If a question does
-												not apply to your event, enter "0"<BR>
+						</li>
 
 
-											</span>
-											<div class="input-field col s12">
-												<BR> <BR> <BR> <input id="chairNum"
-													name="chairNum" type="number" min="0" step="1" required=""
-													class="validate" placeholder="Enter a number">
-												<h1>
-													<label>How many chairs are you bringing onsite?* </label>
-												</h1>
-											</div>
 
-											<div class="input-field col s12">
-												<BR> <BR> <BR> <input id="fenceNum"
-													name="fenceNum" type="number" min="0" step="1" required=""
-													class="validate" placeholder="Enter a number">
-												<h1>
-													<label>How many privacy fences are you bringing
-														onsite?* </label>
-												</h1>
-											</div>
+						<!-- RENTALS -->
+						<!-- <li class="step">
+							<div class="step-title waves-effect waves-dark">Rentals</div>
+							<div class="step-content">
+								<div class="row">
 
-											<div class="input-field col s12">
-												<BR> <BR> <BR> <input id="barricadeNum"
-													name="barricadeNum" type="number" min="0" step="1"
-													required="" class="validate" placeholder="Enter a number">
-												<h1>
-													<label>How many barricades are you bringing
-														onsite?*</label>
-												</h1>
-											</div>
-
-											<div class="input-field col s12">
-												<BR> <BR> <BR> <input id="shitterNum"
-													name="shitterNum" type="number" min="0" step="1"
-													required="" class="validate" placeholder="Enter a number">
-												<h1>
-													<label>How many port-o-lets are you bringing
-														onsite?****</label>
-												</h1>
-											</div>
-
-											<div class="input-field col s12">
-												<BR> <BR> <BR> <input id="handWashNum"
-													name="handWashNum" type="number" min="0" step="1"
-													required="" class="validate" placeholder="Enter a number">
-												<h1>
-													<label>How many hand-washing stations are you
-														bringing onsite?* </label>
-												</h1>
-											</div>
-
-											<div class="input-field col s12">
-												<BR> <BR> <BR> <input id="footWashNum"
-													name="footWashNum" type="number" min="0" step="1"
-													required="" class="validate" placeholder="Enter a number">
-												<h1>
-													<label>How many foot-washing stations are you
-														bringing onsite?* </label>
-												</h1>
-											</div>
-
-											<div class="input-field col s12">
-												<BR> <BR> <BR> <input id="picnicNum"
-													name="picnicNum" type="number" min="0" step="1" required=""
-													class="validate" placeholder="Enter a number">
-												<h1>
-													<label>How many tables or picnic tables are you
-														bringing onsite?* </label>
-												</h1>
-											</div>
-
-											<div class="input-field col s12">
-												<BR> <BR> <BR> <input id="waterStationNum"
-													name="waterStationNum" type="number" min="0" step="1"
-													required="" class="validate" placeholder="Enter a number">
-												<h1>
-													<label>How many portable water-filling stations are
-														you bringing onsite?* </label>
-												</h1>
-											</div>
-										</div>
-
-										<BR> <BR> <BR> <input type="button"
-											class="btn btn-info clickaction" value="autofill by id">
+									<span> All questions are mandatory. If a question does
+										not apply to your event, enter "0"<BR>
 
 
-									</form>
+									</span>
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="chairNum"
+											name="chairNum" type="number" min="0" step="1" required=""
+											class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many chairs are you bringing onsite?* </label>
+										</h1>
+									</div>
+
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="fenceNum"
+											name="fenceNum" type="number" min="0" step="1" required=""
+											class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many privacy fences are you bringing
+												onsite?* </label>
+										</h1>
+									</div>
+
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="barricadeNum"
+											name="barricadeNum" type="number" min="0" step="1"
+											required="" class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many barricades are you bringing onsite?*</label>
+										</h1>
+									</div>
+
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="shitterNum"
+											name="shitterNum" type="number" min="0" step="1" required=""
+											class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many port-o-lets are you bringing
+												onsite?****</label>
+										</h1>
+									</div>
+
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="handWashNum"
+											name="handWashNum" type="number" min="0" step="1" required=""
+											class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many hand-washing stations are you
+												bringing onsite?* </label>
+										</h1>
+									</div>
+
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="footWashNum"
+											name="footWashNum" type="number" min="0" step="1" required=""
+											class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many foot-washing stations are you
+												bringing onsite?* </label>
+										</h1>
+									</div>
+
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="picnicNum"
+											name="picnicNum" type="number" min="0" step="1" required=""
+											class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many tables or picnic tables are you
+												bringing onsite?* </label>
+										</h1>
+									</div>
+
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="waterStationNum"
+											name="waterStationNum" type="number" min="0" step="1"
+											required="" class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many portable water-filling stations are
+												you bringing onsite?* </label>
+										</h1>
+									</div>
+								</div>
+								<br> <br> <br>
+								<div class="step-actions">
+									<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+									<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+								</div>
+							</div>
+						</li> -->
+
+						<!-- MCS RENTALS -->
+						<li class="step">
+							<div class="step-title waves-effect waves-dark">MCS Rentals</div>
+							<div class="step-content">
+								<div class="row ">
+									<div class="input-field col s8" required="">
+										<span><B>Picnic tables</B></span><BR> <span>regular
+											5' x 6', accessible 5' x 7'</span> <select required=""
+											id="picnicTable" name="picnicTable">
+											<option value="" disabled selected>Choose one</option>
+											<option value="self">Set up yourself</option>
+											<option value="city">Set up by City staff at
+												additional cost**</option>
+										</select>
+									</div>
 								</div>
 
-							</div>
+								<div class="row">
+									<div class="input-field col s8" required="">
+										<span><B>White picket fences</B></span><BR> <span>6'
+											x 3.4'</span> <select required="" id="whiteFence" name="whiteFence">
+											<option value="" disabled selected>Choose one</option>
+											<option value="remain">Remain in current default
+												location</option>
+											<option value="remove">Remove from site</option>
+											<option value="city">Set up by City staff at
+												additional cost**</option>
+										</select>
+									</div>
+								</div>
 
-						</div>
-						<div class="row">
-						<div class="step-actions">
-							<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
-							<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
-						</div>
-						</div>
-					</li>
-					<li class="step">
-						<div class="step-title waves-effect waves-dark">Step 3</div>
-						<div class="step-content">
-							Finish!
-							<div class="step-actions">
-								<button class="waves-effect waves-dark btn blue" type="submit">SUBMIT</button>
+								<div class="row">
+									<div class="input-field col s8" required="">
+										<span><B>Umbrellas</B></span><BR> <span>10' x 10'</span>
+										<select required="" id="umbrella" name="umbrella">
+											<option value="" disabled selected>Choose one</option>
+											<option value="remain">Remain in current default
+												location</option>
+											<option value="remove">Remove from site</option>
+											<option value="city">Set up by City staff at
+												additional cost**</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="input-field col s8" required="">
+										<span><B>Bistro tables and chairs</B></span><BR> <select
+											required="" id="bistroTable" name="bistroTable">
+											<option value="" disabled selected>Choose one</option>
+											<option value="self">Set up yourself</option>
+											<option value="remain">Remain in current default
+												location</option>
+											<option value="remove">Remove from site</option>
+											<option value="city">Set up by City staff at
+												additional cost**</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="row col s12">
+									<div class="input-field col s8">
+										<textarea id="rentalNotes" name="rentalNotes"
+											class="materialize-textarea"></textarea>
+										<label for="notes1">Additional notes about equipment</label>
+									</div>
+								</div>
+								<div class="step-actions">
+									<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+									<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+								</div>
 							</div>
-						</div>
-					</li>
-				</ul>
+						</li>
+
+						<!-- VENDORS -->
+						<!-- 	<li class="step">
+							<div class="step-title waves-effect waves-dark">Vendors</div>
+							<div class="step-content">
+								<div class="row">
+									<div id="inflate1" class="input-field col s12">
+										<BR> <BR> <BR> <input id="inflateOne"
+											type="number" min="0" step="1" required="" class="validate"
+											placeholder="Enter a number">
+										<h1>
+											<label>How many Inflatables (sports zone type) are
+												you bringing onsite?***</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="size1" class="input-field col s12">
+										<BR> <BR> <BR> <input id="inflateOneSize"
+											type="text">
+										<h1>
+											<label>Provide the size of each sports zone type
+												inflatable</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="inflate2" class="input-field col s12">
+										<BR> <BR> <BR> <input id="inflateTwo"
+											type="number" min="0" max="3" step="1" required=""
+											class="validate" placeholder="Enter a number">
+										<h1>
+											<label>How many Inflatables (bouncy castle type) are
+												you bringing onsite?***</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="size2" class="input-field col s12">
+										<BR> <BR> <BR> <input id="inflateTwoSize"
+											type="text">
+										<h1>
+											<label>Provide the size of bouncy castle type
+												inflatable</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="games1" class="input-field col s12">
+										<BR> <BR> <BR> <input id="gamesNum"
+											type="number" min="0" step="1" required="" class="validate"
+											placeholder="Enter a number">
+										<h1>
+											<label>Are you bringing rides or games onsite (ex:
+												train, plush animals, tennis)?***</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="games2" class="input-field col s12">
+										<BR> <BR> <BR> <input id="gamesType"
+											type="text">
+										<h1>
+											<label>If bringing rides or games onsite, what
+												kind?***</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="games3" class="input-field col s12">
+										<BR> <BR> <BR> <input id="gamesSize"
+											type="text">
+										<h1>
+											<label>Provide the size of the area required for ride
+												or game set-up</label>
+										</h1>
+									</div>
+								</div>
+
+
+								<div class="row">
+									<div id="foodTruck1" class="input-field col s12">
+										<BR> <BR> <BR> <input id="foodTruckNum"
+											type="number" min="0" step="1" required="" class="validate"
+											placeholder="Enter a number">
+										<h1>
+											<label>How many food trucks are you bringing onsite?</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="trailer1" class="input-field col s12">
+										<BR> <BR> <BR> <input id="trailerNum"
+											type="number" min="0" step="1" required="" class="validate"
+											placeholder="Enter a number">
+										<h1>
+											<label>How many trailers or food storage vehicles are
+												you bringing onsite?</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="trailer2" class="input-field col s12">
+										<BR> <BR> <BR>
+										<textarea id="trailerDimension" class="materialize-textarea"></textarea>
+										<h1>
+											<label for="trailerDimension">If bringing trailers or
+												food storage vehicles onsite, provide the dimensions for
+												each</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="displayCar1" class="input-field col s12">
+										<BR> <BR> <BR> <input id="displayCarNum"
+											type="number" min="0" step="1" required="" class="validate"
+											placeholder="Enter a number">
+										<h1>
+											<label>How many display cars are you bringing onsite?</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="displayCar2" class="input-field col s12">
+										<BR> <BR> <BR>
+										<textarea id="displayCarDetails" class="materialize-textarea"></textarea>
+										<h1>
+											<label for="displayCarDetails">If bringing display
+												cars onsite, provide the details for each </label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="displayTruck1" class="input-field col s12">
+										<BR> <BR> <BR> <input id="displayTruckNum"
+											type="number" min="0" step="1" required="" class="validate"
+											placeholder="Enter a number">
+										<h1>
+											<label>How many display trucks are you bringing
+												onsite?</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+									<div id="displayTruck2" class="input-field col s12">
+										<textarea id="displayTruckDetails"
+											class="materialize-textarea"></textarea>
+										<h1>
+											<label for="displayTruckDetails">If bringing display
+												trucks onsite, provide the details for each</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="step-actions">
+									<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+									<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+								</div>
+							</div>
+						</li> -->
+
+
+
+						<!-- Agreement -->
+						<li class="step">
+							<div class="step-title waves-effect waves-dark">Agreement</div>
+							<div class="step-content">
+								<div class="row">
+									<div class="input-field col s12">
+										<BR> <BR> <BR> <input id="attendeeNum"
+											name="attendeeNum" type="number" min="1" step="1" required=""
+											class="validate">
+										<h1>
+											<label>How many attendees do you expect in total?</label>
+										</h1>
+									</div>
+								</div>
+
+								<div class="row">
+
+									<div class="input-field col s12" required="">
+										<select id="acknowledge" name="acknowledge" required="">
+											<option value="" disabled selected>Choose one</option>
+											<option value="yes">Yes</option>
+											<option value="no">No</option>
+										</select> <label>I confirm that I have read and understood the
+											MCS Guidelines</label> <BR> <span> Please refer the
+											following link to find a copy of <a href="guidelines"
+											target="_blank">MCS Guidelines</a>
+										</span>
+									</div>
+								</div>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+
+								<div class="">
+									<a id="btnContinue" class="waves-effect waves-dark btn blue btn-large"
+										style="display: block" href="createLayout"> Plan Your Event</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</form:form>
 	</div>
-
 </body>
 </html>

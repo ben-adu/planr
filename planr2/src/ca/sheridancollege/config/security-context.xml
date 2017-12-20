@@ -44,7 +44,7 @@
 		<security:intercept-url pattern="/electrical" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/planEvent/{id}" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/modifyEvent/{id}" access="hasAnyRole('ROLE_USER')" />
-		<security:intercept-url pattern="/creatingEvent" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/creatingEvent" access="hasAnyRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/eventSummary" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/saveLayout" access="permitAll" />
 		<security:intercept-url pattern="/saveCalendar" access="permitAll" />
@@ -59,6 +59,9 @@
 		<security:intercept-url pattern="/vendors" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/agreement" access="hasAnyRole('ROLE_USER')" />
 		<security:intercept-url pattern="/testEvent" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/sweetEvent" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/event/{id}" access="hasAnyRole('ROLE_USER')" />
+		<security:intercept-url pattern="/reviewLayout" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/scripts/**" access="permitAll" />

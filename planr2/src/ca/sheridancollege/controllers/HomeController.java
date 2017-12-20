@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,6 +41,7 @@ import ca.sheridancollege.beans.Layout;
 import ca.sheridancollege.beans.MyUserDetailsService;
 import ca.sheridancollege.beans.Objects;
 import ca.sheridancollege.beans.One;
+import ca.sheridancollege.beans.SplashPad;
 import ca.sheridancollege.beans.Two;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.beans.UserRole;
@@ -47,10 +50,6 @@ import ca.sheridancollege.dao.DAO;
 @Controller
 public class HomeController
 {
-
-	private Customer customer = new Customer();
-	private Inventory inventory = new Inventory();
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model)
 	{
@@ -76,13 +75,6 @@ public class HomeController
 		return "siteLayout";
 	}
 
-	@RequestMapping(value = "/eventDetails", method = RequestMethod.GET)
-	public String eventDetails(Model model)
-	{
-		DAO dao = new DAO();
-		model.addAttribute("inventory", dao.getItemList());
-		return "eventDetails";
-	}
 
 	@RequestMapping(value = "/manageLayouts", method = RequestMethod.GET)
 	public String manageLayout(Model model)
@@ -348,14 +340,32 @@ public class HomeController
 		
 	}
 	
-	@RequestMapping(value = "/creatingEvent", method = RequestMethod.POST)
+	@RequestMapping(value = "/creatingEvents",  method = {RequestMethod.GET,RequestMethod.POST})
+	@ResponseStatus(value=HttpStatus.OK)
 	public String createEvent(Model model, @ModelAttribute Event event)
 	{
 		DAO dao = new DAO();
 		dao.saveEvent(event);
 		model.addAttribute("eventList", dao.getEventList());
-
 		return "secure";
+	}
+	@RequestMapping(value = "/creatingEvent",  method = {RequestMethod.GET,RequestMethod.POST})
+	@ResponseStatus(value=HttpStatus.OK)
+	public String createEvents(Model model, @ModelAttribute Event event, @ModelAttribute SplashPad splashPad)
+	{
+		DAO dao = new DAO();
+		dao.createEvent(event, splashPad);
+		model.addAttribute("eventList", dao.getEventList());
+		model.addAttribute("splashPadList", dao.getSplashPadList());
+		return "secure";
+	}
+	
+	@RequestMapping(value = "/eventDetails", method = RequestMethod.GET)
+	public String eventDetails(Model model)
+	{
+		DAO dao = new DAO();
+		model.addAttribute("event", dao.getEventList());
+		return "eventDetails";
 	}
 	
 //	@RequestMapping(value = "/planEvent/{id}", method = RequestMethod.GET)
@@ -415,6 +425,40 @@ public class HomeController
 
 		return "modifyEvent";
 	}
+	@RequestMapping(value = "/s", method = RequestMethod.POST) 
+	public String planEvent(Model model, @PathVariable int id, @ModelAttribute SplashPad splashPad)
+	{
+		DAO dao = new DAO();
+		Event event = new Event();
+		List<SplashPad> splashPadList = null;
+		dao.createEvent(event, splashPad);
+		splashPadList =dao.getSplashPadList();
+		model.addAttribute("splashPadList", splashPadList);
+
+		return "testEvent";
+	}
+	@RequestMapping(value = "/event/{eventId}", method = RequestMethod.GET)
+	public String editEvent(Model model, @PathVariable int eventId)
+	{
+		DAO dao = new DAO();
+		Event event = new Event();
+		SplashPad splashPad = new SplashPad();
+		splashPad = dao.getEventSplashByID(eventId);
+		model.addAttribute("splashPad", splashPad);
+		return "sweetEvent";
+	}
+	
+	@RequestMapping(value = "/splash",  method = {RequestMethod.GET,RequestMethod.POST})
+	@ResponseStatus(value=HttpStatus.OK)
+	public String createSplash(Model model, @ModelAttribute SplashPad splashPad)
+	{
+		DAO dao = new DAO();
+		Event event = new Event();
+		dao.createEvent(event, splashPad);
+		model.addAttribute("splashList", dao.getSplashPadList());
+		return "secure";
+	}
+	
 		@RequestMapping(value = "/guidelines", method = RequestMethod.GET)
 	public String guidelines(Model model)
 	{
@@ -462,6 +506,20 @@ public class HomeController
 	{
 		return "agreement";
 	}
+	
+	@RequestMapping(value = "/sweetEvent", method = RequestMethod.GET)
+	public String sweetEvent(Model model)
+	{
+		return "sweetEvent";
+	}
+	@RequestMapping(value = "/reviewLayout", method = RequestMethod.GET)
+	public String reviewLayout(Model model)
+	{
+		return "reviewLayout";
+	}
+	
+	
+	
 	
 	
 	

@@ -42,6 +42,7 @@
  		<mapping class="ca.sheridancollege.beans.Layout" />
  		<mapping class="ca.sheridancollege.beans.BackgroundImage" /> 
  		<mapping class="ca.sheridancollege.beans.Calendar" /> 
+ 		<mapping class="ca.sheridancollege.beans.SplashPad" /> 
  		
 		
 		

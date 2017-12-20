@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Display accounts</title>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
@@ -20,8 +20,8 @@
 <script src="scripts/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 <link rel="stylesheet" href="css/style.css">
-<title>Home</title>
-
+<c:url value="/scripts/scriptJSON.js" var="scriptUrl" />
+<script src="${scriptUrl}"></script>
 <script>
 	(function($) {
 		$(function() {
@@ -38,25 +38,19 @@
 		$('.preloader-wrapper').delay(1700).fadeOut();
 	});
 </script>
-
+<script>
+$(document).ready(function() {
+	 $( "#button1" ).click(function() {
+		  
+		 $("#submitted").hide();
+		 
+		});
+	
+});
+	  
+</script>
 </head>
 <body>
-
-	<div class="preloader-background">
-		<div class="preloader-wrapper big active">
-			<div class="spinner-layer spinner-blue-only">
-				<div class="circle-clipper left">
-					<div class="circle"></div>
-				</div>
-				<div class="gap-patch">
-					<div class="circle"></div>
-				</div>
-				<div class="circle-clipper right">
-					<div class="circle"></div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- ROLE_ADMIN NAV -->
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -96,57 +90,35 @@
 	</sec:authorize>
 	<!--  END OF NAV -->
 
-	<!-- ROLE_USER NAV -->
-	<sec:authorize access="hasRole('ROLE_USER')">
-		<nav class="default" role="navigation">
-		<ul id="slide-out" class="side-nav">
-			<li><div class="userView">
-					<div class="background">
-						<img src="images/lake.jpg">
-					</div>
-					<a href="#!user"><img class="circle" src="images/ben.jpg"></a>
-					<a href="#!name"><span class="white-text name">ANKIT SHAH</span></a> <a
-						href="#!email"><span class="white-text email">ben@mail.com</span></a>
-				</div></li>
-			<c:url value="createLayout" var="client" />
-			<li><a href="createLayout" class="waves-effect"><i
-					class="material-icons">perm_identity</i>Create Site Layout</a></li>
-			<c:url value="manageLayout" var="client" />
-			<li><a href="manageLayouts" class="waves-effect"><i
-					class="material-icons">business</i>Manage Site Layouts</a></li>
-			<c:url value="electrical" var="inventory" />
-			<li><a href="electrical" class="waves-effect"><i
-					class="material-icons">devices_other</i>View Electrical Map</a></li>
-			<c:url value="guidelines" var="siteLayout" />
-			<li><a href="guidelines" class="waves-effect"><i
-					class="material-icons">map</i>Planning Guidelines</a></li>
-			<c:url value="secure" var="client" />
-			<li><a href="secure" class="waves-effect"><i
-					class="material-icons">arrow_back</i>Back to Main Menu</a></li>
-			<c:url value="logout" var="logout" />
-			<li><a href="${logout}" class="waves-effect"><i
-					class="material-icons">perm_identity</i>Logout</a></li>
-		</ul>
-		<a href="#" data-activates="slide-out"
-			class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-		<a href="secure" class="brand-logo center"><img
-			src="images/mcs.png" height="80"></a> </nav>
-	</sec:authorize>
-	<!-- End of ROLE_USER Nav -->
-
 
 
 
 	<!-- Body -->
 
-	<div class="container">
-		<!-- View Employees See -->
-		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<h4 style="text-align: center">Approve Site Layout</h4>
-			
-		</sec:authorize>
-
+<div class="container">
+		<h5 style="text-align: center">Approve Site Layouts</h5>
+		<div class="row">
+		
+		<div class="col s12 m6" id="submitted">
+          <div class="card white darken-1">
+            <div class="card-image ">
+              <img src="images/card_backdrop.jpg" height="250" width="250">
+              <span class="card-title">Canada Day</span>
+            </div>
+            <div class="card-action">
+              &nbsp&nbsp&nbsp
+              <a href="reviewLayout" style="display: inline">Review</a>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <a href="#" id="button1"style="display: inline">Approve</a>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <a href="#" id="button2"style="display: inline">Reject</a>
+            </div>
+          </div>
+        </div>
+        
+			</div>
 		</div>
+		
 
 
 

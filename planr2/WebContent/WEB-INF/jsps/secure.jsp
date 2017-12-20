@@ -78,9 +78,9 @@
 			<li><a href="eventDetails" class="waves-effect"><i
 					class="material-icons">map</i>Create New Event</a></li>
 					
-			<c:url value="calendar" var="siteLayout" />
-			<li><a href="calendar" class="waves-effect"><i
-					class="material-icons">event</i>Calendar</a></li>
+			<c:url value="approveSiteLayout" var="approveSiteLayout" />
+			<li><a href="approveSiteLayout" class="waves-effect"><i
+					class="material-icons">event</i>Approve Site Layouts</a></li>
 					
 			<c:url value="clientManagement" var="client" />
 			<li><a href="clientManagement" class="waves-effect"><i
@@ -149,7 +149,7 @@
 	<!-- End of ROLE_USER Nav -->
 
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red" href="javascript:void(0)" onclick="javascript:introJs().start();">
+    <a class="btn-floating btn-large red pulse" href="javascript:void(0)" onclick="javascript:introJs().start();">
       <i class="large material-icons">info_outline</i>
     </a>
   </div>
@@ -179,11 +179,11 @@
 					</div>
 					
 					<div class="col s6">
-							<a href="calendar">
+							<a href="approveSiteLayout">
 								<div class="card hoverable teal">
 									<div class="card-content white-text ">
 									<i class="material-icons medium left">event</i>
-										<h4 class="center-align">Calendar</h4>
+										<h4 class="center-align">Approve Site Layout</h4>
 									</div>
 								</div>
 							</a>

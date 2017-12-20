@@ -46,7 +46,29 @@
 		$('.preloader-wrapper').delay(1700).fadeOut();
 	});
 </script>
+<script>
+$( document ).ready(function() {
+	var url = "http://localhost:8080/planr/getLayout/3";
+    var data1;
+    $.getJSON(url, function (data) {
+        console.log(JSON.stringify(data))
+        data1 = data
+        
+        /* window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(window._canvas)) */
+        window._canvas.loadFromJSON(data1, window._canvas.renderAll.bind(window._canvas), function(o, object) {
+   	fabric.log(o, object);
+   	object.set({
+		    flipX : false,
+		    flipY : false,
+		    hasControls : false
+		    });
+        /* window._canvas.setBackgroundImage(img, window._canvas.renderAll.bind(window._canvas)) */
 
+    });
+    
+});
+	});
+</script>
 <script> /* to toggle backdrops  */
 
 $(document).ready(function(){
@@ -417,10 +439,6 @@ $(document).ready(function(){
 					<a class="Save waves-effect waves-light btn" id="Save" data-step="4" data-intro="This is your Save button.<BR> Use this to frequently save your progress">
 							<i class="material-icons left">save</i>Save</a>
 					<BR>
-					<BR>	
-						<a class="Load waves-effect waves-light btn" id="Load">
-							<i class="material-icons left">cloud_download</i>Load</a>
-					<BR> 
 					 
 						<!-- <a class="waves-effect waves-light btn" id="demo" onclick="myFunction()">
 							<i class="material-icons left">code</i>JSON.log</a> -->
@@ -1798,7 +1816,7 @@ $(document).ready(function() {
 	
 	$('.Load').click(function() {
 
-		 var url = "http://localhost:8080/planr/getLayout/3";
+		 var url = "http://localhost:8080/planr/getLayout/4";
 	        var data1;
 	        $.getJSON(url, function (data) {
 	            console.log(JSON.stringify(data))

@@ -94,9 +94,9 @@ public int scaleY;
 @JsonProperty("angle")
 public int angle;
 @JsonProperty("flipX")
-public String flipX;
+public Boolean flipX;
 @JsonProperty("flipY")
-public String flipY;
+public Boolean flipY;
 @JsonProperty("opacity")
 public int opacity;
 @JsonProperty("shadow")
@@ -281,20 +281,16 @@ public void setAngle(int angle)
 {
 	this.angle = angle;
 }
-public String getFlipX()
-{
+public Boolean getFlipX() {
 	return flipX;
 }
-public void setFlipX(String flipX)
-{
+public void setFlipX(Boolean flipX) {
 	this.flipX = flipX;
 }
-public String getFlipY()
-{
+public Boolean getFlipY() {
 	return flipY;
 }
-public void setFlipY(String flipY)
-{
+public void setFlipY(Boolean flipY) {
 	this.flipY = flipY;
 }
 public int getOpacity()
@@ -435,7 +431,7 @@ public void setResizeFilters(String[] resizeFilters)
 }
 public BackgroundImage(String type, String originX, String originY, int left, int top, int width, int height,
 		String fill, String stroke, int strokeWidth, String strokeDashArray, String strokeLineCap,
-		String strokeLineJoin, int strokeMiterLimit, int scaleX, int scaleY, int angle, String flipX, String flipY,
+		String strokeLineJoin, int strokeMiterLimit, int scaleX, int scaleY, int angle, Boolean flipX, Boolean flipY,
 		int opacity, String shadow, String visible, String clipTo, String backgroundColor, String fillRule,
 		String globalCompositeOperation, String transformMatrix, int skewX, int skewY, String crossOrigin,
 		String alignX, String alignY, String meetOrSlice, String src, String[] filters, String[] resizeFilters)
