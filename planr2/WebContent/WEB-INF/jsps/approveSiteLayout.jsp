@@ -100,7 +100,7 @@ $(document).ready(function() {
 		<div class="row">
 		
 		<div class="col s12 m6" id="submitted">
-          <div class="card white darken-1">
+          <div class="card blue-grey darken-1">
             <div class="card-image ">
               <img src="images/card_backdrop.jpg" height="250" width="250">
               <span class="card-title">Canada Day</span>

@@ -1798,7 +1798,7 @@ $(document).ready(function() {
 	
 	$('.Load').click(function() {
 
-		 var url = "http://localhost:8080/planr/getLayout/3";
+		 var url = "http://localhost:8080/planr/getLayout/19";
 	        var data1;
 	        $.getJSON(url, function (data) {
 	            console.log(JSON.stringify(data))

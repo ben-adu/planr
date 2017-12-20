@@ -144,15 +144,11 @@
 		<a href="#" data-activates="slide-out"
 			class="button-collapse show-on-large" data-step="1" data-intro="Click to open Navigation Pane"><i class="material-icons">menu</i></a>
 		<a href="secure" class="brand-logo center"><img
-			src="images/mcs.png" height="80"></a> </nav>
+			src="images/mcs.png" height="80" data-step="6" data-intro="Click here to return to the Main Menu at anytime"></a> </nav>
 	</sec:authorize>
 	<!-- End of ROLE_USER Nav -->
 
-<div class="fixed-action-btn">
-    <a class="btn-floating btn-large red pulse" href="javascript:void(0)" onclick="javascript:introJs().start();">
-      <i class="large material-icons">info_outline</i>
-    </a>
-  </div>
+
 
 
 	<!-- Body -->
@@ -270,6 +266,12 @@
 								</div>
 							</a>
 						</div>
+						
+						<div class="fixed-action-btn" data-step="7" data-intro="Click this button at any time to re-run the tutorial.">
+    <a class="btn-floating btn-large red pulse" href="javascript:void(0)" onclick="javascript:introJs().start();">
+      <i class="large material-icons">info_outline</i>
+    </a>
+  </div>
 			</div>
 		</sec:authorize>
 	</div>

@@ -38,7 +38,7 @@ public class Objects
 	String originX;
 	private String originY;
 	@Column(name = "left1")
-	private String left;
+	private int left;
 	private int top;
 	private int width;
 	private int height;
@@ -114,13 +114,11 @@ public class Objects
 		this.originY = originY;
 	}
 
-	public String getLeft()
-	{
+	public int getLeft() {
 		return left;
 	}
 
-	public void setLeft(String left)
-	{
+	public void setLeft(int left) {
 		this.left = left;
 	}
 
@@ -444,7 +442,7 @@ public class Objects
 		this.resizeFilters = resizeFilters;
 	}
 
-	public Objects(int id, String type, String originX, String originY, String left, int top, int width, int height,
+	public Objects(int id, String type, String originX, String originY, int left, int top, int width, int height,
 			String fill, String stroke, int strokeWidth, String strokeDashArray, String strokeLineCap,
 			String strokeLineJoin, int strokeMiterLimit, int scaleX, int scaleY, int angle, String flipX, String flipY,
 			int opacity, String shadow, String visible, String clipTo, String backgroundColor, String fillRule,
