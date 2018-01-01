@@ -38,6 +38,11 @@
 		}); // end of document ready
 	})(jQuery); // end of jQuery name space
 </script>
+<script>
+$(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });
+</script>
 
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
@@ -414,7 +419,7 @@ $(document).ready(function(){
 					
 				</ul>
 			</div>
-					<a class="Save waves-effect waves-light btn" id="Save" data-step="4" data-intro="This is your Save button.<BR> Use this to frequently save your progress">
+					<a class="Save waves-effect waves-light btn" id="Save" data-step="4" data-intro="This is your Save button.<BR> Use this to frequently save your progress" onclick="Materialize.toast('Layout Saved!!', 4000,'',function(){console.log('Your toast was dismissed')})">
 							<i class="material-icons left">save</i>Save</a>
 					<BR>
 					<BR>	
@@ -500,7 +505,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight2 = canvasTwo.setHeight(img.height);
 								var canvasWidth2 = canvasTwo.setWidth(img.width);
@@ -515,7 +521,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight3 = canvasThree.setHeight(img.height);
 								var canvasWidth3 = canvasThree.setWidth(img.width);
@@ -530,7 +537,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight4 = canvasFour.setHeight(img.height);
 								var canvasWidth4 = canvasFour.setWidth(img.width);
@@ -545,7 +553,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight5 = canvasFive.setHeight(img.height);
 								var canvasWidth5 = canvasFive.setWidth(img.width);
@@ -560,7 +569,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight6 = canvasSix.setHeight(img.height);
 								var canvasWidth6 = canvasSix.setWidth(img.width);
@@ -575,7 +585,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight7 = canvasSeven.setHeight(img.height);
 								var canvasWidth7 = canvasSeven.setWidth(img.width);
@@ -590,7 +601,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight8 = canvasEight.setHeight(img.height);
 								var canvasWidth8 = canvasEight.setWidth(img.width);
@@ -605,7 +617,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight9 = canvasNine.setHeight(img.height);
 								var canvasWidth9 = canvasNine.setWidth(img.width);
@@ -620,7 +633,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight10 = canvasTen.setHeight(img.height);
 								var canvasWidth10 = canvasTen.setWidth(img.width);
@@ -635,7 +649,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight11 = canvasEleven.setHeight(img.height);
 								var canvasWidth11 = canvasEleven.setWidth(img.width);
@@ -650,7 +665,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight12 = canvasTwelve.setHeight(img.height);
 								var canvasWidth12 = canvasTwelve.setWidth(img.width);
@@ -665,7 +681,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight13 = canvasThirteen.setHeight(img.height);
 								var canvasWidth13 = canvasThirteen.setWidth(img.width);
@@ -680,7 +697,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight14 = canvasFourteen.setHeight(img.height);
 								var canvasWidth14 = canvasFourteen.setWidth(img.width);
@@ -695,7 +713,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight15 = canvasFifteen.setHeight(img.height);
 								var canvasWidth15 = canvasFifteen.setWidth(img.width);
@@ -710,7 +729,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight16 = canvasSixteen.setHeight(img.height);
 								var canvasWidth16 = canvasSixteen.setWidth(img.width);
@@ -725,7 +745,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight17 = canvasSeventeen.setHeight(img.height);
 								var canvasWidth17 = canvasSeventeen.setWidth(img.width);
@@ -740,7 +761,8 @@ $(document).ready(function() {
 											originX : 'left',
 											originY : 'top',
 											left : 0,
-											top : 0
+											top : 0,
+											opacity : 0.7
 										});
 								var canvasHeight18 = canvasEighteen.setHeight(img.height);
 								var canvasWidth18 = canvasEighteen.setWidth(img.width);
@@ -928,23 +950,6 @@ $(document).ready(function() {
 								});
 								
 								canvasOne.add(newImage);
-								canvasTwo.add(newImage);
-								canvasThree.add(newImage);
-								canvasFour.add(newImage);
-								canvasFive.add(newImage);
-								canvasSix.add(newImage);
-								canvasSeven.add(newImage);
-								canvasEight.add(newImage);
-								canvasNine.add(newImage);
-								canvasTen.add(newImage);
-								canvasEleven.add(newImage);
-								canvasTwelve.add(newImage);
-								canvasThirteen.add(newImage);
-								canvasFourteen.add(newImage);
-								canvasFifteen.add(newImage);
-								canvasSixteen.add(newImage);
-								canvasSeventeen.add(newImage);
-								canvasEighteen.add(newImage);
 								return false;
 							}
 
@@ -998,6 +1003,7 @@ $(document).ready(function() {
 	        activeCanvas = canvas1;
 	        
 	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1021,8 +1027,10 @@ $(document).ready(function() {
 	    if (option == 2) {
 	        activeCanvas = canvas2;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'block');
+	        $('#canvas2').parent().css('position', 'absolute');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
 	        $('#canvas5').parent().css('display', 'none');
@@ -1045,9 +1053,11 @@ $(document).ready(function() {
 	    if (option == 3) {
 	        activeCanvas = canvas3;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'block');
+	        $('#canvas3').parent().css('position', 'absolute');
 	        $('#canvas4').parent().css('display', 'none');
 	        $('#canvas5').parent().css('display', 'none');
 	        $('#canvas6').parent().css('display', 'none');
@@ -1069,10 +1079,12 @@ $(document).ready(function() {
 	    if (option == 4) {
 	        activeCanvas = canvas4;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'block');
+	        $('#canvas4').parent().css('position', 'absolute');
 	        $('#canvas5').parent().css('display', 'none');
 	        $('#canvas6').parent().css('display', 'none');
 	        $('#canvas7').parent().css('display', 'none');
@@ -1093,11 +1105,13 @@ $(document).ready(function() {
 	    if (option == 5) {
 	        activeCanvas = canvas5;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
 	        $('#canvas5').parent().css('display', 'block');
+	        $('#canvas5').parent().css('position', 'absolute');
 	        $('#canvas6').parent().css('display', 'none');
 	        $('#canvas7').parent().css('display', 'none');
 	        $('#canvas8').parent().css('display', 'none');
@@ -1117,12 +1131,14 @@ $(document).ready(function() {
 	    if (option == 6) {
 	        activeCanvas = canvas6;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
 	        $('#canvas5').parent().css('display', 'none');
 	        $('#canvas6').parent().css('display', 'block');
+	        $('#canvas6').parent().css('position', 'absolute');
 	        $('#canvas7').parent().css('display', 'none');
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
@@ -1141,13 +1157,15 @@ $(document).ready(function() {
 	    if (option == 7) {
 	        activeCanvas = canvas7;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
 	        $('#canvas5').parent().css('display', 'none');
 	        $('#canvas6').parent().css('display', 'none');
 	        $('#canvas7').parent().css('display', 'block');
+	        $('#canvas7').parent().css('position', 'absolute');
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
@@ -1165,7 +1183,8 @@ $(document).ready(function() {
 	    if (option == 8) {
 	        activeCanvas = canvas8;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1173,6 +1192,7 @@ $(document).ready(function() {
 	        $('#canvas6').parent().css('display', 'none');
 	        $('#canvas7').parent().css('display', 'none');
 	        $('#canvas8').parent().css('display', 'block');
+	        $('#canvas8').parent().css('position', 'absolute');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
 	        $('#canvas11').parent().css('display', 'none');
@@ -1189,7 +1209,8 @@ $(document).ready(function() {
 	    if (option == 9) {
 	        activeCanvas = canvas9;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1198,6 +1219,7 @@ $(document).ready(function() {
 	        $('#canvas7').parent().css('display', 'none');
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'block');
+	        $('#canvas9').parent().css('position', 'absolute');
 	        $('#canvas10').parent().css('display', 'none');
 	        $('#canvas11').parent().css('display', 'none');
 	        $('#canvas12').parent().css('display', 'none');
@@ -1207,13 +1229,14 @@ $(document).ready(function() {
 	        $('#canvas16').parent().css('display', 'none');
 	        $('#canvas17').parent().css('display', 'none');
 	        $('#canvas18').parent().css('display', 'none');
-	        window._canvas9.renderAll();
+	       /*  window._canvas9.renderAll(); */
 	    }
 	    
 	    if (option == 10) {
 	        activeCanvas = canvas10;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1223,6 +1246,7 @@ $(document).ready(function() {
 	        $('#canvas8').parent().css('display', 'none');
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'block');
+	        $('#canvas10').parent().css('position', 'absolute');
 	        $('#canvas11').parent().css('display', 'none');
 	        $('#canvas12').parent().css('display', 'none');
 	        $('#canvas13').parent().css('display', 'none');
@@ -1237,7 +1261,8 @@ $(document).ready(function() {
 	    if (option == 11) {
 	        activeCanvas = canvas11;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1248,6 +1273,7 @@ $(document).ready(function() {
 	        $('#canvas9').parent().css('display', 'none');
 	        $('#canvas10').parent().css('display', 'none');
 	        $('#canvas11').parent().css('display', 'block');
+	        $('#canvas11').parent().css('position', 'absolute');
 	        $('#canvas12').parent().css('display', 'none');
 	        $('#canvas13').parent().css('display', 'none');
 	        $('#canvas14').parent().css('display', 'none');
@@ -1261,7 +1287,8 @@ $(document).ready(function() {
 	    if (option == 12) {
 	        activeCanvas = canvas12;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1273,6 +1300,7 @@ $(document).ready(function() {
 	        $('#canvas10').parent().css('display', 'none');
 	        $('#canvas11').parent().css('display', 'none');
 	        $('#canvas12').parent().css('display', 'block');
+	        $('#canvas12').parent().css('position', 'absolute');
 	        $('#canvas13').parent().css('display', 'none');
 	        $('#canvas14').parent().css('display', 'none');
 	        $('#canvas15').parent().css('display', 'none');
@@ -1285,7 +1313,8 @@ $(document).ready(function() {
 	    if (option == 13) {
 	        activeCanvas = canvas13;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1298,6 +1327,7 @@ $(document).ready(function() {
 	        $('#canvas11').parent().css('display', 'none');
 	        $('#canvas12').parent().css('display', 'none');
 	        $('#canvas13').parent().css('display', 'block');
+	        $('#canvas13').parent().css('position', 'absolute');
 	        $('#canvas14').parent().css('display', 'none');
 	        $('#canvas15').parent().css('display', 'none');
 	        $('#canvas16').parent().css('display', 'none');
@@ -1309,7 +1339,8 @@ $(document).ready(function() {
 	    if (option == 14) {
 	        activeCanvas = canvas14;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1323,6 +1354,7 @@ $(document).ready(function() {
 	        $('#canvas12').parent().css('display', 'none');
 	        $('#canvas13').parent().css('display', 'none');
 	        $('#canvas14').parent().css('display', 'block');
+	        $('#canvas14').parent().css('position', 'absolute');
 	        $('#canvas15').parent().css('display', 'none');
 	        $('#canvas16').parent().css('display', 'none');
 	        $('#canvas17').parent().css('display', 'none');
@@ -1333,7 +1365,8 @@ $(document).ready(function() {
 	    if (option == 15) {
 	        activeCanvas = canvas15;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1348,6 +1381,7 @@ $(document).ready(function() {
 	        $('#canvas13').parent().css('display', 'none');
 	        $('#canvas14').parent().css('display', 'none');
 	        $('#canvas15').parent().css('display', 'block');
+	        $('#canvas15').parent().css('position', 'absolute');
 	        $('#canvas16').parent().css('display', 'none');
 	        $('#canvas17').parent().css('display', 'none');
 	        $('#canvas18').parent().css('display', 'none');
@@ -1357,7 +1391,8 @@ $(document).ready(function() {
 	    if (option == 16) {
 	        activeCanvas = canvas16;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1373,6 +1408,7 @@ $(document).ready(function() {
 	        $('#canvas14').parent().css('display', 'none');
 	        $('#canvas15').parent().css('display', 'none');
 	        $('#canvas16').parent().css('display', 'block');
+	        $('#canvas16').parent().css('position', 'absolute');
 	        $('#canvas17').parent().css('display', 'none');
 	        $('#canvas18').parent().css('display', 'none');
 	        window._canvas16.renderAll();
@@ -1381,7 +1417,8 @@ $(document).ready(function() {
 	    if (option == 17) {
 	        activeCanvas = canvas17;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1398,6 +1435,7 @@ $(document).ready(function() {
 	        $('#canvas15').parent().css('display', 'none');
 	        $('#canvas16').parent().css('display', 'none');
 	        $('#canvas17').parent().css('display', 'block');
+	        $('#canvas17').parent().css('position', 'absolute');
 	        $('#canvas18').parent().css('display', 'none');
 	        window._canvas17.renderAll();
 	    }
@@ -1405,7 +1443,8 @@ $(document).ready(function() {
 	    if (option == 18) {
 	        activeCanvas = canvas18;
 	        
-	        $('#canvas1').parent().css('display', 'none');
+	        $('#canvas1').parent().css('display', 'block');
+	        $('#canvas1').parent().css('position', 'absolute');
 	        $('#canvas2').parent().css('display', 'none');
 	        $('#canvas3').parent().css('display', 'none');
 	        $('#canvas4').parent().css('display', 'none');
@@ -1423,6 +1462,7 @@ $(document).ready(function() {
 	        $('#canvas16').parent().css('display', 'none');
 	        $('#canvas17').parent().css('display', 'none');
 	        $('#canvas18').parent().css('display', 'block');
+	        $('#canvas18').parent().css('position', 'absolute');
 	        window._canvas18.renderAll();
 	    }
 	} 
@@ -1444,23 +1484,7 @@ $(document).ready(function() {
 		});
 
 		window._canvas.add(text_obj);
-		window._canvas2.add(text_obj);
-		window._canvas3.add(text_obj);
-		window._canvas4.add(text_obj);
-		window._canvas5.add(text_obj);
-		window._canvas6.add(text_obj);
-		window._canvas7.add(text_obj);
-		window._canvas8.add(text_obj);
-		window._canvas9.add(text_obj);
-		window._canvas10.add(text_obj);
-		window._canvas11.add(text_obj);
-		window._canvas12.add(text_obj);
-		window._canvas13.add(text_obj);
-		window._canvas14.add(text_obj);
-		window._canvas15.add(text_obj);
-		window._canvas16.add(text_obj);
-		window._canvas17.add(text_obj);
-		window._canvas18.add(text_obj);
+		
 	};
 
 	$("#delete").click(function() {
@@ -1475,29 +1499,13 @@ $(document).ready(function() {
 		window._canvas.isDrawingMode = false;
 	};
 
-	/* var panning = false; //panning canvas using mouse
-	window._canvas.on('mouse:up', function (e) {
-	    panning = false;
-	});
-
-	window._canvas.on('mouse:down', function (e) {
-	    panning = true;
-	});
-	window._canvas.on('mouse:move', function (e) {
-	    if (panning && e && e.e) {
-	        debugger;
-	        var units = 1;
-	        var delta = new fabric.Point(e.e.movementX, e.e.movementY);
-	        window._canvas.relativePan(delta);
-	    }
-	}); */
-	
 	
 	function deleteObjects() {
 		var activeObject = window._canvas.getActiveObject();
-		var activeGroup = window._canvas.getActiveGroup();
+		
 		if (activeObject) {
 			window._canvas.remove(activeObject);
+			
 		}
 	}
 
@@ -1541,26 +1549,6 @@ $(document).ready(function() {
 		window._canvas.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
 		window._canvas.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
 		
-		window._canvas9.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
-		window._canvas9.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
-		window._canvas9.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
-		
-		window._canvas10.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
-		window._canvas10.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
-		window._canvas10.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
-		
-		window._canvas15.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
-		window._canvas15.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
-		window._canvas15.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
-		
-		window._canvas16.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
-		window._canvas16.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
-		window._canvas16.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
-		
-		window._canvas13.setZoom(window._canvas.getZoom() * SCALE_FACTOR);
-		window._canvas13.setHeight(window._canvas.getHeight() * SCALE_FACTOR);
-		window._canvas13.setWidth(window._canvas.getWidth() * SCALE_FACTOR);
-		
 		window._canvas.renderAll();
 	}
 
@@ -1575,26 +1563,6 @@ $(document).ready(function() {
 		window._canvas.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
 		window._canvas.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
 		
-		window._canvas9.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
-		window._canvas9.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
-		window._canvas9.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
-		
-		window._canvas10.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
-		window._canvas10.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
-		window._canvas10.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
-		
-		window._canvas15.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
-		window._canvas15.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
-		window._canvas15.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
-		
-		window._canvas16.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
-		window._canvas16.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
-		window._canvas16.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
-		
-		window._canvas13.setZoom(window._canvas.getZoom() / SCALE_FACTOR);
-		window._canvas13.setHeight(window._canvas.getHeight() / SCALE_FACTOR);
-		window._canvas13.setWidth(window._canvas.getWidth() / SCALE_FACTOR);
-		
 		window._canvas.renderAll();
 	}
 
@@ -1605,26 +1573,6 @@ $(document).ready(function() {
 		window._canvas.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
 		window._canvas.setZoom(1);
 
-		window._canvas9.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
-		window._canvas9.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
-		window._canvas9.setZoom(1);
-		
-		window._canvas10.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
-		window._canvas10.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
-		window._canvas10.setZoom(1);
-		
-		window._canvas13.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
-		window._canvas13.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
-		window._canvas13.setZoom(1);
-		
-		window._canvas15.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
-		window._canvas15.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
-		window._canvas15.setZoom(1);
-		
-		window._canvas16.setHeight(window._canvas.getHeight()/ window._canvas.getZoom());
-		window._canvas16.setWidth(window._canvas.getWidth()/ window._canvas.getZoom());
-		window._canvas16.setZoom(1);
-		
 		window._canvas.renderAll();
 
 		getFabricCanvases().forEach(function(item) {
@@ -1739,20 +1687,10 @@ $(document).ready(function() {
 				clonedObj.canvas = window._canvas;
 				clonedObj.forEachObject(function(obj) {
 					window._canvas.add(obj);
-					window._canvas9.add(obj);
-					window._canvas10.add(obj);
-					window._canvas13.add(obj);
-					window._canvas15.add(obj);
-					window._canvas16.add(obj);
 				});
 				clonedObj.setCoords();
 			} else {
 				window._canvas.add(clonedObj);
-				window._canvas9.add(clonedObj);
-				window._canvas10.add(clonedObj);
-				window._canvas13.add(clonedObj);
-				window._canvas15.add(clonedObj);
-				window._canvas16.add(clonedObj);
 			}
 			_clipboard.top += 15;
 			_clipboard.left += 15;
@@ -1798,13 +1736,13 @@ $(document).ready(function() {
 	
 	$('.Load').click(function() {
 
-		 var url = "http://localhost:8080/planr/getLayout/19";
+		 var url = "http://localhost:8080/planr/getLayout/15";
 	        var data1;
+	        var data2;
 	        $.getJSON(url, function (data) {
 	            console.log(JSON.stringify(data))
 	            data1 = data
 	            
-	            /* window._canvas.loadFromJSON(JSON.stringify(data1), window._canvas.renderAll.bind(window._canvas)) */
 	            window._canvas.loadFromJSON(data1, window._canvas.renderAll.bind(window._canvas), function(o, object) {
            	fabric.log(o, object);
            	object.set({
@@ -1812,11 +1750,11 @@ $(document).ready(function() {
 				    flipY : false,
 				    hasControls : false
 				    });
-	            /* window._canvas.setBackgroundImage(img, window._canvas.renderAll.bind(window._canvas)) */
+	            });
+				window._canvas.renderAll();
 
-	        });
-	        
 	});
+	       
 	});
 	
 </script>

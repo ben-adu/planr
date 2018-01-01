@@ -48,7 +48,7 @@
 </script>
 <script>
 $( document ).ready(function() {
-	var url = "http://localhost:8080/planr/getLayout/3";
+	var url = "http://localhost:8080/planr/getLayout/1";
     var data1;
     $.getJSON(url, function (data) {
         console.log(JSON.stringify(data))

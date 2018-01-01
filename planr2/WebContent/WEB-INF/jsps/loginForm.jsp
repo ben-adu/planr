@@ -93,7 +93,7 @@
 
 				<!-- form -->
 				<div class="col s4">
-				<h5>Sign in to continue</h5>
+				<h5>Sign in</h5>
 					<c:url value="/login" var="loginUrl" />
 					<form method="post" action="${loginUrl}"
 						onsubmit="return validateForm()" name="myForm">
